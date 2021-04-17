@@ -7,9 +7,6 @@ ZSH_THEME="custom"
 # DISABLE_MAGIC_FUNCTIONS="true"
 
 # plugins=(git)
-plugins=(virtualenv)
-
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -19,7 +16,7 @@ alias gotoC="cd /mnt/c/"
 alias gotoD="cd /mnt/d/"
 alias gotoProgramming="cd /mnt/d/Documents/Programming"
 # Git aliases
-alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias dotfiles='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 alias gs='git status'
 alias gpp='git pull && git push'
 alias gcm='git commit'
