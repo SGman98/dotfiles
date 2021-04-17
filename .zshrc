@@ -7,7 +7,9 @@ ZSH_THEME="custom"
 # DISABLE_MAGIC_FUNCTIONS="true"
 
 # plugins=(git)
+plugins=(virtualenv)
 
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration

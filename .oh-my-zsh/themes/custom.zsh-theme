@@ -1,5 +1,6 @@
-PROMPT='%{$fg[green]%}%c/%{$reset_color%}$(git_prompt_info)$(git_prompt_status)'
-PROMPT+='
+PROMPT='%{$fg[green]%}%c/'
+PROMPT+='%{$fg[white]%}$(virtualenv_prompt_info)'
+PROMPT+='%{$reset_color%}$(git_prompt_info)$(git_prompt_status)
 %(?:%{$fg_bold[white]%}$ :%{$fg_bold[red]%}$ )%{$reset_color%}'
 RPROMPT='%{$fg[gray]%}@%n'
 
