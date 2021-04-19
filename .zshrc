@@ -28,6 +28,7 @@ alias gdot='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 alias gdota='gdot add'
 alias gdots='gdot status'
 alias gdotcm='gdot commit'
+alias gdotpp='gdot pull && gdot push'
 
 # Vim in terminal
 bindkey -v
