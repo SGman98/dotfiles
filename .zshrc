@@ -18,12 +18,16 @@ alias gotoD="cd /mnt/d/"
 alias p="cd /mnt/d/Documents/Programming"
 
 # Git aliases
-alias dotfiles='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 alias gs='git status'
 alias gpp='git pull && git push'
 alias gcm='git commit'
 alias ga='git add -A'
 alias gco='git checkout'
+
+alias gdot='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias gdota='gdot add'
+alias gdots='gdot status'
+alias gdotcm='gdot commit'
 
 # Vim in terminal
 bindkey -v
