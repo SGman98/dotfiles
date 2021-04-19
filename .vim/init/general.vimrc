@@ -9,7 +9,7 @@ set relativenumber
 set number
 set nohlsearch
 set noerrorbells
-set shiftwidth=4 softtabstop=4 tabstop=4 noexpandtab
+set shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 set autoindent
 set smarttab
 set smartindent
@@ -27,9 +27,12 @@ set showmatch
 set hlsearch
 set path+=**
 set wildmenu
-set wildignore+=**/node_modules/**
+set wildignore+=**/node_modules/**,.git/,.git/*,.venv/,.venv/*,.vscode/,.vscode/*
 set hidden
 
 " Color scheme
 colorscheme gruvbox
+"let g:gruvbox_transparent_bg=1
 set background=dark
+hi Normal guibg=NONE ctermbg=NONE
+let g:gruvbox_contrast_dark='hard'

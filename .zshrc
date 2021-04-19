@@ -7,14 +7,16 @@ ZSH_THEME="custom"
 # DISABLE_MAGIC_FUNCTIONS="true"
 
 # plugins=(git)
+plugins=(zsh-autosuggestions git-flow-completion)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-alias vimvimrc="vim ~/.vimrc"
-alias vimzshrc="vim ~/.zshrc && source ~/.zshrc"
+alias vimrc="vim ~/.vimrc"
+alias zshrc="vim ~/.zshrc && source ~/.zshrc"
 alias gotoC="cd /mnt/c/"
 alias gotoD="cd /mnt/d/"
-alias gotoProgramming="cd /mnt/d/Documents/Programming"
+alias p="cd /mnt/d/Documents/Programming"
+
 # Git aliases
 alias dotfiles='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 alias gs='git status'
@@ -23,3 +25,27 @@ alias gcm='git commit'
 alias ga='git add -A'
 alias gco='git checkout'
 
+# Vim in terminal
+bindkey -v
+bindkey "jk" vi-cmd-mode
+
+# Functions
+# Auto activate virtual enviroment if exist
+function cd() {
+  builtin cd "$@"
+
+  if [[ -z "$VIRTUAL_ENV" ]] ; then
+    ## If env folder is found then activate the vitualenv
+      if [[ -d ./.venv ]] ; then
+        source ./.venv/bin/activate
+      fi
+  else
+    ## check the current folder belong to earlier VIRTUAL_ENV folder
+    # if yes then do nothing
+    # else deactivate
+      parentdir="$(dirname "$VIRTUAL_ENV")"
+      if [[ "$PWD"/ != "$parentdir"/* ]] ; then
+        deactivate
+      fi
+  fi
+}
