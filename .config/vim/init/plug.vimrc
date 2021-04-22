@@ -1,6 +1,6 @@
 " $HOME/.vim/init/plug.vimrc
 " Plugin load
-    call plug#begin('~/.vim/plugged')
+    call plug#begin('~/.config/vim/plugged')
         Plug 'morhetz/gruvbox'
         Plug 'ajmwagar/vim-deus'
 
@@ -42,3 +42,9 @@
     " CtrlP
     let g:ctrlp_working_path_mode = 'ra'
     let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+" Color scheme
+    colorscheme gruvbox
+    "let g:gruvbox_transparent_bg=1
+    set background=dark
+    hi Normal guibg=NONE ctermbg=NONE
+    let g:gruvbox_contrast_dark='hard'

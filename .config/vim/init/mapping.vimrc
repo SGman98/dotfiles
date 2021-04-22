@@ -13,6 +13,19 @@ let mapleader = ' '
     nnoremap <Tab> :bnext<CR>
     nnoremap <S-Tab> :bprev<CR>
     nnoremap S :%s//g<Left><Left>
+    "Spell mapping for english and spanish
+    nnoremap <leader>se :setlocal spell! spelllang=en_gb <Bar> hi SpellBad cterm=underline<CR>
+    nnoremap <leader>ss :setlocal spell! spelllang=en_gb <Bar> hi SpellBad cterm=underline<CR>
+    " Open Terminal
+    nnoremap <leader>t :below vertical terminal<CR>
+    tmap <leader>e <C-w>N
+    tmap <leader>t <C-w>NZQ
+    tmap <leader>h <C-w>h
+    tmap <leader>j <C-w>j
+    tmap <leader>k <C-w>k
+    tmap <leader>l <C-w>l
+
+
 
 " Git
     nmap <leader>gs :G<CR>
@@ -29,7 +42,7 @@ let mapleader = ' '
     nnoremap <silent> <down> :vertical resize -5<CR>
     nnoremap <silent> <S-up> :resize +5<CR>
     nnoremap <silent> <S-down> :resize -5<CR>
-    nnoremap <leader>t :call ToggleNetrw()<CR>
+    nnoremap <leader><Tab> :call ToggleNetrw()<CR>
     let g:NetrwIsOpen=0
 
 " YCM
@@ -43,7 +56,7 @@ let mapleader = ' '
     nmap <leader>c <Plug>BujoChecknormal
 
 "# Others/Functions
-    " Auto clear unnecesary whitespaces on save
+    " Auto clear unnecessary white spaces on save
     fun! TrimWhitespace()
         let l:save = winsaveview()
         keeppatterns %s/\s\+$//e

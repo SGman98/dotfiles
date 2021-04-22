@@ -1,14 +1,18 @@
+# zmodload zsh/zprof
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+export MYVIMRC='~/.config/vim/vimrc'  #or any other location you want
+export VIMINIT='source $MYVIMRC'
 
 ZSH_THEME="custom"
 
 # plugins=(git)
-    plugins=(zsh-autosuggestions git-flow-completion)
+    plugins=(git-flow-completion)
     source $ZSH/oh-my-zsh.sh
+    DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # User configuration
-    alias vimrc="vim ~/.vimrc"
+    alias vimrc="vim ~/.config/vim/vimrc"
     alias zshrc="vim ~/.zshrc && source ~/.zshrc"
     alias gotoC="cd /mnt/c/"
     alias gotoD="cd /mnt/d/"
@@ -51,3 +55,10 @@ ZSH_THEME="custom"
           fi
       fi
     }
+    # Comp init just once a day
+    autoload -Uz compinit
+    for dump in ~/.zcompdump(N.mh+24); do
+      compinit
+    done
+    compinit -C
+#zprof
