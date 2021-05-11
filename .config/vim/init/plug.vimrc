@@ -4,12 +4,17 @@
         Plug 'morhetz/gruvbox'
         Plug 'ajmwagar/vim-deus'
 
+        Plug 'vim-python/python-syntax'
+
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
 
         Plug 'ctrlpvim/ctrlp.vim'
 
         Plug 'tpope/vim-fugitive'
+        Plug 'airblade/vim-gitgutter'
+
+        Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
         Plug 'valloric/youcompleteme'
         Plug 'unblevable/quick-scope'
@@ -18,6 +23,8 @@
     call plug#end()
 
 "# Plugin specific
+    " Syntax Python
+    let g:python_highlight_all = 1
     " Airline
     let g:airline_powerline_fonts = 1
     let g:airline#extensions#tabline#enabled = 1
@@ -42,6 +49,13 @@
     " CtrlP
     let g:ctrlp_working_path_mode = 'ra'
     let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+    " Git
+    let g:gitgutter_terminal_reports_focus=0
+
+    " Ultisnips
+    let g:UltiSnipsExpandTrigger="<c-j>"
+
 " Color scheme
     colorscheme gruvbox
     "let g:gruvbox_transparent_bg=1

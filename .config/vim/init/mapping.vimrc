@@ -1,10 +1,9 @@
-let mapleader = ' '
-
 "# Remapping
     :autocmd InsertEnter * set timeoutlen=200
     :autocmd InsertLeave * set timeoutlen=1000
 
 " General
+    let mapleader=' '
     inoremap jk <ESC>
     vnoremap > >gv
     vnoremap < <gv
@@ -18,8 +17,8 @@ let mapleader = ' '
     nnoremap <leader>ss :setlocal spell! spelllang=en_gb <Bar> hi SpellBad cterm=underline<CR>
     " Open Terminal
     nnoremap <leader>t :below vertical terminal<CR>
-    tmap <leader>e <C-w>N
-    tmap <leader>t <C-w>NZQ
+    tmap <leader>t <C-w>N:bdelete!<CR>
+    tmap jk  <C-w>N
     tmap <leader>h <C-w>h
     tmap <leader>j <C-w>j
     tmap <leader>k <C-w>k

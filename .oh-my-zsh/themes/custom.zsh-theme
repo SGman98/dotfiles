@@ -1,13 +1,14 @@
-PROMPT='%{$fg[green]%}%c/'
-PROMPT+='%{$fg[white]%}$(virtualenv_prompt_info)'
-PROMPT+='%{$reset_color%}$(git_prompt_info)$(git_prompt_status)
-%(?:%{$fg_bold[white]%}$ :%{$fg_bold[red]%}$ )%{$reset_color%}'
-RPROMPT='%{$fg[gray]%}@%n'
+PROMPT='%{$fg_bold[white]%}['
+PROMPT+='%F{#55CBCD}%c/'
+PROMPT+='%{$reset_color%}$(git_prompt_info)$(git_prompt_status)'
+PROMPT+='%{$fg_bold[white]%}]'
+PROMPT+='%(?:%{$fg_bold[white]%}~ :%{$fg_bold[red]%}~ )%{$reset_color%}'
+RPROMPT='%F{#DDDDFF}@%n'
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[white]%}on git:(%{$fg[blue]%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[white]%}, %F{#B7BF5E}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[white]%})"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[white]%})"
+ZSH_THEME_GIT_PROMPT_DIRTY=""
+ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[cyan]%}✈"
 ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[yellow]%}✭"

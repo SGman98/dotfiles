@@ -1,13 +1,11 @@
 # zmodload zsh/zprof
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-export MYVIMRC='~/.config/vim/vimrc'  #or any other location you want
-export VIMINIT='source $MYVIMRC'
 
 ZSH_THEME="custom"
 
 # plugins=(git)
-    plugins=(git-flow-completion)
+    plugins=(git-flow-completion zsh-syntax-highlighting)
     source $ZSH/oh-my-zsh.sh
     DISABLE_UNTRACKED_FILES_DIRTY="true"
 
@@ -31,9 +29,12 @@ ZSH_THEME="custom"
     alias gdotcm='gdot commit'
     alias gdotpp='gdot pull && gdot push'
 
+    alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
 # Vim in terminal
     bindkey -v
-    bindkey "jk" vi-cmd-mode
+    export KEYTIMEOUT=1
+    # bindkey 'jk' vi-cmd-mode
 
 # Functions
     # Auto activate virtual enviroment if exist
@@ -61,4 +62,7 @@ ZSH_THEME="custom"
       compinit
     done
     compinit -C
+
+export VIMINIT='source $MYVIMRC'
+export MYVIMRC='~/.config/vim/vimrc'  #Config vimrc path
 #zprof

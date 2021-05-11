@@ -1,5 +1,3 @@
-" $HOME/.config/vim/init/general.vimrc
-" General settings vim
     set exrc
 
     set nocompatible
@@ -33,7 +31,7 @@
     set undofile
 
     set scrolloff=7
-    " set signcolumn=yes
+    set signcolumn=yes
     set showmatch
 
     set splitbelow splitright
@@ -46,5 +44,5 @@
 if empty(glob('~/.config/vim/autoload/plug.vim'))
     silent !curl -fLo ~/.config/vim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
