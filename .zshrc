@@ -14,7 +14,7 @@ ZSH_THEME="custom"
     alias zshrc="vim ~/.zshrc && source ~/.zshrc"
     alias gotoC="cd /mnt/c/"
     alias gotoD="cd /mnt/d/"
-    alias p="cd /mnt/d/Documents/Programming"
+    alias p="cd /mnt/d/z/Programming"
 
 # Git aliases
     alias gs='git status'
@@ -66,3 +66,5 @@ ZSH_THEME="custom"
 export VIMINIT='source $MYVIMRC'
 export MYVIMRC='~/.config/vim/vimrc'  #Config vimrc path
 #zprof
+PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
