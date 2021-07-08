@@ -4,7 +4,6 @@
 
 " General
     let mapleader=' '
-    inoremap jk <ESC>
     vnoremap > >gv
     vnoremap < <gv
     xnoremap <leader>k :m '<-2<CR>gv=gv
@@ -18,11 +17,10 @@
     " Open Terminal
     nnoremap <leader>t :below vertical terminal<CR>
     tmap <leader>t <C-w>N:bdelete!<CR>
-    tmap jk  <C-w>N
-    tmap <leader>h <C-w>h
-    tmap <leader>j <C-w>j
-    tmap <leader>k <C-w>k
-    tmap <leader>l <C-w>l
+    tmap <leader><left> <C-w>h
+    tmap <leader><down> <C-w>j
+    tmap <leader><up> <C-w>k
+    tmap <leader><right> <C-w>l
 
 
 
@@ -33,14 +31,10 @@
     nnoremap <leader>fb :CtrlPBuffer<CR>
 
 " Netrw
-    nnoremap <leader>h :wincmd h<CR>
-    nnoremap <leader>j :wincmd j<CR>
-    nnoremap <leader>k :wincmd k<CR>
-    nnoremap <leader>l :wincmd l<CR>
-    nnoremap <silent> <up> :vertical resize +5<CR>
-    nnoremap <silent> <down> :vertical resize -5<CR>
-    nnoremap <silent> <S-up> :resize +5<CR>
-    nnoremap <silent> <S-down> :resize -5<CR>
+    nnoremap <leader><left> :wincmd h<CR>
+    nnoremap <leader><down> :wincmd j<CR>
+    nnoremap <leader><up> :wincmd k<CR>
+    nnoremap <leader><right> :wincmd l<CR>
     nnoremap <leader><Tab> :call ToggleNetrw()<CR>
     let g:NetrwIsOpen=0
 
