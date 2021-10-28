@@ -34,3 +34,7 @@ python3 install.py --all
 git submodule update --init --recursive
 - and run the first command again
 
+## Setting up gpg
+if gpg signing fails then run
+
+export GPG_TTY=$(tty)
