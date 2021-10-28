@@ -1,31 +1,31 @@
 # zmodload zsh/zprof
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-# For use of gpg signing
-export GPG_TTY=$(tty)
+## For use of gpg signing
+#export GPG_TTY=$(tty)
+#
+## For ssh use
+#env=~/.ssh/agent.env
+#
+#agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
+#
+#agent_start () {
+#    (umask 077; ssh-agent >| "$env")
+#    . "$env" >| /dev/null ; }
+#
+#agent_load_env
 
-# For ssh use
-env=~/.ssh/agent.env
-
-agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
-
-agent_start () {
-    (umask 077; ssh-agent >| "$env")
-    . "$env" >| /dev/null ; }
-
-agent_load_env
-
-# agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2= agent not running
-agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
-
-if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
-    agent_start
-    ssh-add
-elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
-    ssh-add
-fi
-
-unset env
+## agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2= agent not running
+#agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
+#
+#if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
+#    agent_start
+#    ssh-add
+#elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
+#    ssh-add
+#fi
+#
+#unset env
 
 # Theme selection
 ZSH_THEME="custom"
@@ -40,10 +40,10 @@ ZSH_THEME="custom"
     alias zshrc="vim ~/.zshrc && source ~/.zshrc"
     alias gotoC="cd /mnt/c/"
     alias gotoD="cd /mnt/d/"
-    alias p="cd /mnt/d/z/Programming"
+    alias p="cd /mnt/d/Documents/programming"
 
 # Git aliases
-    alias gs='git status'
+    alias gst='git status'
     alias gpp='git pull && git push'
     alias gcm='git commit'
     alias ga='git add -A'
@@ -51,11 +51,21 @@ ZSH_THEME="custom"
 
     alias gdot='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
     alias gdota='gdot add'
-    alias gdots='gdot status'
+    alias gdotst='gdot status'
     alias gdotcm='gdot commit'
     alias gdotpp='gdot pull && gdot push'
 
     alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+    # stashing
+    alias gs="git stash"
+    alias gsp="git stash pop"
+    alias gsu="git stash -u"
+    alias gl="git stash list"
+    alias gll="git stash-list"
+    alias glll="git stash-list --full"
+    alias gss="git stash save"
+
 
 # Vim in terminal
     bindkey -v
