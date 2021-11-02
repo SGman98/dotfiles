@@ -41,10 +41,14 @@ ZSH_THEME="custom"
     alias gotoC="cd /mnt/c/"
     alias gotoD="cd /mnt/d/"
     alias p="cd /mnt/d/Documents/programming"
+# Useful
+    alias py="python3"
 
 # Git aliases
     alias gst='git status'
-    alias gpp='git pull && git push'
+    alias gpl='git pull'
+    alias gph='git push'
+    alias gplph='git pull && git push'
     alias gcm='git commit'
     alias ga='git add -A'
     alias gco='git checkout'
@@ -53,7 +57,7 @@ ZSH_THEME="custom"
     alias gdota='gdot add'
     alias gdotst='gdot status'
     alias gdotcm='gdot commit'
-    alias gdotpp='gdot pull && gdot push'
+    alias gdotplph='gdot pull && gdot push'
 
     alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
