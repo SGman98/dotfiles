@@ -43,21 +43,23 @@ ZSH_THEME="custom"
     alias p="cd /mnt/d/Documents/programming"
 # Useful
     alias py="python3"
+    alias v="vim"
+    alias bat="batcat"
 
 # Git aliases
-    alias gst='git status'
-    alias gpl='git pull'
-    alias gph='git push'
-    alias gu='git pull && git push'
-    alias gcm='git commit'
-    alias ga='git add -A'
-    alias gco='git checkout'
+    alias gst="git status"
+    alias gpl="git pull"
+    alias gph="git push"
+    alias gu="git pull && git push"
+    alias gcm="git commit"
+    alias ga="git add -A"
+    alias gco="git checkout"
 
-    alias gdot='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
-    alias gdota='gdot add'
-    alias gdotst='gdot status'
-    alias gdotcm='gdot commit'
-    alias gdotu='gdot pull && gdot push'
+    alias gdot="git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
+    alias gdota="gdot add"
+    alias gdotst="gdot status"
+    alias gdotcm="gdot commit"
+    alias gdotu="gdot pull && gdot push"
 
     alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
@@ -103,8 +105,8 @@ ZSH_THEME="custom"
     done
     compinit -C
 
-export VIMINIT='source $MYVIMRC'
-export MYVIMRC='~/.config/vim/vimrc'  #Config vimrc path
+export MYVIMRC="~/.config/vim/vimrc"  #Config vimrc path
+export VIMINIT="source $MYVIMRC"
 #zprof
 PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
