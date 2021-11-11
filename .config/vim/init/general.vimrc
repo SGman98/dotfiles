@@ -40,6 +40,9 @@
     set wildmenu
     set wildignore+=**/node_modules/**,.git/,.git/*,.vscode/,.vscode/*
 
+    " For WSL open link with gx using browser in windows
+    let g:netrw_browsex_viewer="cmd.exe /C start"
+
 " Automatically install vim-Plug
 if empty(glob('~/.config/vim/autoload/plug.vim'))
     silent !curl -fLo ~/.config/vim/autoload/plug.vim --create-dirs
