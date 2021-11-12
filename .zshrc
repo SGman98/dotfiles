@@ -79,6 +79,10 @@ ZSH_THEME="custom"
     # bindkey 'jk' vi-cmd-mode
 
 # Functions
+    # mkdir and cd
+    function mdc() {
+        mkdir -p $1 && cd $1
+    }
     # Auto activate virtual enviroment if exist
     function cd() {
       builtin cd "$@"
