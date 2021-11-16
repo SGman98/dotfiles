@@ -1,58 +1,64 @@
 # Testing my dotfiles
 
-sudo apt-get update
+`sudo apt-get update`
 
-sudo apt-get upgrade
+`sudo apt-get upgrade`
 
-sudo apt-get install python3.8-dev build-essential cmake curl
+`sudo apt-get install python3.8-dev build-essential cmake curl`
 
 ## Install zsh & ohmyzsh
-sudo apt-get install zsh
+`sudo apt-get install zsh`
 
-zsh
+`zsh`
 
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+`sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
 
 ## Install zsh plugins
-git clone https://github.com/bobthecow/git-flow-completion $ZSH/custom/plugins/git-flow-completion
+`git clone https://github.com/bobthecow/git-flow-completion $ZSH/custom/plugins/git-flow-completion`
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH/custom/plugins/zsh-syntax-highlighting
+`git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH/custom/plugins/zsh-syntax-highlighting`
 
-git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH/custom/plugins/zsh-vi-mode
+`git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH/custom/plugins/zsh-vi-mode`
 
 ## Setting repo
-git clone --bare https://github.com/SGman98/dotfiles.git $HOME/dotfiles
+`git clone --bare https://github.com/SGman98/dotfiles.git $HOME/dotfiles`
 
-git --git-dir=$HOME/dotfiles --work-tree=$HOME checkout
+`git --git-dir=$HOME/dotfiles --work-tree=$HOME checkout`
 
-gdot config --local status.showUntrackedFiles no
+`gdot config --local status.showUntrackedFiles no`
 
-gdot update-index --assume-unchanged ~/.gitconfig
+`gdot update-index --assume-unchanged ~/.gitconfig`
 
-gdot fetch
+`gdot fetch`
 
-gdot push --set-upstream origin master
+`gdot push --set-upstream origin master`
 
-- open vim so Plug and all plugins start installing
-## Install YCM for vim
-cd ~/.config/vim/plugged/youcompleteme/
+## Vim
 
-python3 install.py --all
-- if it doesn't work then
+open vim so Plug and all plugins start installing
 
-git submodule update --init --recursive
-- and run the first command again
+#### Install YCM for vim
+&nbsp;&nbsp;`cd ~/.config/vim/plugged/youcompleteme/`
+
+&nbsp;&nbsp;`python3 install.py --all`
+
+> if it doesn't work then\
+> `git submodule update --init --recursive`\
+> and run the first command again
 
 ## Extras
 
-- nodejs
-sudo apt install nodejs npm
+#### nodejs
 
-- reveal-md
-npm install -g reveal-md
+&nbsp;&nbsp;`sudo apt install nodejs npm`
 
-- wsl setup xserver follow
-Follow this ![file](https://github.com/davidbombal/wsl2/blob/main/ubuntu_gui_youtube)
+#### reveal-md
 
-- pandoc ...
+&nbsp;&nbsp;`npm install -g reveal-md`
+
+#### wsl setup xserver
+
+&nbsp;&nbsp;Follow this [file](https://github.com/davidbombal/wsl2/blob/main/ubuntu_gui_youtube)
+
+#### pandoc ...
 
