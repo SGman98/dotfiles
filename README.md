@@ -29,20 +29,9 @@ gdot config --local status.showUntrackedFiles no
 
 gdot fetch
 
-gdot pust --set-upstream origin master
+gdot push --set-upstream origin master
 
-## Config Git
-git config --global user.name @username
-
-git config --global user.email @email
-
-git config --global core.editor vim
-
-### GPG Configuration (config gpg and ssh key)
-
-git config --global commit.gpgsign true
-
-git config --global gpg.program gpg
+gdot update-index --assume-unchanged ~/.gitconfig
 
 - open vim so Plug and all plugins start installing
 ## Install YCM for vim
