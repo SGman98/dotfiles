@@ -27,11 +27,11 @@ git --git-dir=$HOME/dotfiles --work-tree=$HOME checkout
 
 gdot config --local status.showUntrackedFiles no
 
+gdot update-index --assume-unchanged ~/.gitconfig
+
 gdot fetch
 
 gdot push --set-upstream origin master
-
-gdot update-index --assume-unchanged ~/.gitconfig
 
 - open vim so Plug and all plugins start installing
 ## Install YCM for vim
@@ -42,3 +42,17 @@ python3 install.py --all
 
 git submodule update --init --recursive
 - and run the first command again
+
+## Extras
+
+- nodejs
+sudo apt install nodejs npm
+
+- reveal-md
+npm install -g reveal-md
+
+- wsl setup xserver follow
+Follow this ![file](https://github.com/davidbombal/wsl2/blob/main/ubuntu_gui_youtube)
+
+- pandoc ...
+
