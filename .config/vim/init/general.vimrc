@@ -4,7 +4,9 @@
     set runtimepath+=~/.config/vim/,~/.config/vim/after/
     set viminfo+=n~/.config/vim/viminfo
     let g:netrw_home=$XDG_CACHE_HOME.'/vim'
-    set guicursor=
+    let &t_SI="\<Esc>[6 q" "SI = INSERT mode
+    let &t_SR="\<Esc>[4 q" "SR = REPLACE mode
+    let &t_EI="\<Esc>[2 q" "EI = NORMAL mode (ELSE)
     set showcmd " in linux vim shows command history
 
     set relativenumber
