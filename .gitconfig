@@ -1,11 +1,11 @@
 [core]
     editor = vim
 [commit]
-	gpgsign = true
+    gpgsign = true
 [gpg]
-	program = gpg
+    program = gpg
 [alias]
-	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue) <%an>%Creset' --abbrev-commit
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue) <%an>%Creset' --abbrev-commit
     st = status
     pl = pull
     ph = push
