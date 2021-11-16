@@ -45,33 +45,10 @@ ZSH_THEME="custom"
     alias py="python3"
     alias v="vim"
     alias bat="batcat"
+    alias g="git"
 
-# Git aliases
-    alias gst="git status"
-    alias gpl="git pull"
-    alias gph="git push"
-    alias gu="git pull && git push"
-    alias gcm="git commit"
-    alias ga="git add -A"
-    alias gco="git checkout"
-
+# Git aliases for dotfiles
     alias gdot="git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
-    alias gdota="gdot add"
-    alias gdotst="gdot status"
-    alias gdotcm="gdot commit"
-    alias gdotu="gdot pull && gdot push"
-
-    alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-
-    # stashing
-    alias gs="git stash"
-    alias gsp="git stash pop"
-    alias gsu="git stash -u"
-    alias gl="git stash list"
-    alias gll="git stash-list"
-    alias glll="git stash-list --full"
-    alias gss="git stash save"
-
 
 # Vim in terminal
     bindkey -v
