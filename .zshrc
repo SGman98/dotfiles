@@ -31,7 +31,7 @@ unset env
 ZSH_THEME="custom"
 
 # plugins=(git)
-    plugins=(git-flow-completion zsh-syntax-highlighting)
+    plugins=(git-flow-completion zsh-syntax-highlighting zsh-vi-mode)
     source $ZSH/oh-my-zsh.sh
     DISABLE_UNTRACKED_FILES_DIRTY="true"
 
@@ -76,12 +76,11 @@ ZSH_THEME="custom"
 # Vim in terminal
     bindkey -v
     export KEYTIMEOUT=1
-    # bindkey 'jk' vi-cmd-mode
 
 # Functions
     # mkdir and cd
     function mdc() {
-        mkdir -p $1 && cd $1
+        mkdir -p -- "$1" && cd -P -- "$1"
     }
     # Auto activate virtual enviroment if exist
     function cd() {
