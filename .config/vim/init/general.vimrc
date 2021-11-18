@@ -45,6 +45,14 @@
     " For WSL open link with gx using browser in windows
     let g:netrw_browsex_viewer="cmd.exe /C start"
 
+    " Reset cursor on startup
+    augroup ResetCursorShape
+    au!
+    autocmd VimEnter * :normal :startinsert | stopinsert
+    augroup END
+
+
+
 " Automatically install vim-Plug
 if empty(glob('~/.config/vim/autoload/plug.vim'))
     silent !curl -fLo ~/.config/vim/autoload/plug.vim --create-dirs

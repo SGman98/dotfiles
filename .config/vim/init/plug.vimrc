@@ -5,6 +5,7 @@
         Plug 'ajmwagar/vim-deus'
 
         Plug 'vim-python/python-syntax'
+        Plug 'tpope/vim-markdown'
 
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
@@ -26,6 +27,9 @@
 "# Plugin specific
     " Syntax Python
     let g:python_highlight_all = 1
+
+    au BufNewFile,BufReadPost *.md set filetype=markdown
+    let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript', 'html', 'py=python', 'python']
     " Airline
     let g:airline_powerline_fonts = 0
     let g:airline#extensions#tabline#enabled = 1

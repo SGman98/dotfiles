@@ -31,7 +31,7 @@ unset env
 ZSH_THEME="custom"
 
 # plugins=(git)
-    plugins=(git-flow-completion zsh-syntax-highlighting zsh-vi-mode)
+    plugins=(zsh-vi-mode git-flow-completion zsh-syntax-highlighting)
     source $ZSH/oh-my-zsh.sh
     DISABLE_UNTRACKED_FILES_DIRTY="true"
 
@@ -48,11 +48,11 @@ ZSH_THEME="custom"
     alias g="git"
 
 # Git aliases for dotfiles
-    alias gdot="git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
+    alias dotfiles="git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
 
 # Vim in terminal
-    bindkey -v
-    export KEYTIMEOUT=1
+    # bindkey -v
+    # export KEYTIMEOUT=1
 
 # Functions
     # mkdir and cd
@@ -77,6 +77,13 @@ ZSH_THEME="custom"
             deactivate
           fi
       fi
+    }
+    # The plugin will auto execute this zvm_before_init function
+    function zvm_before_init() {
+        zvm_bindkey viins '^[[A' history-beginning-search-backward
+        zvm_bindkey viins '^[[B' history-beginning-search-forward
+        zvm_bindkey vicmd '^[[A' history-beginning-search-backward
+        zvm_bindkey vicmd '^[[B' history-beginning-search-forward
     }
     # Comp init just once a day
     autoload -Uz compinit
