@@ -61,5 +61,11 @@ open vim so Plug and all plugins start installing
 
 &nbsp;&nbsp;Follow this [file](https://github.com/davidbombal/wsl2/blob/main/ubuntu_gui_youtube)
 
-#### pandoc ...
+#### pandoc
+
+`sudo apt install pandoc pandoc-citeproc texlive-full texlive-latex-extra`
+
+#### terminal utils
+
+`sudo apt install bat tree neofetch`
 
