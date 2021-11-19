@@ -25,13 +25,14 @@
 
 `git --git-dir=$HOME/dotfiles --work-tree=$HOME checkout`
 
-`gdot config --local status.showUntrackedFiles no`
+`dot config --local status.showUntrackedFiles no`
 
-`gdot update-index --assume-unchanged ~/.gitconfig`
+`dot update-index --assume-unchanged ~/.gitconfig`
 
-`gdot fetch`
-
-`gdot push --set-upstream origin master`
+> Config repo for updates\
+> Config user, email, signingkey (gpg)\
+> `dot fetch`\
+> `dot push --set-upstream origin master`
 
 ## Vim
 
