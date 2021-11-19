@@ -49,10 +49,7 @@ ZSH_THEME="custom"
 
 # Git aliases for dotfiles
     alias dotfiles="git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
-
-# Vim in terminal
-    # bindkey -v
-    # export KEYTIMEOUT=1
+    alias dot="dotfiles"
 
 # Functions
     # mkdir and cd
