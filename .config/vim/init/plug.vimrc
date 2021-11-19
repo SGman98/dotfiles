@@ -8,7 +8,6 @@
         Plug 'tpope/vim-markdown'
 
         Plug 'vim-airline/vim-airline'
-        Plug 'vim-airline/vim-airline-themes'
 
         Plug 'ctrlpvim/ctrlp.vim'
         Plug 'tpope/vim-surround'
@@ -31,7 +30,6 @@
     au BufNewFile,BufReadPost *.md set filetype=markdown
     let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript', 'html', 'py=python', 'python']
     " Airline
-    let g:airline_powerline_fonts = 0
     let g:airline#extensions#tabline#enabled = 1
 
     " Netrw
