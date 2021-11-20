@@ -29,6 +29,7 @@
 
     au BufNewFile,BufReadPost *.md set filetype=markdown
     let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript', 'html', 'py=python', 'python']
+
     " Airline
     let g:airline#extensions#tabline#enabled = 1
 
@@ -53,16 +54,17 @@
     let g:ctrlp_working_path_mode = 'ra'
     let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
-    " Git
-    let g:gitgutter_terminal_reports_focus=0
-
     " Ultisnips
     let g:UltiSnipsExpandTrigger="<c-j>"
 
 " Color scheme
     colorscheme gruvbox
     let g:gruvbox_invert_selection=0
-    "let g:gruvbox_transparent_bg=1
     set background=dark
     hi Normal guibg=NONE ctermbg=NONE
     let g:gruvbox_contrast_dark='hard'
+    " Git
+    hi GitGutterAdd    guifg=#009900 ctermfg=2
+    hi GitGutterChange guifg=#bbbb00 ctermfg=3
+    hi GitGutterDelete guifg=#ff2222 ctermfg=1
+    hi SignColumn      cterm=NONE    ctermfg=NONE ctermbg=NONE

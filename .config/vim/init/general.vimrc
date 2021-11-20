@@ -9,8 +9,12 @@
     let &t_EI="\<Esc>[2 q" "EI = NORMAL mode (ELSE)
     set showcmd " in linux vim shows command history
 
-    set relativenumber
     set number
+    augroup numbertoggle
+        autocmd!
+        autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu | endif
+        autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+    augroup END
 
     set hlsearch
     set incsearch
@@ -33,7 +37,6 @@
     set undofile
 
     set scrolloff=7
-    set signcolumn=yes
     set showmatch
 
     set splitbelow splitright
