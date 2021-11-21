@@ -11,6 +11,7 @@
 
         Plug 'ctrlpvim/ctrlp.vim'
         Plug 'tpope/vim-surround'
+        Plug 'tpope/vim-commentary'
 
         Plug 'tpope/vim-fugitive'
         Plug 'airblade/vim-gitgutter'
