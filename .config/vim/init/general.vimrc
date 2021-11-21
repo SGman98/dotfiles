@@ -12,8 +12,8 @@
     set number
     augroup numbertoggle
         autocmd!
-        autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu | endif
-        autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+        autocmd BufEnter,FocusGained,InsertLeave,WinEnter,CmdLineLeave * if &nu | set rnu | endif
+        autocmd BufLeave,FocusLost,InsertEnter,WinLeave,CmdLineEnter * if &nu | set nornu | redraw | endif
     augroup END
 
     set hlsearch
