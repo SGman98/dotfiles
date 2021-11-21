@@ -63,8 +63,9 @@
     set background=dark
     hi Normal guibg=NONE ctermbg=NONE
     let g:gruvbox_contrast_dark='hard'
-    " Git
-    hi GitGutterAdd    guifg=#009900 ctermfg=2
-    hi GitGutterChange guifg=#bbbb00 ctermfg=3
-    hi GitGutterDelete guifg=#ff2222 ctermfg=1
-    hi SignColumn      cterm=NONE    ctermfg=NONE ctermbg=NONE
+    " GitGutter
+    hi GitGutterDelete          guifg=#800000 ctermfg=1
+    hi GitGutterAdd             guifg=#008000 ctermfg=2
+    hi GitGutterChange          guifg=#808000 ctermfg=3
+    hi GitGutterChangeDelete    guifg=#000080 ctermfg=4
+    hi SignColumn               cterm=NONE    ctermfg=NONE ctermbg=NONE
