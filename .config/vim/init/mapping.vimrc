@@ -6,10 +6,6 @@
     let mapleader=' '
     vnoremap > >gv
     vnoremap < <gv
-    xnoremap <leader>k :m '<-2<CR>gv=gv
-    xnoremap <leader>j :m '>+1<CR>gv=gv
-    nnoremap <Tab> :bnext<CR>
-    nnoremap <S-Tab> :bprev<CR>
     nnoremap S :%s//g<Left><Left>
     "Spell mapping for english and spanish
     nnoremap <leader>se :setlocal spell! spelllang=en_gb <Bar> hi SpellBad cterm=underline<CR>
