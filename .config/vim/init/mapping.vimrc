@@ -10,15 +10,15 @@
     "Spell mapping for english and spanish
     nnoremap <leader>se :setlocal spell! spelllang=en_gb <Bar> hi SpellBad cterm=underline<CR>
     nnoremap <leader>ss :setlocal spell! spelllang=es_es <Bar> hi SpellBad cterm=underline<CR>
-    " Open Terminal
-    nnoremap <leader>t :below vertical terminal<CR>
-    tmap <leader>t <C-w>N:bdelete!<CR>
+
+" Open Terminal
+    nnoremap <silent> <leader>t :call <SID>ToggleTerminal()<CR>
+    tnoremap <silent> <leader>t <C-w>N:call <SID>ToggleTerminal()<CR>
+
     tmap <leader><left> <C-w>h
     tmap <leader><down> <C-w>j
     tmap <leader><up> <C-w>k
     tmap <leader><right> <C-w>l
-
-
 
 " Git
     nmap <leader>gs :G<CR>
@@ -44,6 +44,24 @@
     nmap <leader>c <Plug>BujoChecknormal
 
 " Functions
+    " Toggle Terminal
+    let s:term_buf_nr = -1
+    function! s:ToggleTerminal() abort
+        if s:term_buf_nr == -1
+            execute "below vertical terminal"
+            let s:term_buf_nr = bufnr("$")
+        else
+            try
+                execute "bdelete! " . s:term_buf_nr
+            catch
+                let s:term_buf_nr = -1
+                call <SID>ToggleTerminal()
+                return
+            endtry
+            let s:term_buf_nr = -1
+        endif
+    endfunction
+
     " Toggle Netrw
     let g:NetrwIsOpen=0
     function! ToggleNetrw()
