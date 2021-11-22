@@ -13,7 +13,7 @@
 	ph = push
 	u = !git pl && git ph
 	cm = commit
-	a = add -A
+	a = add
 	co = checkout
 	s = stash
 	sp = stash pop
