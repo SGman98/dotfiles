@@ -1,0 +1,14 @@
+# Subject: Capitalized, short, imperative mood, no period
+# If applied, this commit will...       50 char #
+
+
+# Body:                                                       72 char #
+# Reason for this commit, problem
+
+
+# Explain changes, solution
+
+
+# Notes and extras
+# Co-authored-by: name <user@users.noreply.github.com>
+# Resolves: #1, #2
