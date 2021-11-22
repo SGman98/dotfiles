@@ -13,7 +13,7 @@
     nnoremap S :%s//g<Left><Left>
     "Spell mapping for english and spanish
     nnoremap <leader>se :setlocal spell! spelllang=en_gb <Bar> hi SpellBad cterm=underline<CR>
-    nnoremap <leader>ss :setlocal spell! spelllang=en_gb <Bar> hi SpellBad cterm=underline<CR>
+    nnoremap <leader>ss :setlocal spell! spelllang=es_es <Bar> hi SpellBad cterm=underline<CR>
     " Open Terminal
     nnoremap <leader>t :below vertical terminal<CR>
     tmap <leader>t <C-w>N:bdelete!<CR>
