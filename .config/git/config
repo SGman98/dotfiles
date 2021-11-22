@@ -2,7 +2,7 @@
     editor = vim
 [commit]
     gpgsign = true
-    template = /home/sg/.gitmessage.txt
+    template = ~/.config/git/gitmessage.txt
 [gpg]
     program = gpg
 [alias]
