@@ -1,23 +1,23 @@
 [core]
-    editor = vim
+	editor = vim
 [commit]
-    gpgsign = true
-    template = ~/.config/git/gitmessage.txt
+	gpgsign = true
+	template = ~/.config/git/gitmessage.txt
 [gpg]
-    program = gpg
+	program = gpg
 [alias]
-    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue) <%an>%Creset' --abbrev-commit
-    st = status
-    pl = pull
-    ph = push
-    u = !git pl && git ph
-    cm = commit
-    a = add -A
-    co = checkout
-    s = stash
-    sp = stash pop
-    su = stash -u
-    sl = stash list
-    sll = stash-list
-    slll = stash-list --full
-    ss = stash save
+	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue) <%an>%Creset' --abbrev-commit
+	st = status
+	pl = pull
+	ph = push
+	u = !git pl && git ph
+	cm = commit
+	a = add -A
+	co = checkout
+	s = stash
+	sp = stash pop
+	su = stash -u
+	sl = stash list
+	sll = stash-list
+	slll = stash-list --full
+	ss = stash save
