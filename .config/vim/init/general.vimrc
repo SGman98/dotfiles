@@ -54,13 +54,24 @@
     " For WSL open link with gx using browser in windows
     let g:netrw_browsex_viewer="cmd.exe /C start"
 
-    " Reset cursor on startup
-    augroup ResetCursorShape
-    au!
-    autocmd VimEnter * :normal :startinsert | stopinsert
-    augroup END
+" Automatic
 
+" Reset cursor on startup
+augroup ResetCursorShape
+au!
+autocmd VimEnter * :normal :startinsert | stopinsert
+augroup END
 
+" Auto clear unnecessary white spaces on save
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+augroup THE_PRIMEAGEN
+    autocmd!
+    autocmd BufWritePre * :call TrimWhitespace()
+augroup END
 
 " Automatically install vim-Plug
 if empty(glob('~/.config/vim/autoload/plug.vim'))

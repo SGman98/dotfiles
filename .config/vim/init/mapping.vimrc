@@ -32,7 +32,6 @@
     nnoremap <leader><up> :wincmd k<CR>
     nnoremap <leader><right> :wincmd l<CR>
     nnoremap <leader><Tab> :call ToggleNetrw()<CR>
-    let g:NetrwIsOpen=0
 
 " YCM
     nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
@@ -44,19 +43,9 @@
     nmap <leader>a <Plug>BujoAddnormal
     nmap <leader>c <Plug>BujoChecknormal
 
-"# Others/Functions
-    " Auto clear unnecessary white spaces on save
-    fun! TrimWhitespace()
-        let l:save = winsaveview()
-        keeppatterns %s/\s\+$//e
-        call winrestview(l:save)
-    endfun
-    augroup THE_PRIMEAGEN
-        autocmd!
-        autocmd BufWritePre * :call TrimWhitespace()
-    augroup END
-
+" Functions
     " Toggle Netrw
+    let g:NetrwIsOpen=0
     function! ToggleNetrw()
         if g:NetrwIsOpen
             let i = bufnr("$")
