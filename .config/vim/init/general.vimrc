@@ -2,7 +2,13 @@
 
     set nocompatible
     set runtimepath+=~/.config/vim/,~/.config/vim/after/
-    set viminfo+=n~/.config/vim/viminfo
+    if has('nvim')
+        " nvim specific config
+        set clipboard=unnamedplus
+    else
+        " vim specific config
+        set viminfo+=n~/.config/vim/viminfo
+    endif
     let g:netrw_home=$XDG_CACHE_HOME.'/vim'
     let &t_SI="\<Esc>[6 q" "SI = INSERT mode
     let &t_SR="\<Esc>[4 q" "SR = REPLACE mode
