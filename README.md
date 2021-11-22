@@ -21,9 +21,9 @@
 `git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH/custom/plugins/zsh-vi-mode`
 
 ## Setting repo
-`git clone --bare https://github.com/SGman98/dotfiles.git $HOME/dotfiles`
+`git clone --bare https://github.com/SGman98/dotfiles.git $HOME/.dotfiles`
 
-`git --git-dir=$HOME/dotfiles --work-tree=$HOME checkout`
+`git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout`
 
 `dot config --local status.showUntrackedFiles no`
 
