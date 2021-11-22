@@ -27,7 +27,7 @@
 
 `dot config --local status.showUntrackedFiles no`
 
-`dot update-index --assume-unchanged ~/.gitconfig`
+`dot update-index --assume-unchanged ~/.config/git/config`
 
 > Config repo for updates\
 > Config user, email, signingkey (gpg)\
