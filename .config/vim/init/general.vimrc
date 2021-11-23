@@ -1,7 +1,7 @@
 " $HOME/.config/vim/vimrc
     "Basic configuration
     set nocompatible
-    set runtimepath+=~/.config/vim/,~/.config/vim/after/
+
     if has('nvim')
         " nvim specific config
         set clipboard=unnamedplus
@@ -9,7 +9,23 @@
         " vim specific config
         set viminfo+=n~/.config/vim/viminfo
     endif
+
+    set runtimepath+=~/.config/vim/,~/.config/vim/after/
     let g:netrw_home=$XDG_CACHE_HOME.'/vim'
+
+    set noswapfile
+    set nobackup
+    set undodir=~/.config/vim/undodir
+    set undofile
+
+    set path+=**
+    set wildmenu
+    set wildignore+=**/node_modules/**,.git/,.git/*,.vscode/,.vscode/*
+
+    " For WSL open link with gx using browser in windows
+    let g:netrw_browsex_viewer="cmd.exe /C start"
+
+    " CursorShape
     let &t_SI="\<Esc>[6 q" "SI = INSERT mode
     let &t_SR="\<Esc>[4 q" "SR = REPLACE mode
     let &t_EI="\<Esc>[2 q" "EI = NORMAL mode (ELSE)
@@ -22,37 +38,29 @@
         autocmd BufLeave,FocusLost,InsertEnter,WinLeave,CmdLineEnter * if &nu | set nornu | redraw | endif
     augroup END
 
+    " Ignorecase when using search
+    set ignorecase
+    set smartcase
+    " Highlight search
     set hlsearch
     set incsearch
-    set noerrorbells
-    set hidden " keep buffers in background without saving
-    set nowrap
 
+    " Indent using 4 spaces
     set shiftwidth=4 softtabstop=4 tabstop=4 expandtab
     set smarttab
-
     set autoindent
     set smartindent
 
-    set ignorecase
-    set smartcase
+    " nowrap and better scrolling
+    set nowrap
+    set scrolloff=8
+    set sidescroll=8
 
-    set noswapfile
-    set nobackup
-    set undodir=~/.config/vim/undodir
-    set undofile
+    set splitbelow splitright " split and vsplit more natural
+    set hidden " keep buffers in background without saving
+    set showmatch " show matching braces when inserted
+    set noerrorbells
 
-    set scrolloff=7
-    set showmatch
-
-    set splitbelow splitright
-
-    set path+=**
-    set wildmenu
-    set wildignore+=**/node_modules/**,.git/,.git/*,.vscode/,.vscode/*
-
-    " For WSL open link with gx using browser in windows
-    let g:netrw_browsex_viewer="cmd.exe /C start"
 
 " Automatic
 
