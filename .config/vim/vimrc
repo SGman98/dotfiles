@@ -1,10 +1,3 @@
-"   _________ ________
-"  /   _____//  _____/
-"  \_____  \/   \  ___
-"  /        \    \_\  \
-" /_______  /\______  /
-"         \/        \/
-
 source $HOME/.config/vim/init/general.vimrc   " general settings
 source $HOME/.config/vim/init/plug.vimrc      " plugin loader
 source $HOME/.config/vim/init/mapping.vimrc   " mapping settings

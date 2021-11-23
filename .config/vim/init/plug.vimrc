@@ -1,4 +1,4 @@
-" $HOME/.vim/init/plug.vimrc
+" $HOME/.config/vim/vimrc
 " Plugin load
     call plug#begin('~/.config/vim/plugged')
         Plug 'morhetz/gruvbox'

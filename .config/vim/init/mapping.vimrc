@@ -1,3 +1,4 @@
+" $HOME/.config/vim/vimrc
 "# Remapping
     :autocmd InsertEnter * set timeoutlen=200
     :autocmd InsertLeave * set timeoutlen=1000

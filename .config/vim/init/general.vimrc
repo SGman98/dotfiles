@@ -1,5 +1,5 @@
-    set exrc
-
+" $HOME/.config/vim/vimrc
+    "Basic configuration
     set nocompatible
     set runtimepath+=~/.config/vim/,~/.config/vim/after/
     if has('nvim')
