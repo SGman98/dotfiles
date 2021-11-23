@@ -36,8 +36,6 @@ ZSH_THEME="custom"
     DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # User configuration
-    alias vimrc="vim ~/.config/vim/vimrc"
-    alias zshrc="vim ~/.zshrc && source ~/.zshrc"
     alias gotoC="cd /mnt/c/"
     alias gotoD="cd /mnt/d/"
     alias p="cd /mnt/d/Documents/programming"
@@ -48,9 +46,12 @@ ZSH_THEME="custom"
     alias g="git"
 
 # Git aliases for dotfiles
-    alias dotfiles="git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
+    alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
     alias dot="dotfiles"
-
+    alias vdot="GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME vim"
+    alias vimrc="vdot $MYVIMRC"
+    alias zshrc="vdot $HOME/.zshrc && source $HOME/.zshrc"
+    alias gitconfig="vdot $HOME/.config/git/config"
 # Functions
     # mkdir and cd
     function mdc() {
@@ -89,7 +90,7 @@ ZSH_THEME="custom"
     done
     compinit -C
 
-export MYVIMRC="~/.config/vim/vimrc"  #Config vimrc path
+export MYVIMRC="$HOME/.config/vim/vimrc"  #Config vimrc path
 export VIMINIT="source $MYVIMRC"
 #zprof
 PATH="$HOME/.local/bin:$PATH"
