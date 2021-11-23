@@ -4,9 +4,13 @@
 
 " General
     let mapleader=' '
+    " Indentation in visual mode keep visual
     vnoremap > >gv
     vnoremap < <gv
-    nnoremap S :%s//g<Left><Left>
+
+    nnoremap <leader>s :%s//g<Left><Left><Left>
+    vnoremap <leader>s :s/\%V/g<Left><Left><Left>
+
     "Spell mapping for english and spanish
     nnoremap <leader>se :setlocal spell! spelllang=en_gb <Bar> hi SpellBad cterm=underline<CR>
     nnoremap <leader>ss :setlocal spell! spelllang=es_es <Bar> hi SpellBad cterm=underline<CR>
