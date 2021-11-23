@@ -1,32 +1,28 @@
 # Testing my dotfiles
 
-`sudo apt-get update`
-
-`sudo apt-get upgrade`
-
+`sudo apt-get update`\
+`sudo apt-get upgrade`\
 `sudo apt-get install python3.8-dev build-essential cmake curl`
 
 ## Install zsh & ohmyzsh
-`sudo apt-get install zsh`
-
-`zsh`
-
+`sudo apt-get install zsh`\
+`zsh`\
 `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
 
 ## Install zsh plugins
-`git clone https://github.com/bobthecow/git-flow-completion $ZSH/custom/plugins/git-flow-completion`
-
-`git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH/custom/plugins/zsh-syntax-highlighting`
-
+`git clone https://github.com/bobthecow/git-flow-completion $ZSH/custom/plugins/git-flow-completion`\
+`git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH/custom/plugins/zsh-syntax-highlighting`\
 `git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH/custom/plugins/zsh-vi-mode`
 
 ## Setting repo
-`git clone --bare https://github.com/SGman98/dotfiles.git $HOME/.dotfiles`
-
+`git clone --bare https://github.com/SGman98/dotfiles.git $HOME/.dotfiles`\
 `git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout`
 
-`dot config --local status.showUntrackedFiles no`
+> aditional configuration for repo
 
+`dot config --local core.worktree $HOME`\
+`dot config --unset core.bare`\
+`dot config --local status.showUntrackedFiles no`\
 `dot update-index --assume-unchanged ~/.config/git/config`
 
 > Config repo for updates\
