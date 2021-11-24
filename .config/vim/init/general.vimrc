@@ -61,6 +61,7 @@
     set showmatch " show matching braces when inserted
     set noerrorbells
 
+    autocmd FileType gitcommit set colorcolumn=73
 
 " Automatic
 
