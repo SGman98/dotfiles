@@ -26,9 +26,9 @@
     let g:netrw_browsex_viewer="cmd.exe /C start"
 
     " CursorShape
-    let &t_SI="\<Esc>[6 q" "SI = INSERT mode
-    let &t_SR="\<Esc>[4 q" "SR = REPLACE mode
-    let &t_EI="\<Esc>[2 q" "EI = NORMAL mode (ELSE)
+    let &t_SI="\<Esc>[5 q" "SI = INSERT mode
+    let &t_SR="\<Esc>[3 q" "SR = REPLACE mode
+    let &t_EI="\<Esc>[1 q" "EI = NORMAL mode (ELSE)
     set showcmd " in linux vim shows command history
 
     set number
