@@ -48,6 +48,10 @@
     nmap <leader>a <Plug>BujoAddnormal
     nmap <leader>c <Plug>BujoChecknormal
 
+" Vim Fugitive Workaround when committing with gpg signature
+    autocmd FileType fugitive nnoremap <silent> <leader>cc :!git commit<CR>:redraw!<CR>
+    autocmd FileType fugitive nnoremap <silent> <leader>cvc :!git commit -v<CR>:redraw!<CR>
+
 " Functions
     " Toggle Terminal
     let s:term_buf_nr = -1
