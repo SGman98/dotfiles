@@ -53,6 +53,12 @@
     autocmd FileType fugitive nnoremap <silent> <leader>cvc :!git commit -v<CR>:redraw!<CR>
 
 " Functions
+    " Yank outside Vim
+    augroup yankOutside
+        autocmd!
+        autocmd TextYankPost * if v:event.operator ==# 'y' | call system('xclip', @") | endif
+    augroup END
+
     " Toggle Terminal
     let s:term_buf_nr = -1
     function! s:ToggleTerminal() abort
