@@ -45,10 +45,10 @@
 
 " YCM
     nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
-    nnoremap <silent> <leader>gf :YcmCompleter FixIt<CR>
+    nnoremap <leader>rn :YcmCompleter RefactorRename<space>
 
 " Todo Bujo
-    nnoremap <leader>T :Todo<CR>
+    nnoremap <leader>td :Todo<CR>
 
     nmap <leader>a <Plug>BujoAddnormal
     nmap <leader>c <Plug>BujoChecknormal
