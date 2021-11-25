@@ -46,6 +46,9 @@ ZSH_THEME="custom"
     alias g="git"
 
 # Git aliases for dotfiles
+    export MYVIMRC="$HOME/.config/vim/vimrc"  #Config vimrc path
+    export VIMINIT="source $MYVIMRC"
+
     alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
     alias dot="dotfiles"
     alias vdot="GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME vim"
@@ -90,8 +93,6 @@ ZSH_THEME="custom"
     done
     compinit -C
 
-export MYVIMRC="$HOME/.config/vim/vimrc"  #Config vimrc path
-export VIMINIT="source $MYVIMRC"
 #zprof
 PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
