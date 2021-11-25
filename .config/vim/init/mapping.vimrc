@@ -16,7 +16,7 @@
     nnoremap <leader>se :setlocal spell! spelllang=en_gb <Bar> hi SpellBad cterm=underline<CR>
     nnoremap <leader>ss :setlocal spell! spelllang=es_es <Bar> hi SpellBad cterm=underline<CR>
 
-" Open Terminal
+    " Open Terminal
     nnoremap <silent> <leader>t :call <SID>ToggleTerminal()<CR>
     tnoremap <silent> <leader>t <C-w>N:call <SID>ToggleTerminal()<CR>
 
@@ -25,18 +25,23 @@
     tmap <leader><up> <C-w>k
     tmap <leader><right> <C-w>l
 
-" Git
-    nmap <leader>gs :G<CR>
-
-" Ctrlp
-    nnoremap <leader>fb :CtrlPBuffer<CR>
-
-" Netrw
+    " Netrw
     nnoremap <leader><left> :wincmd h<CR>
     nnoremap <leader><down> :wincmd j<CR>
     nnoremap <leader><up> :wincmd k<CR>
     nnoremap <leader><right> :wincmd l<CR>
     nnoremap <leader><Tab> :call ToggleNetrw()<CR>
+
+" Pluggin mappings
+
+" Git
+    nmap <leader>gs :G<CR>
+    " Vim Fugitive Workaround when committing with gpg signature
+    autocmd FileType fugitive nnoremap <silent> <leader>cc :!git commit<CR>:redraw!<CR>
+    autocmd FileType fugitive nnoremap <silent> <leader>cvc :!git commit -v<CR>:redraw!<CR>
+
+" Ctrlp
+    nnoremap <leader>fb :CtrlPBuffer<CR>
 
 " YCM
     nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
@@ -47,10 +52,6 @@
 
     nmap <leader>a <Plug>BujoAddnormal
     nmap <leader>c <Plug>BujoChecknormal
-
-" Vim Fugitive Workaround when committing with gpg signature
-    autocmd FileType fugitive nnoremap <silent> <leader>cc :!git commit<CR>:redraw!<CR>
-    autocmd FileType fugitive nnoremap <silent> <leader>cvc :!git commit -v<CR>:redraw!<CR>
 
 " Functions
     " Yank outside Vim
