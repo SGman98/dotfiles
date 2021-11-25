@@ -10,6 +10,7 @@
         Plug 'vim-airline/vim-airline'
 
         Plug 'ctrlpvim/ctrlp.vim'
+        Plug 'pseewald/vim-anyfold'
         Plug 'tpope/vim-surround'
         Plug 'tpope/vim-commentary'
         Plug 'tpope/vim-unimpaired'
@@ -26,6 +27,11 @@
     call plug#end()
 
 "# Plugin specific
+    " folds
+    filetype plugin indent on
+    set foldlevel=99
+    autocmd FileType * AnyFoldActivate
+
     " Syntax Python
     let g:python_highlight_all = 1
 
