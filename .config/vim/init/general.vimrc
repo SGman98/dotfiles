@@ -65,6 +65,12 @@
 
 " Automatic
 
+" Yank outside Vim
+augroup yankOutside
+    autocmd!
+    autocmd TextYankPost * if v:event.operator ==# 'y' | call system('xclip', @") | endif
+augroup END
+
 " Reset cursor on startup
 augroup ResetCursorShape
 au!
