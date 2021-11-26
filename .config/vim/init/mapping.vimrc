@@ -9,8 +9,8 @@
     vnoremap > >gv
     vnoremap < <gv
 
-    nnoremap <leader>s :%s//g<Left><Left>
-    vnoremap <leader>s :s/\%V/g<Left><Left>
+    nnoremap <leader>sr :%s//g<Left><Left>
+    vnoremap <leader>sr :s/\%V/g<Left><Left>
 
     "Spell mapping for english and spanish
     nnoremap <leader>se :setlocal spell! spelllang=en_gb <Bar> hi SpellBad cterm=underline<CR>
