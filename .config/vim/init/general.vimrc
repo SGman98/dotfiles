@@ -1,5 +1,5 @@
 " $HOME/.config/vim/vimrc
-    "Basic configuration
+" Basic configuration
     set nocompatible
 
     if has('nvim')
@@ -30,13 +30,9 @@
     let &t_SR="\<Esc>[3 q" "SR = REPLACE mode
     let &t_EI="\<Esc>[1 q" "EI = NORMAL mode (ELSE)
     set showcmd " in linux vim shows command history
-
-    set number
-    augroup numbertoggle
-        autocmd!
-        autocmd BufEnter,FocusGained,InsertLeave,WinEnter,CmdLineLeave * if &nu | set rnu | endif
-        autocmd BufLeave,FocusLost,InsertEnter,WinLeave,CmdLineEnter * if &nu | set nornu | redraw | endif
-    augroup END
+    " Extra characters
+    set list
+    set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
 
     " Ignorecase when using search
     set ignorecase
@@ -56,6 +52,7 @@
     set scrolloff=8
     set sidescroll=8
 
+    set number
     set splitbelow splitright " split and vsplit more natural
     set hidden " keep buffers in background without saving
     set showmatch " show matching braces when inserted
@@ -63,34 +60,40 @@
 
     autocmd FileType gitcommit set colorcolumn=73
 
-" Automatic
+" AutoCmd
+    " Toggle relative numbers
+    augroup numbertoggle
+        autocmd!
+        autocmd BufEnter,FocusGained,InsertLeave,WinEnter,CmdLineLeave * if &nu | set rnu | endif
+        autocmd BufLeave,FocusLost,InsertEnter,WinLeave,CmdLineEnter * if &nu | set nornu | redraw | endif
+    augroup END
 
-" Yank outside Vim
-augroup yankOutside
-    autocmd!
-    autocmd TextYankPost * if v:event.operator ==# 'y' | call system('xclip', @") | endif
-augroup END
+    " Yank outside Vim
+    augroup yankOutside
+        autocmd!
+        autocmd TextYankPost * if v:event.operator ==# 'y' | call system('xclip', @") | endif
+    augroup END
 
-" Reset cursor on startup
-augroup ResetCursorShape
-au!
-autocmd VimEnter * :normal :startinsert | stopinsert
-augroup END
+    " Reset cursor on startup
+    augroup ResetCursorShape
+    au!
+    autocmd VimEnter * :normal :startinsert | stopinsert
+    augroup END
 
-" Auto clear unnecessary white spaces on save
-fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-augroup THE_PRIMEAGEN
-    autocmd!
-    autocmd BufWritePre * :call TrimWhitespace()
-augroup END
+    " Auto clear unnecessary white spaces on save
+    fun! TrimWhitespace()
+        let l:save = winsaveview()
+        keeppatterns %s/\s\+$//e
+        call winrestview(l:save)
+    endfun
+    augroup THE_PRIMEAGEN
+        autocmd!
+        autocmd BufWritePre * :call TrimWhitespace()
+    augroup END
 
-" Automatically install vim-Plug
-if empty(glob('~/.config/vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.config/vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+    " Automatically install vim-Plug
+    if empty(glob('~/.config/vim/autoload/plug.vim'))
+        silent !curl -fLo ~/.config/vim/autoload/plug.vim --create-dirs
+            \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
