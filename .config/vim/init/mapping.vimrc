@@ -40,19 +40,14 @@
     autocmd FileType fugitive nnoremap <silent> <leader>cc :!git commit<CR>:redraw!<CR>
     autocmd FileType fugitive nnoremap <silent> <leader>cvc :!git commit -v<CR>:redraw!<CR>
 
-" Ctrlp
-    nnoremap <leader>fb :CtrlPBuffer<CR>
-
-" YCM
-    nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
-    nnoremap <leader>rn :YcmCompleter RefactorRename<space>
-
 " Todo Bujo
-    nnoremap <leader>td :Todo<CR>
-
     nmap <leader>a <Plug>BujoAddnormal
     nmap <leader>c <Plug>BujoChecknormal
 
+" fzf
+    nnoremap <leader>ff :Files<CR>
+    nnoremap <leader>fg :GFiles<CR>
+    nnoremap <leader>fb :Buffers<CR>
 
 " Functions
     " Toggle Terminal

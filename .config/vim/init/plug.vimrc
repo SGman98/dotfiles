@@ -1,29 +1,36 @@
 " $HOME/.config/vim/vimrc
 " Plugin load
     call plug#begin('~/.config/vim/plugged')
+        " Visual
         Plug 'morhetz/gruvbox'
         Plug 'ajmwagar/vim-deus'
-
-        Plug 'vim-python/python-syntax'
-        Plug 'tpope/vim-markdown'
-
         Plug 'vim-airline/vim-airline'
 
-        Plug 'ctrlpvim/ctrlp.vim'
-        Plug 'pseewald/vim-anyfold'
+        Plug 'vim-python/python-syntax'
+        Plug 'mechatroner/rainbow_csv'
+
+        " Utils
+        Plug 'unblevable/quick-scope' " highlight f,t,F,T jumps
+        Plug 'pseewald/vim-anyfold' " add foldings to code
+        Plug 'vuciv/vim-bujo' " add todo list
         Plug 'tpope/vim-surround'
         Plug 'tpope/vim-commentary'
         Plug 'tpope/vim-unimpaired'
+        Plug 'tpope/vim-repeat'
 
+        " Fuzzy finder
+        Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+        Plug 'junegunn/fzf.vim'
+
+        " Git
         Plug 'tpope/vim-fugitive'
         Plug 'airblade/vim-gitgutter'
 
+        " AutoCompletion and Snippets
+        Plug 'neoclide/coc.nvim', {'branch': 'release'}
+        Plug 'mattn/emmet-vim'
         Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
-        Plug 'valloric/youcompleteme'
-        Plug 'unblevable/quick-scope'
-
-        Plug 'vuciv/vim-bujo'
+        ":CocInstall coc-snippets coc-pyright coc-java coc-json coc-sh coc-markdownlint coc-clangd coc-emmet
     call plug#end()
 
 "# Plugin specific
@@ -38,6 +45,19 @@
     au BufNewFile,BufReadPost *.md set filetype=markdown
     let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript', 'html', 'py=python', 'python']
 
+    " Coc extensions
+    let g:coc_global_extensions = [
+                \'coc-snippets',
+                \'coc-pyright',
+                \'coc-java',
+                \'coc-json',
+                \'coc-sh',
+                \'coc-markdownlint',
+                \'coc-clangd',
+                \'coc-yaml',
+                \'coc-emmet',
+                \]
+
     " Airline
     let g:airline#extensions#tabline#enabled = 1
 
@@ -50,6 +70,9 @@
     " Todo Bujo
     let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
 
+    " fzf
+    let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+
     " Quick-scope
     let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
     augroup qs_colors
@@ -57,15 +80,6 @@
       autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
       autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
     augroup END
-
-    " CtrlP
-    let g:ctrlp_working_path_mode = 'ra'
-    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-
-    " UltiSnips - YouCompleMe Compatibility
-    let g:UltiSnipsExpandTrigger="<C-Space>"
-    let g:ycm_autoclose_preview_window_after_completion = 1
-    let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " Color scheme
     colorscheme gruvbox
