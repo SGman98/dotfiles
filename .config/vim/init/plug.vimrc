@@ -30,11 +30,10 @@
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
         Plug 'mattn/emmet-vim'
         Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-        ":CocInstall coc-snippets coc-pyright coc-java coc-json coc-sh coc-markdownlint coc-clangd coc-emmet
     call plug#end()
 
 "# Plugin specific
-    " folds
+    " Folds
     filetype plugin indent on
     set foldlevel=99
     autocmd FileType * AnyFoldActivate

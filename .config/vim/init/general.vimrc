@@ -31,8 +31,8 @@
     let &t_EI="\<Esc>[1 q" "EI = NORMAL mode (ELSE)
     set showcmd " in linux vim shows command history
     " Extra characters
-    set list
     set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+    set signcolumn=yes
 
     " Ignorecase when using search
     set ignorecase
