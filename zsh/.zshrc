@@ -1,6 +1,7 @@
 # zmodload zsh/zprof
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+export DOTFILES=$HOME/.dotfiles
 # For use of gpg signing
 export GPG_TTY=$(tty)
 
@@ -28,6 +29,7 @@ fi
 unset env
 
 # Theme selection
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 ZSH_THEME="custom"
 
 # plugins=(git)
@@ -41,23 +43,17 @@ ZSH_THEME="custom"
     alias p="cd /mnt/d/Documents/programming"
 # Useful
     alias py="python3"
-    alias v="vim"
+    alias v="nvim"
     alias bat="batcat"
     alias g="git"
 
 # Git aliases for dotfiles
-    export MYVIMRC="$HOME/.config/vim/vimrc"  #Config vimrc path
-    export VIMINIT="source $MYVIMRC"
-
-    alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-    alias dot="dotfiles"
-    alias vdot="GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME vim"
-    alias vimrc="vdot $MYVIMRC"
-    alias zshrc="vdot $HOME/.zshrc && source $HOME/.zshrc"
-    alias gitconfig="vdot $HOME/.config/git/config"
+    alias vimrc="v $DOTFILES/nvim/.config/nvim/init.vim"
+    alias zshrc="v $DOTFILES/zsh/.zshrc && source $HOME/.zshrc"
+    alias gitconfig="v $DOTFILES/git/.config/git/config"
 # Functions
     # mkdir and cd
-    function mdc() {
+    function mdcd() {
         mkdir -p -- "$1" && cd -P -- "$1"
     }
     # Auto activate virtual enviroment if exist

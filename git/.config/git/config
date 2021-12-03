@@ -1,5 +1,5 @@
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = /home/sg/.config/git/gitignore
 [commit]
 	gpgsign = true
