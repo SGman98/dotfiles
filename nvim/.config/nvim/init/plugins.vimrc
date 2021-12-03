@@ -10,8 +10,8 @@
 "     let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript', 'html', 'py=python', 'python']
 "     let g:vim_markdown_folding_style_pythonic = 1
 
-"     " Airline
-"     let g:airline#extensions#tabline#enabled = 1
+    " Airline
+    let g:airline#extensions#tabline#enabled = 1
 
 "     " Todo Bujo
 "     let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
