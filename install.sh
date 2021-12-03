@@ -15,8 +15,9 @@ EOF
 
 install_packages() {
     # install zsh
-    sudo apt update && sudo apt upgrade
-    sudo apt install stow\
+    echo "Installing packages..."
+    apt update && apt upgrade
+    apt install stow\
     build-essential\
     cmake\
     curl\
@@ -28,10 +29,12 @@ install_packages() {
     bat\
     tree\
     neofetch
+    echo "Done!"
 }
 
 install_oh_my_zsh() {
     # install oh-my-zsh
+    echo "Installing oh-my-zsh"
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     # install plugins
     git clone https://github.com/bobthecow/git-flow-completion $ZSH/custom/plugins/git-flow-completion
@@ -41,16 +44,19 @@ install_oh_my_zsh() {
 
 install_nvm_node() {
     # install nvm and node
+    echo "Installing nvm and node"
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
     nvm install node
 }
 
 install_nvim() {
     # install nvim 0.6
+    echo "Installing nvim"
     curl -L https://github.com/neovim/neovim/releases/download/v0.6.0/nvim.appimage > nvim.appimage
     chmod +x nvim.appimage
     ./nvim.appimage --appimage-extract
-    mv squashfs-root / && ln -s /squashfs-root/AppRun /usr/bin/nvim
+    mv squashfs-root /
+    ln -s /squashfs-root/AppRun /usr/bin/nvim
     rm nvim.appimage
     npm install -g neovim
 }
@@ -58,32 +64,37 @@ install_nvim() {
 install_nvim_others() {
     # install ripgrep
     curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
-    sudo dpkg -i ripgrep_13.0.0_amd64.deb
+    dpkg -i ripgrep_13.0.0_amd64.deb
 
     # install fd-menu
-    sudo apt install fd-find
+    apt install fd-find
 }
 
 clean() {
     # remove nvim if exists
     if [ -z "$(which nvim)" ]; then
-        rm $(which nvim)
+        echo "Removing nvim"
+        rm -f $(which nvim)
     fi
 
     # if .zshrc exists, delete in
     if [ -f $HOME/.zshrc ]; then
+        echo "Removing .zshrc"
         rm $HOME/.zshrc
     fi
     # if .gitconfig exists, delete it
     if [ -f $HOME/.gitconfig ]; then
+        echo "Removing .gitconfig"
         rm $HOME/.gitconfig
     fi
     # if .config git not exists, create it
     if [ ! -d $HOME/.config/git ]; then
+        echo "Creating .config/git"
         mkdir -p $HOME/.config/git
     fi
     # if .config nvim not exists, create it
     if [ ! -d $HOME/.config/nvim ]; then
+        echo "Creating .config/nvim"
         mkdir -p $HOME/.config/nvim
     fi
 }
@@ -104,8 +115,9 @@ while [ $# -gt 0 ]; do
             ;;
         -o|--others)
             install_oh_my_zsh
-            install_nvim
+            clean
             install_nvm_node
+            install_nvim
             install_nvim_others
             exit 0
             ;;
@@ -120,8 +132,9 @@ while [ $# -gt 0 ]; do
         -a|--all)
             install_packages
             install_oh_my_zsh
-            install_nvim
+            clean
             install_nvm_node
+            install_nvim
             install_nvim_others
             stow
             exit 0
