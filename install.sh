@@ -5,19 +5,19 @@ usage() {
     Usage: $0 [options]
     Options:
         -h, --help       Display this help message
-        -i, --install    Install all packages
-        -o, --others     Install oh-my-zsh, nvim, nvm, nvim-others
-        -c, --clean      Clean all installed packages
+        -i, --install    Install all packages and oh-my-zsh
+        -u, --install2   Install nvm and oh-my-zsh plugins
         -s, --stow       Stow all installed install_packages
-        -a, --all        Install all packages and stow them
+        -o, --others     Install oh-my-zsh, nvim, nvm, nvim-others
 EOF
 }
 
 install_packages() {
     # install zsh
     echo "Installing packages..."
-    apt update && apt upgrade
-    apt install stow\
+    sudo -s apt update
+    sudo -s apt upgrade
+    sudo -s apt install stow\
     build-essential\
     cmake\
     curl\
@@ -36,6 +36,9 @@ install_oh_my_zsh() {
     # install oh-my-zsh
     echo "Installing oh-my-zsh"
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
+
+install_oh_my_zsh_plugins() {
     # install plugins
     git clone https://github.com/bobthecow/git-flow-completion $ZSH/custom/plugins/git-flow-completion
     git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH/custom/plugins/zsh-syntax-highlighting
@@ -46,6 +49,9 @@ install_nvm_node() {
     # install nvm and node
     echo "Installing nvm and node"
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+}
+
+install_nvm_2() {
     nvm install node
 }
 
@@ -55,8 +61,8 @@ install_nvim() {
     curl -L https://github.com/neovim/neovim/releases/download/v0.6.0/nvim.appimage > nvim.appimage
     chmod +x nvim.appimage
     ./nvim.appimage --appimage-extract
-    mv squashfs-root /
-    ln -s /squashfs-root/AppRun /usr/bin/nvim
+    sudo -s mv squashfs-root /
+    sudo -s ln -s /squashfs-root/AppRun /usr/bin/nvim
     rm nvim.appimage
     npm install -g neovim
 }
@@ -67,7 +73,7 @@ install_nvim_others() {
     dpkg -i ripgrep_13.0.0_amd64.deb
 
     # install fd-menu
-    apt install fd-find
+    sudo -s apt install fd-find
 }
 
 clean() {
@@ -111,32 +117,23 @@ while [ $# -gt 0 ]; do
             ;;
         -i|--install)
             install_packages
-            exit 0
-            ;;
-        -o|--others)
             install_oh_my_zsh
-            clean
-            install_nvm_node
-            install_nvim
-            install_nvim_others
             exit 0
             ;;
-        -c|--clean)
-            clean
+        -u|--install2)
+            install_oh_my_zsh_plugins
+            install_nvm_node
             exit 0
             ;;
         -s|--stow)
+            clean
             stow
             exit 0
             ;;
-        -a|--all)
-            install_packages
-            install_oh_my_zsh
-            clean
-            install_nvm_node
+        -o|--others)
+            install_nvm_2
             install_nvim
             install_nvim_others
-            stow
             exit 0
             ;;
         *)
