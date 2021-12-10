@@ -1,5 +1,7 @@
 " AutoCmd
     autocmd FileType gitcommit set colorcolumn=73
+    autocmd FileType python set colorcolumn=80
+    autocmd VimEnter * :Copilot disable
 
     " Toggle relative numbers
     augroup numbertoggle
