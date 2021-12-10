@@ -1,10 +1,16 @@
 " General
     autocmd InsertEnter * set timeoutlen=200
     autocmd InsertLeave * set timeoutlen=1000
-    
+
     " Keep visual mode after indenting
     vnoremap > >gv
     vnoremap < <gv
+
+    nnoremap Y y$
+    nnoremap U <C-r>
+    nmap Q @q
+
+    imap <C-Del> <C-o>de
 
 " Leader Mappings
     let mapleader=" "
@@ -37,3 +43,8 @@
     nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
     nnoremap <leader>vsd :lua vim.lsp.diagnostic.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>
     nnoremap <leader>vn :lua vim.lsp.diagnostic.goto_next()<CR>
+
+    " Todo Bujo
+    nmap <leader>a <Plug>BujoAddnormal<CR>
+    nmap <leader>c <Plug>BujoChecknormal<CR>
+
