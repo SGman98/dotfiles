@@ -51,6 +51,9 @@ ZSH_THEME="custom"
     alias vimrc="v $DOTFILES/nvim/.config/nvim/lua/user/init.lua"
     alias zshrc="v $DOTFILES/zsh/.zshrc && source $HOME/.zshrc"
     alias gitconfig="v $DOTFILES/git/.config/git/config"
+
+# Postgresql
+    alias pg_start="sudo pg_ctlcluster 12 main start"
 # Functions
     # mkdir and cd
     function mdcd() {
