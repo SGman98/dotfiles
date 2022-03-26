@@ -48,7 +48,7 @@ ZSH_THEME="custom"
     alias g="git"
 
 # Git aliases for dotfiles
-    alias vimrc="v $DOTFILES/nvim/.config/nvim/init.vim"
+    alias vimrc="v $DOTFILES/nvim/.config/nvim/lua/user/init.lua"
     alias zshrc="v $DOTFILES/zsh/.zshrc && source $HOME/.zshrc"
     alias gitconfig="v $DOTFILES/git/.config/git/config"
 # Functions
