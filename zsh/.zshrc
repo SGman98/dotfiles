@@ -91,7 +91,6 @@ ZSH_THEME="custom"
 
 #zprof
 PATH="$HOME/.local/bin:$PATH"
-PATH="$HOME/.local/bin:$PATH"
 
 # nvm configuration
 export NVM_DIR="$HOME/.nvm"
