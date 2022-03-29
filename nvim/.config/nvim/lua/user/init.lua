@@ -37,6 +37,12 @@ local config = {
             { "github/copilot.vim" },
         },
 
+        lualine = {
+            sections = {
+               lualine_a = {'mode'}
+            }
+        }
+
     },
 
 
@@ -49,7 +55,7 @@ local config = {
         set.tabstop = 4
         set.softtabstop = 4
         set.expandtab = true
-        set.clipboard = "unnamed"
+        set.clipboard = "unnamedplus"
         set.timeoutlen = 500
 
         map("n", "<leader>f.", "<cmd>Telescope find_files hidden=true<CR>", opts)
