@@ -28,15 +28,16 @@ local config = {
         }
     end,
 
-	-- Configure plugins
-	plugins = {
-		-- Add plugins, the packer syntax without the "use"
-		init = {
-			{ "unblevable/quick-scope" },
-			{ "tpope/vim-surround" },
+    -- Configure plugins
+    plugins = {
+        -- Add plugins, the packer syntax without the "use"
+        init = {
+            { "unblevable/quick-scope" },
+            { "tpope/vim-surround" },
             { "github/copilot.vim" },
-		},
-	},
+        },
+
+    },
 
 
     polish = function()
