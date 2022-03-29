@@ -54,6 +54,7 @@ local config = {
 
         vim.cmd [[
             autocmd VimEnter * :Copilot disable
+            imap <silent><script><expr> <C-O> copilot#Accept("\<CR>")
             let g:copilot_no_tab_map = v:true
             let g:qs_highlight_on_keys = ['f', 'F', 't', 'T'] 
             highlight QuickScopePrimary guifg='#00ff00' gui=underline ctermfg=155 cterm=underline
