@@ -50,6 +50,7 @@ local config = {
         set.softtabstop = 4
         set.expandtab = true
         set.clipboard = "unnamed"
+        set.timeoutlen = 500
 
         map("n", "<leader>f.", "<cmd>Telescope find_files hidden=true<CR>", opts)
 
