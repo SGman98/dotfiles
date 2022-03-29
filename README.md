@@ -7,7 +7,7 @@ sudo apt update && sudo apt upgrade
 ```
 
 ```sh
-sudo apt install stow build-essential cmake curl python3.8-dev zsh pandoc texlive-full texlive-latex-extra bat tree neofetch fd-find
+sudo apt install stow build-essential cmake curl python3.8-dev zsh pandoc texlive-full texlive-latex-extra bat tree neofetch
 ```
 
 ## Install Oh-my-zsh
@@ -36,7 +36,9 @@ sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
 
 ```sh
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
-dpkg -i ripgrep_13.0.0_amd64.deb
+sudo dpkg -i ripgrep_13.0.0_amd64.deb
+rm ripgrep_13.0.0_amd64.deb
+sudo apt install fd-find
 ```
 
 ### Config with AstroVim
