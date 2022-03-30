@@ -1,6 +1,10 @@
 -- '$HOME/.config/nvim/lua/core/mappings.lua'
 -- '$HOME/.config/nvim/lua/user_example/init.lua'
 local config = {
+
+    -- Set colorscheme
+    colorscheme = "onenord",
+
     -- null-ls configuration
     ["null-ls"] = function()
         local status_ok, null_ls = pcall(require, "null-ls")
@@ -35,6 +39,8 @@ local config = {
             { "unblevable/quick-scope" },
             { "tpope/vim-surround" },
             { "github/copilot.vim" },
+            { "morhetz/gruvbox" },
+            { "rmehri01/onenord.nvim"},
         },
 
         lualine = {
