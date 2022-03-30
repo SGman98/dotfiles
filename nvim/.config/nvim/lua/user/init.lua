@@ -19,7 +19,7 @@ local config = {
             sources = {
                 -- Set a formatter
                 formatting.prettier,
-                -- formatting.autopep8,
+                formatting.autopep8,
             },
 
             -- NOTE: You can remove this on attach function to disable format on save
@@ -61,8 +61,11 @@ local config = {
         set.tabstop = 4
         set.softtabstop = 4
         set.expandtab = true
-        set.clipboard = "unnamedplus"
+        set.clipboard = "unnamed"
         set.timeoutlen = 500
+        set.swapfile = false
+        set.backup = false
+        set.colorcolumn = '80'
 
         map("n", "<leader>f.", "<cmd>Telescope find_files hidden=true<CR>", opts)
 
