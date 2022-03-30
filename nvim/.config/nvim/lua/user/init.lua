@@ -48,9 +48,7 @@ local config = {
                lualine_a = {'mode'}
             }
         }
-
     },
-
 
     polish = function()
         local opts = { noremap = true, silent = true }
