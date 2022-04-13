@@ -66,8 +66,10 @@ local config = {
         set.colorcolumn = '80'
         set.listchars = 'tab:  >,trail:·'
         set.list = true
+        set.spelllang = 'en,es'
 
         map("n", "<leader>f.", "<cmd>Telescope find_files hidden=true<CR>", opts)
+        map("n", "<leader>ss", "<cmd>set spell!<CR>", opts)
 
         vim.cmd [[
             autocmd VimEnter * :Copilot disable
