@@ -64,6 +64,8 @@ local config = {
         set.swapfile = false
         set.backup = false
         set.colorcolumn = '80'
+        set.listchars = 'tab:  >,trail:·'
+        set.list = true
 
         map("n", "<leader>f.", "<cmd>Telescope find_files hidden=true<CR>", opts)
 
