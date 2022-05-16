@@ -2,7 +2,6 @@
 	editor = nvim
 	excludesfile = /home/sg/.config/git/gitignore
 [commit]
-	gpgsign = true
 	template = ~/.config/git/gitmessage.txt
 [gpg]
 	program = gpg
