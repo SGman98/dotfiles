@@ -64,7 +64,7 @@ local config = {
         set.swapfile = false
         set.backup = false
         set.colorcolumn = '80'
-        set.listchars = 'tab:  >,trail:·'
+        set.listchars = 'tab:  ›,trail:·'
         set.list = true
         set.spelllang = 'en,es'
 
