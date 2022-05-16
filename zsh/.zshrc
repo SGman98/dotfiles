@@ -41,6 +41,7 @@ ZSH_THEME="custom"
     alias gotoC="cd /mnt/c/"
     alias gotoD="cd /mnt/d/"
     alias p="cd /mnt/d/Documents/programming"
+    alias l="ls -lAhX"
 # Useful
     alias py="python3"
     alias v="nvim"
