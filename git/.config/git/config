@@ -6,14 +6,28 @@
 [gpg]
 	program = gpg
 [alias]
-	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue) <%an>%Creset' --abbrev-commit
 	st = status
-	pl = pull
-	ph = push
-	u = !git pl && git ph
-	cm = commit
+	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue) <%an>%Creset' --abbrev-commit
+	last = log -1 HEAD
+
+	conn = git remote add origin
+	update = !git pull && git push -u origin HEAD
+	u = update
+
 	a = add
+	aa = add -A
+	cm = commit
+	cms = commit -S
+
 	co = checkout
+	cob = checkout -b
+	del = branch -D
+
+	save = !git add -A && git commit -m 'SAVE'
+	undo = reset HEAD~1 --mixed
+	wipe = !git add -A && git commit -m 'WIPE' && git reset HEAD~1 --hard
+	fixup = "!f() { git commit --fixup \"$1\"; git rebase -i --autosquash \"$1\"; }; f"
+
 	s = stash
 	sp = stash pop
 	su = stash -u
@@ -21,3 +35,5 @@
 	sll = stash-list
 	slll = stash-list --full
 	ss = stash save
+[init]
+	defaultBranch = main
