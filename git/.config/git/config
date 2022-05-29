@@ -16,12 +16,17 @@
 	u = update
 
 	a = add
+	ap = add --patch
 	aa = add -A
 	cm = commit
 	cms = commit -S
+	cma = commit --amend
+	cmas = commit --amend -S
 
 	co = checkout
 	cob = checkout -b
+	com = checkout $(git config init.defaultbranch)
+	cod = checkout develop
 	del = branch -D
 
 	save = !git add -A && git commit -m 'SAVE'
