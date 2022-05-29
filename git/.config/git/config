@@ -12,6 +12,7 @@
 
 	conn = git remote add origin
 	update = !git pull && git push -u origin HEAD
+	publish = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
 	u = update
 
 	a = add
