@@ -1,8 +1,13 @@
 # python venv
 .venv/
 
-# vscode
-.vscode/
+# VsCode related files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
 
 # git
 .git/
