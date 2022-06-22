@@ -25,7 +25,7 @@ git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH/custom/plugins/zsh-vi-m
 ## Install neovim
 
 ```sh
-curl -L https://github.com/neovim/neovim/releases/download/v0.6.1/nvim.appimage > nvim.appimage
+curl -L https://github.com/neovim/neovim/releases/download/v0.7.0/nvim.appimage > nvim.appimage
 chmod u+x nvim.appimage
 ./nvim.appimage --appimage-extract && rm nvim.appimage
 sudo mv squashfs-root /
