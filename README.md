@@ -7,7 +7,9 @@ sudo apt update && sudo apt upgrade
 ```
 
 ```sh
-sudo apt install stow build-essential cmake curl python3.8-dev zsh pandoc texlive-full texlive-latex-extra bat tree neofetch
+sudo apt install stow build-essential cmake curl zsh bat tree neofetch
+sudo apt install pandoc texlive-full texlive-latex-extra
+sudo apt install python3.8-dev python3-pip python3.8-venv
 ```
 
 ## Install Oh-my-zsh
@@ -17,9 +19,17 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 ```
 
 ```sh
-git clone https://github.com/bobthecow/git-flow-completion $ZSH/custom/plugins/git-flow-completion\
-git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH/custom/plugins/zsh-syntax-highlighting\
+git clone https://github.com/bobthecow/git-flow-completion $ZSH/custom/plugins/git-flow-completion
+git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH/custom/plugins/zsh-syntax-highlighting
 git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH/custom/plugins/zsh-vi-mode
+```
+
+## Install nvm, node and yarn
+
+```sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+nvm install node
+npm i -g yarn
 ```
 
 ## Install neovim
@@ -47,14 +57,7 @@ sudo apt install fd-find
 git clone https://github.com/kabinspace/AstroVim ~/.config/nvim
 nvim +PackerSync
 ```
-
-## Install nvm, node and yarn
-
-```sh
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-nvm install node
-npm i -g yarn
-```
+> Planning on using lvim (lunar vim)
 
 ## Install config
 
