@@ -1,5 +1,4 @@
 [core]
-	editor = nvim
 	excludesfile = /home/sg/.config/git/gitignore
 [commit]
 	template = ~/.config/git/gitmessage.txt
