@@ -1,5 +1,6 @@
 -- sets
 local set = vim.opt
+
 set.swapfile = false
 set.backup = false
 set.colorcolumn = '80'

@@ -4,6 +4,8 @@ export ZSH=$HOME/.oh-my-zsh
 export DOTFILES=$HOME/.dotfiles
 # For use of gpg signing
 export GPG_TTY=$(tty)
+# Editor
+export EDITOR=lvim
 
 # For ssh use
 env=~/.ssh/agent.env
@@ -44,14 +46,14 @@ ZSH_THEME="custom"
     alias l="ls -lAhX"
 # Useful
     alias py="python3"
-    alias v="nvim"
+    alias v="$EDITOR"
     alias bat="batcat"
     alias g="git"
 
 # Git aliases for dotfiles
-    alias vimrc="v $DOTFILES/nvim/.config/nvim/lua/user/init.lua"
-    alias zshrc="v $DOTFILES/zsh/.zshrc && source $HOME/.zshrc"
-    alias gitconfig="v $DOTFILES/git/.config/git/config"
+    alias vimrc="$EDITOR $DOTFILES/lvim/.config/lvim/config.lua"
+    alias zshrc="$EDITOR $DOTFILES/zsh/.zshrc && source $HOME/.zshrc"
+    alias gitconfig="$EDITOR $DOTFILES/git/.config/git/config"
 
 # Postgresql
     alias pg_start="sudo pg_ctlcluster 12 main start"
