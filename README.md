@@ -51,16 +51,14 @@ rm ripgrep_13.0.0_amd64.deb
 sudo apt install fd-find
 ```
 
-### Config with AstroVim
+### Config with LunarVim
 
 ```sh
-git clone https://github.com/kabinspace/AstroVim ~/.config/nvim
-nvim +PackerSync
+bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 ```
-> Planning on using lvim (lunar vim)
 
 ## Install config
 
 ```sh
-stow nvim git zsh
+stow -v lvim git zsh
 ```
