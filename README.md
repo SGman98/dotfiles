@@ -1,66 +1,120 @@
 # My dotfiles
 
+> Currently using [ArchWSL](https://wsldl-pg.github.io/ArchW-docs/How-to-Setup/)
+
+> Set XDG Base Directory if not set using a /etc/profile.d [script](https://github.com/Conaclos/profile.d/blob/master/10-xdg-base-dirs.sh)
+
 ## Package Instalation
 
 ```sh
-sudo apt update && sudo apt upgrade
+sudo pacman -Syyu
 ```
 
 ```sh
-sudo apt install stow build-essential cmake curl zsh bat tree neofetch
-sudo apt install pandoc texlive-full texlive-latex-extra
-sudo apt install python3.8-dev python3-pip python3.8-venv
+sudo pacman -S
+  # Base
+  base-devel
+  # shell
+  zsh starship
+  # utils
+  git openssh wget
+  # dotfiles management
+  stow
 ```
 
-## Install Oh-my-zsh
+## Install aur helper
 
 ```sh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://aur.archlinux.org/yay.git /opt/yay
+sudo chown -R $USER:$USER /opt/yay
+cd /opt/yay
+makepkg -si
 ```
+
+## ZSH
+
+### Set ZSH as default shell
 
 ```sh
-git clone https://github.com/lukechilds/zsh-nvm $ZSH_CUSTOM/plugins/zsh-nvm
-git clone https://github.com/bobthecow/git-flow-completion $ZSH_CUSTOM/plugins/git-flow-completion
-git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
-git clone https://github.com/MenkeTechnologies/zsh-cargo-completion.git $ZSH_CUSTOM/plugins/zsh-cargo-completion
+chsh -s /bin/zsh
 ```
 
-## Install nvm, node and yarn
+### Set ZDOTDIR to XDG Base Directory
 
 ```sh
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-nvm install node
-npm i -g yarn
+echo "ZDOTDIR=$XDG_CONFIG_HOME/zsh" | sudo tee -a /etc/zsh/zshenv
 ```
 
-## Install neovim
+## SSH and GPG
+
+- Generate SSH key [Github SSH](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+
+- Generate GPG key [Github GPG](https://docs.github.com/en/github/authenticating-to-github/managing-commit-signature-verification/generating-a-new-gpg-key)
+
+> Or import existing key from a file
+
+```
+gpg --import <key-file>
+```
+
+## Clone dotfiles
 
 ```sh
-curl -L https://github.com/neovim/neovim/releases/download/v0.7.0/nvim.appimage > nvim.appimage
-chmod u+x nvim.appimage
-./nvim.appimage --appimage-extract && rm nvim.appimage
-sudo mv squashfs-root /
-sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+git clone git@github.com:SGman98/.dotfiles.git $HOME/.dotfiles
+stow -v -d $HOME/.dotfiles/ -t $XDG_CONFIG_HOME/ -S git zsh
 ```
 
-### neovim extras
+## Install Languages
+
+### Python
 
 ```sh
-curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
-sudo dpkg -i ripgrep_13.0.0_amd64.deb
-rm ripgrep_13.0.0_amd64.deb
-sudo apt install fd-find
+sudo pacman -S python python-pip
 ```
 
-### Config with LunarVim
+### Rust
 
 ```sh
-bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+sudo pacman -S rustup
+rustup default stable
 ```
 
-## Install config
+### Node
 
 ```sh
-stow -v lvim git zsh
+yay -S nvm
+nvm install --lts
+npm install -g yarn
 ```
+
+## Extras
+
+### Pacman
+
+```sh
+sudo pacman -S
+  bat
+  exa
+  fd
+  fzf
+  htop
+  neofetch
+  neovim
+  ripgrep
+  thefuck
+  tmux
+  tree
+```
+
+### Yay
+
+```sh
+yay -S
+  gitflow-avh
+```
+
+> TheFuck in WSL
+>
+> ```sh
+> echo "excluded_search_path_prefixes = ['/mnt/']" | tee -a $XDG_CONFIG_HOME/thefuck/settings.py
+> ```
