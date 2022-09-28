@@ -1,9 +1,0 @@
-
-
-# ^^^ Subject: If applied, this commit will...   #
-# Capitalized, short, imperative mood, no period
-# vvv Body: Reason for this commit/problem                             #
-
-
-# Co-authored-by: name <user@users.noreply.github.com>
-# Resolves: #1, #2
