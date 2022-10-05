@@ -69,7 +69,7 @@ stow -v -d $HOME/.dotfiles/ -t $XDG_CONFIG_HOME/ -S git zsh
 ### Python
 
 ```sh
-sudo pacman -S python python-pip
+sudo pacman -S python python-pip tk
 ```
 
 ### Rust
