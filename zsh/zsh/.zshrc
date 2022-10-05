@@ -17,6 +17,9 @@ setopt autocd # Auto change directory when typing a directory name
 # ignore case when tab-completing
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
+# menu selection highlighting
+zstyle ':completion:*' menu select
+
 bindkey '^[[A' history-beginning-search-backward
 bindkey '^[[B' history-beginning-search-forward
 

@@ -4,8 +4,7 @@ alias c="clear"
 alias md="mkdir -p"
 alias rd="rmdir"
 mdcd() { mkdir -p -- "$1" && cd -P -- "$1"; };
-
-
+reload() { source $ZDOTDIR/.zshenv; source $ZDOTDIR/.zshrc; }
 
 alias dots="$EDITOR $DOTFILES"
 
