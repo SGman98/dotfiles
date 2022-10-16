@@ -20,6 +20,8 @@ sudo pacman -S
   git openssh wget
   # dotfiles management
   stow
+  # editor
+  neovim
 ```
 
 ## Install aur helper
@@ -89,6 +91,12 @@ npm install -g yarn
 
 ## Extras
 
+### LunarVim
+
+```sh
+bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+```
+
 ### Pacman
 
 ```sh
@@ -99,7 +107,6 @@ sudo pacman -S
   fzf
   htop
   neofetch
-  neovim
   ripgrep
   thefuck
   tmux
