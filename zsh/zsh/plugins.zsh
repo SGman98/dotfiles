@@ -14,7 +14,6 @@ plugins=(
     lukechilds/zsh-nvm
 )
 
-
 # ---- Plugin Installation ----
 function install_plugins() {
     # read all arguments into an array
@@ -58,11 +57,16 @@ function clean_plugins() {
     done
 }
 
-
 # ---- call functions ----
 install_plugins "${plugins[@]}"
 clean_plugins "${plugins[@]}"
 
+# load custom plugins from $XDG_CONFIG_HOME/zsh/plugins
+for file in "$XDG_CONFIG_HOME/zsh/plugins"/*.plugin.zsh; do
+    if [ -f "$file" ]; then
+        source "$file"
+    fi
+done
 
 unfunction install_plugins
 unfunction clean_plugins
