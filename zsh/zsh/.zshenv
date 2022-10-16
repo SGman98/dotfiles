@@ -1,6 +1,9 @@
+# Add local bin to path
+export PATH=/home/sg/.local/bin:$PATH 
+
 # ---- Default editors ----
-export EDITOR="code --wait"
-export VISUAL="code --wait"
+export EDITOR="lvim"
+export VISUAL="lvim"
 
 # ---- XDG ----
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
@@ -18,3 +21,7 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export NVM_DIR="$XDG_DATA_HOME/nvm"
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+export MACHINE_STORAGE_PATH="$XDG_DATA_HOME/docker-machine"
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/config.toml"
+export STARSHIP_CACHE="$XDG_CACHE_HOME/starship"
