@@ -3,9 +3,9 @@ eval $(thefuck --alias)
 
 # ---- Include ----
 source $ZDOTDIR/environment.zsh
+source $ZDOTDIR/agents.zsh
 source $ZDOTDIR/plugins.zsh
 source $ZDOTDIR/functions.zsh
-source $ZDOTDIR/agents.zsh
 source $ZDOTDIR/aliases.zsh
 
 # ---- ZSH ----
