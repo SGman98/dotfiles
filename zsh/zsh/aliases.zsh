@@ -18,7 +18,14 @@ alias pyenv="python -m venv"
 # ---- Pacman ----
 alias pac="sudo pacman"
 
+# ---- Systemctl ----
+alias sc="sudo systemctl"
+alias scss="sudo systemctl start"
+alias scst="sudo systemctl stop"
+
 # ---- Docker ----
-alias dcu="docker compose up"
-alias dcd="docker compose down"
-alias dcr="docker compose down && docker compose up -d --build"
+alias dk="docker"
+alias dkcu="docker compose up"
+alias dkcd="docker compose down"
+alias dkcr="docker compose down && docker compose up -d --build"
+

@@ -1,6 +1,3 @@
-# Add local bin to path
-export PATH=/home/sg/.local/bin:$PATH 
-
 # ---- Default editors ----
 export EDITOR="lvim"
 export VISUAL="lvim"
@@ -25,3 +22,6 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export MACHINE_STORAGE_PATH="$XDG_DATA_HOME/docker-machine"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/config.toml"
 export STARSHIP_CACHE="$XDG_CACHE_HOME/starship"
+
+# Add local bin to path
+export PATH=/home/sg/.local/bin:$PATH 
