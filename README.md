@@ -20,8 +20,6 @@ sudo pacman -S
   git openssh wget
   # dotfiles management
   stow
-  # editor
-  neovim
 ```
 
 ## Install aur helper
@@ -91,33 +89,36 @@ npm install -g yarn
 
 ## Extras
 
-### LunarVim
+### Editor
 
 ```sh
+sudo pacman -S neovim
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 ```
 
-### Pacman
+### Tmux & Tmux Plugin Manager
 
 ```sh
-sudo pacman -S
+sudo pacman -S tmux
+git clone https://github.com/tmux-plugins/tpm $XDG_CONFIG_HOME/tmux/plugins/tpm
+```
+
+> Within tmux, press `prefix + I` to install the plugins
+
+### Others
+
+```sh
+yay -S
   bat
   exa
   fd
   fzf
+  gitflow-avh
   htop
   neofetch
   ripgrep
   thefuck
-  tmux
   tree
-```
-
-### Yay
-
-```sh
-yay -S
-  gitflow-avh
 ```
 
 > TheFuck in WSL
