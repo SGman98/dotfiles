@@ -120,3 +120,16 @@
     z = { "<cmd>lua require('lv-utils').toggle_zoom()<cr>", "Zoom" },
     t = { "<cmd>ToggleTerm<cr>", "Terminal" },
   }
+
+-- ***Lsp settings***
+
+  -- use pep8 instead of black
+  require "lvim.lsp.null-ls.formatters".setup {
+    { exe = "autopep8", filetypes = { "python" } },
+    { exe = "remark", filetypes = { "markdown" } },
+  }
+
+  require "lvim.lsp.null-ls.linters".setup {
+    { exe = "flake8", args = { "--max-line-length=80" }, filetypes = { "python" } },
+  }
+  
