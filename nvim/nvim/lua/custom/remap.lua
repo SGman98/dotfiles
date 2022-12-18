@@ -26,6 +26,5 @@ vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
 
 -- Search and replace
-vim.keymap.set("n", "<leader>sw", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/g<Left><Left>")
-vim.keymap.set("n", "<leader>sr", ":%s//g<Left><Left>")
-vim.keymap.set("v", "<leader>sw", ":s/\\%V/g<Left><Left>")
+vim.keymap.set("n", "<leader>sr", ":%s//g<Left><Left>", { desc = '[S]earch and [R]eplace' })
+vim.keymap.set("v", "<leader>sr", ":s/\\%V/g<Left><Left>", { desc = '[S]earch and [R]eplace' })
