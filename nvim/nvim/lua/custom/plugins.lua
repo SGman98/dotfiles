@@ -1,3 +1,3 @@
 return function(use)
-    -- Add custom plugins here
+    use 'navarasu/onedark.nvim'
 end
