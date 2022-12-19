@@ -6,6 +6,7 @@ return function(use)
     use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
     use 'mbbill/undotree'
     use 'theprimeagen/harpoon'
+    use { 'kylechui/nvim-surround', tag = "*" }
 
     -- Fuzzy Finder (files, lsp, etc)
     use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
