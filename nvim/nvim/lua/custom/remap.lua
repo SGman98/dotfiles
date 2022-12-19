@@ -23,7 +23,8 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("x", "<leader>p", "\"_dP")
 vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
-vim.keymap.set("n", "<leader>Y", "\"+Y")
+vim.keymap.set('n', 'Y', "y$")
+vim.keymap.set("n", "<leader>Y", "\"+y$")
 
 -- Search and replace
 vim.keymap.set("n", "<leader>sr", ":%s//g<Left><Left>", { desc = '[S]earch and [R]eplace' })
