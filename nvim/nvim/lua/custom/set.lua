@@ -1,5 +1,5 @@
 -- Basic
-vim.opt.isfname:append("@-@")
+vim.opt.isfname:append('@-@')
 vim.opt.updatetime = 50
 
 -- History
@@ -8,9 +8,9 @@ vim.opt.backup = false
 vim.opt.undofile = true
 
 -- Columns
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = 'yes'
 
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = '80'
 vim.opt.wrap = false
 
 vim.opt.number = true

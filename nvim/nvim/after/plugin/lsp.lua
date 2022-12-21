@@ -30,36 +30,34 @@ lsp.setup_nvim_cmp({
 })
 
 lsp.on_attach(function (_, bufnr)
-    local map = function(mode, keys, func, desc)
-        if desc then
-            desc = 'LSP: ' .. desc
-        end
-
-        vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
-    end
     local telescope = require('telescope.builtin')
+    local opts = { buffer = bufnr }
+    local wk = require('which-key')
 
-    map('n', '<leader>lh', vim.lsp.buf.hover, '[H]over Documentation')
-    map('n', '<leader>lca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-    map('n', '<leader>lrn', vim.lsp.buf.rename, '[R]e[n]ame')
-    map('n', '<leader>lf', vim.lsp.buf.format, '[F]ormat')
-    map('i', '<C-h>', vim.lsp.buf.signature_help, 'signature_help')
+    wk.register({
+        l = {
+            name = 'LSP',
+            h = { vim.lsp.buf.hover, 'Hover' },
+            f = { vim.lsp.buf.format, 'Format' },
+            ca = { vim.lsp.buf.code_action, 'Code Action' },
+            rn = { vim.lsp.buf.rename, 'Rename' },
+            d = { telescope.lsp_definitions, 'Definitions' },
+            r = { telescope.lsp_references, 'References' },
+            ws = { telescope.lsp_workspace_symbols, 'Workspace Symbols' },
+            ds = { telescope.lsp_document_symbols, 'Document Symbols' },
+        },
+        d = {
+            name = 'Diagnostics',
+            v = { vim.diagnostic.open_float, 'View Diagnostics' },
+            l = { telescope.loclist, 'View loclist' },
+        }
+    }, { prefix = '<leader>' })
 
-    map('n', '<leader>ld', telescope.lsp_definitions, '[D]efinition')
-    map('n', '<leader>lws', telescope.lsp_workspace_symbols, '[W]orkspace [S]ymbols')
-    map('n', '<leader>ls', telescope.lsp_document_symbols, 'Document [S]ymbols')
-    map('n', '<leader>lr', telescope.lsp_references, '[R]eferences')
-
-    map('n', '<leader>vd', vim.diagnostic.open_float, '[V]iew [D]iagnostic')
-    map('n', '[d', vim.diagnostic.goto_next, 'Goto next')
-    map('n', ']d', vim.diagnostic.goto_prev, 'Goto prev')
-
+    vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, opts)
 
     -- Diagnostics
-    map('n', '[d', vim.diagnostic.goto_prev)
-    map('n', ']d', vim.diagnostic.goto_next)
-    map('n', '<leader>vd', vim.diagnostic.open_float)
-    map('n', '<leader>vl', telescope.loclist, '[V]iew [L]oclist')
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 end)
 
 
