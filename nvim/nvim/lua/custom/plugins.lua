@@ -75,4 +75,7 @@ return function(use)
         after = 'nvim-treesitter',
     }
 
+    -- Extras
+    use 'johmsalas/text-case.nvim'
+
 end
