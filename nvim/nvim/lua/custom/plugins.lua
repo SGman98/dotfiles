@@ -5,6 +5,7 @@ return function(use)
     use("theprimeagen/harpoon")
     use("tpope/vim-sleuth")
     use("johmsalas/text-case.nvim")
+    use("christoomey/vim-tmux-navigator")
 
     use({
         "folke/zen-mode.nvim",
