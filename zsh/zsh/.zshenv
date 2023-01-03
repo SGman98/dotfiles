@@ -1,6 +1,6 @@
 # ---- Default editors ----
-export EDITOR="lvim"
-export VISUAL="lvim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 # ---- XDG ----
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"

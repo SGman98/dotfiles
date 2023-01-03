@@ -1,4 +1,5 @@
 # ---- General ----
+alias v="nvim"
 alias l="ls -lAhX --color=auto"
 alias c="clear"
 alias md="mkdir -p"
