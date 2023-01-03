@@ -32,9 +32,6 @@ return function(use)
     use 'lewis6991/gitsigns.nvim'
     use 'kdheepak/lazygit.nvim'
 
-    -- Keymaps
-    use 'folke/which-key.nvim'
-
     -- Language servers and related
     use {
         'VonHeikemen/lsp-zero.nvim',
