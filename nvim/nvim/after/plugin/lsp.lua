@@ -38,8 +38,6 @@ lsp.on_attach(function(_, bufnr)
 
     map("n", "<leader>lh", vim.lsp.buf.hover, "Hover")
     map("n", "<leader>lf", vim.lsp.buf.format, "Format")
-    map("n", "<leader>lca", vim.lsp.buf.code_action, "Code Action")
-    map("n", "<leader>lrn", vim.lsp.buf.rename, "Rename")
     map("n", "<leader>ld", telescope.lsp_definitions, "Definitions")
     map("n", "<leader>lr", telescope.lsp_references, "References")
     map("n", "<leader>lws", telescope.lsp_workspace_symbols, "Workspace Symbols")
@@ -47,8 +45,11 @@ lsp.on_attach(function(_, bufnr)
     map("n", "<leader>dl", telescope.loclist, "View loclist")
     map("i", "<C-h>", vim.lsp.buf.signature_help)
 
+    map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
+    map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
+
     -- Diagnostics
-   map("n", "<leader>dv", vim.diagnostic.open_float, "View Diagnostics")
+    map("n", "<leader>dv", vim.diagnostic.open_float, "View Diagnostics")
     map("n", "[d", vim.diagnostic.goto_prev)
     map("n", "]d", vim.diagnostic.goto_next)
 end)
@@ -80,6 +81,9 @@ null_ls.setup({
 
         -- Lua
         null_ls.builtins.formatting.stylua,
+
+        -- Gitsigns
+        null_ls.builtins.code_actions.gitsigns,
     },
 })
 
