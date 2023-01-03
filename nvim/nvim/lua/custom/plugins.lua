@@ -1,12 +1,15 @@
 return function(use)
-    use 'navarasu/onedark.nvim' -- Theme inspired by Atom
-    use 'nvim-lualine/lualine.nvim' -- Fancier statusline
-    use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-    use 'numToStr/Comment.nvim' -- 'gc' to comment visual regions/lines
-    use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+    -- Extras
     use 'mbbill/undotree'
+    use 'navarasu/onedark.nvim'
     use 'theprimeagen/harpoon'
-    use { 'kylechui/nvim-surround', tag = '*' }
+    use 'tpope/vim-sleuth'
+    use 'johmsalas/text-case.nvim'
+
+    use { 'folke/zen-mode.nvim', config = function() require('zen-mode').setup {} end }
+    use { 'kylechui/nvim-surround', tag = '*', config = function() require('nvim-surround').setup {} end }
+    use { 'numToStr/Comment.nvim', config = function() require('Comment').setup {} end }
+    use { 'nvim-lualine/lualine.nvim', config = function() require('lualine').setup {} end }
     use {
         'unblevable/quick-scope',
         setup = function ()
@@ -26,7 +29,6 @@ return function(use)
 
     -- Git related plugins
     use 'tpope/vim-fugitive'
-    use 'tpope/vim-rhubarb'
     use 'lewis6991/gitsigns.nvim'
     use 'kdheepak/lazygit.nvim'
 
@@ -74,8 +76,5 @@ return function(use)
         'nvim-treesitter/nvim-treesitter-textobjects',
         after = 'nvim-treesitter',
     }
-
-    -- Extras
-    use 'johmsalas/text-case.nvim'
 
 end
