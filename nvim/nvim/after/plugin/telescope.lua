@@ -1,20 +1,15 @@
-require('telescope').setup {}
-pcall(require('telescope').load_extension, 'fzf')
+require("telescope").setup({})
+pcall(require("telescope").load_extension, "fzf")
 
-local wk = require('which-key')
-local telescope = require('telescope.builtin')
+local telescope = require("telescope.builtin")
 
-wk.register({
-  s = {
-    name = 'Search',
-    f = { telescope.find_files, 'Search files' },
-    h = { telescope.help_tags, 'Search help' },
-    w = { telescope.grep_string, 'Search current word' },
-    g = { telescope.live_grep, 'Search by grep' },
-    d = { telescope.diagnostics, 'Search diagnostics' },
-    b = { telescope.buffers, 'Search buffers' },
-    o = { telescope.oldfiles, 'Search oldfiles' },
-    k = { telescope.keymaps, 'Search keymaps' },
-    ['/'] = { telescope.current_buffer_fuzzy_find, 'Search in current buffer' },
-  },
-}, { prefix = '<leader>' })
+vim.keymap.set("n", "<leader>sb", telescope.buffers, { desc = "Search buffers" })
+vim.keymap.set("n", "<leader>sc", telescope.grep_string, { desc = "Search current word" })
+vim.keymap.set("n", "<leader>sd", telescope.diagnostics, { desc = "Search diagnostics" })
+vim.keymap.set("n", "<leader>sd", telescope.diagnostics, { desc = "Search diagnostics" })
+vim.keymap.set("n", "<leader>sf", telescope.find_files, { desc = "Search files" })
+vim.keymap.set("n", "<leader>sh", telescope.help_tags, { desc = "Search help" })
+vim.keymap.set("n", "<leader>sk", telescope.keymaps, { desc = "Search keymaps" })
+vim.keymap.set("n", "<leader>so", telescope.oldfiles, { desc = "Search oldfiles" })
+vim.keymap.set("n", "<leader>sw", telescope.live_grep, { desc = "Search by grep" })
+vim.keymap.set("n", "<leader>sg", telescope.git_files, { desc = "Search Git Files" })

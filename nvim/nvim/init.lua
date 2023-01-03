@@ -1,4 +1,4 @@
-require('custom.clipboard')
-require('custom.packer')
-require('custom.set')
-require('custom.remap')
+require("custom.clipboard")
+require("custom.packer")
+require("custom.set")
+require("custom.remap")

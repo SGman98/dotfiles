@@ -1,17 +1,17 @@
-local mark = require('harpoon.mark')
-local ui = require('harpoon.ui')
+local mark = require("harpoon.mark")
+local ui = require("harpoon.ui")
 
-local wk = require('which-key')
-
-wk.register({
-  h = {
-    name = 'Harpoon',
-    a = { mark.add_file, 'Harpoon add file' },
-    u = { ui.toggle_quick_menu, 'Harpoon quick menu' },
-    n = { function () ui.nav_file(1) end, 'Harpoon nav 1' },
-    e = { function () ui.nav_file(2) end, 'Harpoon nav 2' },
-    i = { function () ui.nav_file(3) end, 'Harpoon nav 3' },
-    o = { function () ui.nav_file(4) end, 'Harpoon nav 4' },
-  },
-}, { prefix = '<leader>' })
-
+vim.keymap.set("n", "<leader>ha", mark.add_file, { desc = "Harpoon add file" })
+vim.keymap.set("n", "<leader>hu", ui.toggle_quick_menu, { desc = "Harpoon quick menu" })
+vim.keymap.set("n", "<leader>hn", function()
+    ui.nav_file(1)
+end, { desc = "Harpoon nav 1" })
+vim.keymap.set("n", "<leader>he", function()
+    ui.nav_file(2)
+end, { desc = "Harpoon nav 2" })
+vim.keymap.set("n", "<leader>hi", function()
+    ui.nav_file(3)
+end, { desc = "Harpoon nav 3" })
+vim.keymap.set("n", "<leader>ho", function()
+    ui.nav_file(4)
+end, { desc = "Harpoon nav 4" })

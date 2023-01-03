@@ -1,14 +1,8 @@
-local wk = require('which-key')
-local telescope = require('telescope.builtin')
+local telescope = require("telescope.builtin")
 
-wk.register({
-  g = {
-    name = 'Git',
-    b = { telescope.branches, 'Git branches' },
-    c = { telescope.commits, 'Git commits' },
-    f = { telescope.git_files, 'Git files' },
-    t = { telescope.stash, 'Git stash' },
-    g = { vim.cmd.LazyGit, 'Git lazy' },
-    s = { vim.cmd.Git, 'Git fugitive' },
-  },
-}, { prefix = '<leader>' })
+vim.keymap.set("n", "<leader>gb", telescope.git_branches, { desc = "Git branches" })
+vim.keymap.set("n", "<leader>gc", telescope.git_commits, { desc = "Git commits" })
+vim.keymap.set("n", "<leader>gf", telescope.git_files, { desc = "Git files" })
+vim.keymap.set("n", "<leader>gt", telescope.git_stash, { desc = "Git stash" })
+vim.keymap.set("n", "<leader>gg", vim.cmd.LazyGit, { desc = "Git lazy" })
+vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Git fugitive" })
