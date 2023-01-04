@@ -12,6 +12,7 @@ plugins=(
     # Completions
     MenkeTechnologies/zsh-cargo-completion
     lukechilds/zsh-nvm
+    Aloxaf/fzf-tab
 )
 
 # ---- Plugin Installation ----

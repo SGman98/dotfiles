@@ -30,7 +30,6 @@
 	save = !git add -A && git commit -m 'SAVE'
 	undo = reset HEAD~1 --mixed
 	wipe = !git add -A && git commit -m 'WIPE' && git reset HEAD~1 --hard
-	fixup = "!f() { git commit --fixup \"$1\"; git rebase -i --autosquash \"$1\"; }; f"
 
 	s = stash
 	sp = stash pop

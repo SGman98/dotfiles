@@ -26,3 +26,10 @@ bindkey '^[[B' history-beginning-search-forward
 # # ---- FZF ----
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+
+export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
+
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
+
+export FZF_ALT_C_COMMAND="fd --type d . --color=never --hidden"
