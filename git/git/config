@@ -41,3 +41,5 @@
 	ss = stash save
 [init]
 	defaultBranch = main
+[include]
+	path = ./personal_config
