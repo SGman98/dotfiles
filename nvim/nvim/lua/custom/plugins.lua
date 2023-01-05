@@ -6,6 +6,7 @@ return function(use)
     use("tpope/vim-sleuth")
     use("johmsalas/text-case.nvim")
     use("christoomey/vim-tmux-navigator")
+    use("tpope/vim-obsession")
 
     use({
         "folke/zen-mode.nvim",
