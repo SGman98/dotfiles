@@ -37,7 +37,6 @@ lsp.on_attach(function(_, bufnr)
     end
 
     map("n", "<leader>lh", vim.lsp.buf.hover, "Hover")
-    map("n", "<leader>lf", vim.lsp.buf.format, "Format")
     map("n", "<leader>ld", telescope.lsp_definitions, "Definitions")
     map("n", "<leader>lr", telescope.lsp_references, "References")
     map("n", "<leader>lws", telescope.lsp_workspace_symbols, "Workspace Symbols")
@@ -73,7 +72,7 @@ null_ls.setup({
         null_ls.builtins.diagnostics.eslint,
 
         -- markdown
-        null_ls.builtins.formatting.remark,
+        null_ls.builtins.formatting.markdownlint,
 
         -- python
         null_ls.builtins.formatting.black,

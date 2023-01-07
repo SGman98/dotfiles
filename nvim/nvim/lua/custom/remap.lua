@@ -29,3 +29,6 @@ vim.keymap.set("n", "<leader>Y", '"+y$', { desc = "Copy system" })
 -- Search and
 vim.keymap.set("n", "<leader>sr", ":%s///g<Left><Left><Left>", { desc = "Search and Replace" })
 vim.keymap.set("v", "<leader>sr", ":s/\\%V//g<Left><Left><Left>", { desc = "Search and Replace" })
+
+-- File format
+vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format)
