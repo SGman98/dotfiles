@@ -2,6 +2,7 @@ return function(use)
     -- Extras
     use("mbbill/undotree")
     use("navarasu/onedark.nvim")
+    use("nvim-tree/nvim-tree.lua")
     use("theprimeagen/harpoon")
     use("tpope/vim-sleuth")
     use("johmsalas/text-case.nvim")
