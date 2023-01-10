@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Improvements
+vim.keymap.set({ "n", "v" }, "U", "<C-r>")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
@@ -21,12 +22,11 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- Copy and Paste
 vim.keymap.set("x", "<leader>p", '"_dP', { desc = 'Paste "without losing' })
-vim.keymap.set("n", "<leader>y", '"+y', { desc = "Copy system" })
-vim.keymap.set("v", "<leader>y", '"+y', { desc = "Copy system" })
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Copy system" })
 vim.keymap.set("n", "Y", "y$", { desc = "Copy from cursor to eol" })
 vim.keymap.set("n", "<leader>Y", '"+y$', { desc = "Copy system" })
 
--- Search and
+-- Search and Replace
 vim.keymap.set("n", "<leader>sr", ":%s///g<Left><Left><Left>", { desc = "Search and Replace" })
 vim.keymap.set("v", "<leader>sr", ":s/\\%V//g<Left><Left><Left>", { desc = "Search and Replace" })
 
