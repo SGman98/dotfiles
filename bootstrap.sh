@@ -1,40 +1,11 @@
 #!/usr/bin/env bash
 
-# Helpers
-PROMPT="::BOOTSTRAP::"
-log() { echo "$(date) $PROMPT $1" | tee -a "$HOME/.bootstrap.log" &> /dev/null ; }
-info() { echo -e "\e[1;34m$PROMPT\e[0m $1" ; }
-success() { echo -e "\e[1;32m$PROMPT\e[0m $1" ; log "$1" ; }
-warn() { echo -e "\e[1;33m$PROMPT\e[0m $1" ; }
-abort() { echo -e "\e[1;31m$PROMPT\e[0m $1" ; exit 1 ; }
-confirm() {
-    DEFAULT=$([[ $2 =~ ^[Yy]?$ ]] && echo "Y" || echo "N")
-    YN=$([[ $DEFAULT =~ ^[Yy]$ ]] && echo "[Y/n]" || echo "[y/N]")
-    read -rsp $'\e[1;34m'"$PROMPT"$'\e[0m'" $1 $YN " -n 1 RES && echo "$RES"
-    RES=$([[ $RES =~ ^[YyNn]$ ]] && echo "${RES:-$DEFAULT}" || echo "$DEFAULT")
-    [[ $RES =~ ^[Yy]$ ]]
-}
-check_package() { pacman -Qs "$1" &> /dev/null ; }
-install_package() {
-    NAME=$1
-    CONFIRM=$2
-    check_package "$NAME" && return 0
-    if [[ -n $CONFIRM ]] ; then
-        confirm "Do you want to install $NAME" || return 1
-    fi
-    info "Installing $NAME"
-    sudo pacman -S --noconfirm "$NAME" || abort "Failed to install $NAME with pacman"
-    success "$NAME installed with pacman" 
-}
-manage() {
-    for file in "$HOME/.dotfiles/"*/manage.sh ; do
-        if [[ -f "$file" ]] ; then
-            NAME=$(basename "$(dirname "$file")")
-            info "Running $1 for $NAME"
-            sh "$file" "$1" || abort "Failed to run $file"
-        fi
-    done
-}
+# Load helper functions
+curl -s https://raw.githubusercontent.com/SGman98/.dotfiles/master/functions.sh > /tmp/functions.sh
+# shellcheck source=/dev/null
+source /tmp/functions.sh && rm /tmp/functions.sh
+
+info "Starting bootstrap script..."
 
 # Ask for root privileges
 if [[ $EUID -ne 0 ]] ; then
@@ -54,7 +25,7 @@ install_package "git" "yes" || abort "git is required"
 if ! check_package "openssh"; then
     install_package "openssh" "yes" || abort "openssh is required"
     info "Creating ssh key"
-    read -rp "Enter your email for ssh key: " email
+    ask "Enter your email for ssh key: " && email=$RES
     ssh-keygen -t ed25519 -C "$email" || abort "Failed to generate ssh key"
     eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/id_ed25519 || abort "Failed to add ssh key"
