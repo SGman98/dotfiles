@@ -7,6 +7,14 @@
 ## Package Instalation
 
 ```sh
+bash <(curl -s https://raw.githubusercontent.com/SGman98/.dotfiles/main/bootstrap.sh)
+```
+
+> For the moment it only works on Arch based distros
+
+## Old way
+
+```sh
 sudo pacman -Syyu
 ```
 
