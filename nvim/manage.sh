@@ -13,6 +13,12 @@ case "$1" in
         check_path_link "$HOME/.config/nvim/init.lua" "$HOME/.dotfiles/nvim/init.lua"
         check_path_link "$HOME/.config/nvim/lua" "$HOME/.dotfiles/nvim/lua"
         check_path_link "$HOME/.config/nvim/after" "$HOME/.dotfiles/nvim/after"
+
+        # TODO:
+        # first time run nvim and install plugins
+        # fix treesitter (No C compiler found)
+
+        success "Setup correctly"
         ;;
     remove)
         if [[ -d $HOME/.config/nvim/ ]] ; then

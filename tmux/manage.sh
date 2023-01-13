@@ -14,6 +14,8 @@ case "$1" in
         git clone https://github.com/tmux-plugins/tpm "$HOME/.config/tmux/plugins/tpm"
 
         info "When you start tmux, press prefix + I to install plugins"
+
+        success "Setup correctly"
         ;;
     remove)
         if [[ -d $HOME/.config/tmux/ ]] ; then

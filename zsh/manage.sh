@@ -24,6 +24,8 @@ case "$1" in
         # TODO:
         # fix (command not found: thefuck)
         # fix fzf related errors
+
+        success "Setup correctly"
         ;;
     remove)
         if [[ -d $HOME/.config/zsh/ ]] ; then

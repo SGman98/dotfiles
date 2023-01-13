@@ -11,6 +11,8 @@ case "$1" in
         install_package "starship" || abort "Failed to install starship"
 
         check_path_link "$HOME/.config/starship/config.toml" "$HOME/.dotfiles/starship/config.toml"
+
+        success "Setup correctly"
         ;;
     remove)
         if [[ -d $HOME/.config/starship/ ]] ; then

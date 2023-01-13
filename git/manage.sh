@@ -36,6 +36,8 @@ case "$1" in
         fi
 
         [[ -n $SIGNINGKEY ]] && echo -e "[user]\n\tsigningkey = $SIGNINGKEY" | tee -a "$HOME/.config/git/personal.gitconfig" &> /dev/null
+
+        success "Setup correctly"
         ;;
     remove)
         if [[ -d $HOME/.config/git/ ]] ; then
