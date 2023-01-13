@@ -41,4 +41,4 @@
 [init]
 	defaultBranch = main
 [include]
-	path = ./personal_config
+	path = ./personal.gitconfig
