@@ -63,7 +63,7 @@ install_plugins "${plugins[@]}"
 clean_plugins "${plugins[@]}"
 
 # load custom plugins from $XDG_CONFIG_HOME/zsh/plugins
-for file in "$XDG_CONFIG_HOME/zsh/plugins"/*.plugin.zsh; do
+for file in "$XDG_CONFIG_HOME/zsh/custom/plugins"/*.plugin.zsh; do
     if [ -f "$file" ]; then
         source "$file"
     fi
