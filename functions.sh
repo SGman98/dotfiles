@@ -18,6 +18,18 @@ confirm() {
 check_path_link() {
     LOCAL_PATH=$1
     DOTFILES_PATH=$2
+
+    PARENTS=$(dirname "$LOCAL_PATH")
+    while [[ $PARENTS != "/" ]] ; do
+        info "Checking $PARENTS"
+        if [[ -L $PARENTS ]] ; then
+            warn "$LOCAL_PATH is inside a symlinked folder"
+            confirm "Do you want to remove it?" "Y" || return 1
+            rm "$PARENTS" || abort "Failed to remove $PARENTS symlink"
+            success "Removed correctly"
+        fi
+        PARENTS=$(dirname "$PARENTS")
+    done
     
     if [[ -L $LOCAL_PATH ]] ; then
         LINK=$(readlink -f "$1")
@@ -45,6 +57,7 @@ check_path_link() {
     [[ -z $DOTFILES_PATH ]] && return 0
     
     info "Creating symlink $LOCAL_PATH -> $DOTFILES_PATH"
+    mkdir -p "$(dirname "$LOCAL_PATH")" || abort "Failed to create folder $(dirname "$LOCAL_PATH")"
     ln -s "$DOTFILES_PATH" "$LOCAL_PATH" || abort "Failed to create symlink $LOCAL_PATH -> $DOTFILES_PATH"
     success "Symlink created correctly $LOCAL_PATH -> $DOTFILES_PATH"
 }
