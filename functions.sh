@@ -21,7 +21,6 @@ check_path_link() {
 
     PARENTS=$(dirname "$LOCAL_PATH")
     while [[ $PARENTS != "/" ]] ; do
-        info "Checking $PARENTS"
         if [[ -L $PARENTS ]] ; then
             warn "$LOCAL_PATH is inside a symlinked folder"
             confirm "Do you want to remove it?" "Y" || return 1

@@ -8,11 +8,7 @@ PROMPT="::git-BOOTSTRAP::"
 case "$1" in
     setup)
         confirm "Do you want to setup git?" "Y" || abort "Aborting..."
-        if ! pacman -Qs git &> /dev/null ; then
-            info "Installing git..."
-            sudo pacman -S --noconfirm "git" || abort "Failed to install git"
-            success "Installed correctly"
-        fi
+        install_package "git" || abort "Failed to install git"
 
         # try to get GIT_USERNAME and GIT_EMAIL from git config
         GIT_USERNAME=$(git config --global user.name)
