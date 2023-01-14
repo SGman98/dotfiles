@@ -64,12 +64,11 @@ check_package() { pacman -Qs "$1" &> /dev/null ; }
 install_package() {
     NAME=$1
     CONFIRM=$2
-    check_package "$NAME" && return 0
     if [[ -n $CONFIRM ]] ; then
         confirm "Do you want to install $NAME" || return 1
     fi
     info "Installing $NAME"
-    sudo pacman -S --noconfirm "$NAME" || abort "Failed to install $NAME with pacman"
+    sudo pacman -S --noconfirm --needed "$NAME" || abort "Failed to install $NAME with pacman"
     success "$NAME installed with pacman" 
 }
 manage() {

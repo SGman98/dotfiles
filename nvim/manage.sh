@@ -15,9 +15,7 @@ case "$1" in
         check_path_link "$HOME/.config/nvim/after" "$HOME/.dotfiles/nvim/after"
 
         # TODO:
-        # first time run nvim and install plugins
-        # fix treesitter (No C compiler found)
-
+        # Fix after plugin folder
         success "Setup correctly"
         ;;
     remove)

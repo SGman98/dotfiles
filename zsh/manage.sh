@@ -18,12 +18,8 @@ case "$1" in
 
         confirm "Do you want to set zsh as default shell?" "Y" || abort "Aborting..."
         sudo chsh -s "/usr/bin/zsh" "$USER" || abort "Failed to set zsh as default shell"
-        
-        info "To apply changes, please logout and login again"
 
-        # TODO:
-        # fix (command not found: thefuck)
-        # fix fzf related errors
+        info "To apply changes, please logout and login again"
 
         success "Setup correctly"
         ;;
