@@ -4,53 +4,16 @@
 
 > Set XDG Base Directory if not set using a /etc/profile.d [script](https://github.com/Conaclos/profile.d/blob/master/10-xdg-base-dirs.sh)
 
-## Package Instalation
-
-```sh
-bash <(curl -s https://raw.githubusercontent.com/SGman98/.dotfiles/main/bootstrap.sh)
-```
+## Dotfiles Instalation
 
 > For the moment it only works on Arch based distros
-
-## Old way
 
 ```sh
 sudo pacman -Syyu
 ```
 
 ```sh
-sudo pacman -S
-  # Base
-  base-devel
-  # shell
-  zsh starship
-  # utils
-  git openssh wget
-  # dotfiles management
-  stow
-```
-
-## Install aur helper
-
-```sh
-git clone https://aur.archlinux.org/yay.git /opt/yay
-sudo chown -R $USER:$USER /opt/yay
-cd /opt/yay
-makepkg -si
-```
-
-## ZSH
-
-### Set ZSH as default shell
-
-```sh
-chsh -s /bin/zsh
-```
-
-### Set ZDOTDIR to XDG Base Directory
-
-```sh
-echo "ZDOTDIR=$XDG_CONFIG_HOME/zsh" | sudo tee -a /etc/zsh/zshenv
+sudo pacman -S base-devel git openssh wget
 ```
 
 ## SSH and GPG
@@ -59,17 +22,30 @@ echo "ZDOTDIR=$XDG_CONFIG_HOME/zsh" | sudo tee -a /etc/zsh/zshenv
 
 - Generate GPG key [Github GPG](https://docs.github.com/en/github/authenticating-to-github/managing-commit-signature-verification/generating-a-new-gpg-key)
 
-> Or import existing key from a file
+> Or import existing gpg key from a file
 
 ```
 gpg --import <key-file>
 ```
 
-## Clone dotfiles
+## Bootstrap dotfiles
 
 ```sh
-git clone git@github.com:SGman98/.dotfiles.git $HOME/.dotfiles
-stow -v -d $HOME/.dotfiles/ -t $XDG_CONFIG_HOME/ -S git zsh
+bash <(curl -s https://raw.githubusercontent.com/SGman98/.dotfiles/main/bootstrap.sh)
+```
+
+### Neovim
+
+Open neovim to start installing the plugins
+
+### Tmux & Tmux Plugin Manager
+
+> Within tmux, press `prefix + I` to install the plugins
+
+### TheFuck in WSL
+
+```sh
+echo "excluded_search_path_prefixes = ['/mnt/']" | tee -a $XDG_CONFIG_HOME/thefuck/settings.py
 ```
 
 ## Install Languages
@@ -86,51 +62,3 @@ sudo pacman -S python python-pip tk
 sudo pacman -S rustup
 rustup default stable
 ```
-
-### Node
-
-```sh
-yay -S nvm
-nvm install --lts
-npm install -g yarn
-```
-
-## Extras
-
-### Editor
-
-```sh
-sudo pacman -S neovim
-bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
-```
-
-### Tmux & Tmux Plugin Manager
-
-```sh
-sudo pacman -S tmux
-git clone https://github.com/tmux-plugins/tpm $XDG_CONFIG_HOME/tmux/plugins/tpm
-```
-
-> Within tmux, press `prefix + I` to install the plugins
-
-### Others
-
-```sh
-yay -S
-  bat
-  exa
-  fd
-  fzf
-  gitflow-avh
-  htop
-  neofetch
-  ripgrep
-  thefuck
-  tree
-```
-
-> TheFuck in WSL
->
-> ```sh
-> echo "excluded_search_path_prefixes = ['/mnt/']" | tee -a $XDG_CONFIG_HOME/thefuck/settings.py
-> ```
