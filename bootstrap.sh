@@ -35,6 +35,42 @@ if ! check_package "openssh"; then
     read -rsp "Press any key to continue..." -n 1 && echo
 fi
 
+if ! [[ -v GPG_TTY ]] ; then
+    info "Setting gpg key do you want to create a new one or use an existing one?"
+    select opt in "New" "Existing"; do
+        case $opt in
+            "New")
+                gpg --full-generate-key
+                gpg --list-secret-keys --keyid-format LONG
+                ID=$(gpg --list-secret-keys --keyid-format LONG | grep sec | cut -d "/" -f 2 | cut -d " " -f 1)
+                echo "Please copy this key and add it to github at https://github.com/settings/keys"
+                echo "Key > $ID"
+                read -rsp "Press any key to continue..." -n 1 && echo
+                gpg --armor --export "$ID"
+                GPG_TTY=$(tty)
+                export GPG_TTY
+                break
+                ;;
+            "Existing")
+                read -rep "Enter path to gpg private key (leave empty to skip): " path_to_private_key
+                if [ -n "$path_to_private_key" ]
+                then
+                    gpg --import "$path_to_private_key"
+                fi
+                read -rep "Enter path to gpg public key (leave empty to skip): " path_to_public_key
+                if [ -n "$path_to_public_key" ]
+                then
+                    gpg --import "$path_to_public_key"
+                fi
+                GPG_TTY=$(tty)
+                export GPG_TTY
+                break
+                ;;
+            *) echo "Invalid option";;
+        esac
+    done
+fi
+
 # Clone dotfiles repo
 if [[ -d "$HOME/.dotfiles" ]] ; then
     warn "Dotfiles repo already exists"
