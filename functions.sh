@@ -73,6 +73,9 @@ install_package() {
     success "$NAME installed with pacman" 
 }
 manage() {
+    # First install all packages
+    sh "$HOME/.dotfiles/packages.sh" || abort "Failed to install packages"
+    
     for file in "$HOME/.dotfiles/"*/manage.sh ; do
         if [[ -f "$file" ]] ; then
             NAME=$(basename "$(dirname "$file")")
