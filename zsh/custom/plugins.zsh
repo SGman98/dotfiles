@@ -1,5 +1,6 @@
 # ---- PreInstall ----
 export ZVM_INIT_MODE=sourcing # zsh-vim-mode prevent binding conflicts
+export NVM_COMPLETION=true
 
 # ---- Plugins ----
 plugins=(

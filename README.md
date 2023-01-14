@@ -50,6 +50,12 @@ echo "excluded_search_path_prefixes = ['/mnt/']" | tee -a $XDG_CONFIG_HOME/thefu
 
 ## Install Languages
 
+### Node
+
+```sh
+nvm install --lts
+```
+
 ### Python
 
 ```sh
