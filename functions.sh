@@ -4,9 +4,9 @@
 PROMPT="::BOOTSTRAP::"
 log() { echo "$(date) $PROMPT $1" | tee -a "$HOME/.bootstrap.log" &>/dev/null; }
 info() { echo -e "\e[1;34m$PROMPT\e[0m $1"; }
-success() { echo -e "\e[1;32m$PROMPT\e[0m $1" && log "$1" }
+success() { echo -e "\e[1;32m$PROMPT\e[0m $1" && log "$1"; }
 warn() { echo -e "\e[1;33m$PROMPT\e[0m $1"; }
-abort() { echo -e "\e[1;31m$PROMPT\e[0m $1" && exit 1 }
+abort() { echo -e "\e[1;31m$PROMPT\e[0m $1" && exit 1; }
 ask() { read -rp $'\e[1;34m'"$PROMPT"$'\e[0m'" $1" RES; }
 confirm() {
 	DEFAULT=$([[ $2 =~ ^[Yy]?$ ]] && echo "Y" || echo "N")
@@ -65,11 +65,11 @@ install_package() {
 	NAME=$1
 	CONFIRM=$2
 	if [[ -n $CONFIRM ]]; then
-		confirm "Do you want to install $NAME" || return 1
+		confirm "Do you want to install/update $NAME" || return 1
 	fi
-	info "Installing $NAME"
-	sudo pacman -S --noconfirm --needed "$NAME" || abort "Failed to install $NAME with pacman"
-	success "$NAME installed with pacman"
+	info "Installing/Updating $NAME"
+	sudo pacman -S --noconfirm --needed "$NAME" || abort "Failed to install/update $NAME with pacman"
+	success "$NAME installed/updated with pacman"
 }
 manage() {
 	# First install all packages
@@ -79,7 +79,7 @@ manage() {
 		if [[ -f "$file" ]]; then
 			NAME=$(basename "$(dirname "$file")")
 			info "Running $1 for $NAME"
-			sh "$file" "$1" || abort "Failed to run $file"
+			sh "$file" "$1" || warn "Failed to run $file"
 		fi
 	done
 }

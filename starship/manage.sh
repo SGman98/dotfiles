@@ -20,6 +20,5 @@ remove)
 		success "Removed correctly"
 	fi
 	;;
-update) ;; # TODO
-*) abort "Usage: $0 {setup|remove|update}" ;;
+*) abort "Usage: $0 {setup|remove}" ;;
 esac

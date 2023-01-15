@@ -18,13 +18,8 @@ fi
 # Check pacman is installed
 command -v pacman &>/dev/null || abort "Pacman is not installed"
 
-# Clone dotfiles repo
 if [[ -d "$HOME/.dotfiles" ]]; then
-	warn "Dotfiles repo already exists"
-	if confirm "Do you want to update dotfiles?" "Y"; then
-		info "Updating dotfiles..."
-		manage "update"
-	elif confirm "Do you want to change dotfiles? (it will move the existing dotfiles repo to $HOME/.dotfiles.bak)" "N"; then
+	if confirm "Do you want to change dotfiles? (it will move the existing dotfiles repo to $HOME/.dotfiles.bak)" "N"; then
 		info "Changing dotfiles..."
 		manage "remove"
 		mv "$HOME/.dotfiles" "$HOME/.dotfiles.bak" || abort "Failed to move existing dotfiles repo check if $HOME/.dotfiles.bak already exists"
@@ -40,14 +35,14 @@ if [[ ! -d "$HOME/.dotfiles" ]]; then
 
 	git clone "$REPO_URL" "$HOME/.dotfiles" || abort "Failed to clone dotfiles repo"
 	success "Dotfiles repo cloned"
+fi
 
-	manage "setup"
+manage "setup"
 
-	if ! grep -q "$PROMPT End of bootstrap script" "$HOME/bootstrap.log" &>/dev/null; then
-		success "End of bootstrap script"
-		info "Please restart your shell to apply changes"
-		info "Then run this script with the following command:"
-		info "sh $HOME/.dotfiles/bootstrap.sh"
-		exit 0
-	fi
+if ! grep -q "$PROMPT End of bootstrap script" "$HOME/bootstrap.log" &>/dev/null; then
+	success "End of bootstrap script"
+	info "Please restart your shell to apply changes"
+	info "Then run this script with the following command:"
+	info "sh $HOME/.dotfiles/bootstrap.sh"
+	exit 0
 fi
