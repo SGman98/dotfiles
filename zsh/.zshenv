@@ -33,4 +33,4 @@ export FZF_ALT_C_COMMAND="fd --type d . --color=never --hidden"
 export FZF_ALT_C_OPTS="--preview 'tree --dirsfirst -ifFClL 1 {} | grep -v /$ | head -50'"
 
 # Add local bin to path
-export PATH=/home/sg/.local/bin:$PATH 
+export PATH=`echo $PATH | tr ":" "\n" | grep -v "sbin" | tr "\n" ":"`
