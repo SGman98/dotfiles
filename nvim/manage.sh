@@ -13,8 +13,6 @@ setup)
 	check_path_link "$HOME/.config/nvim/lua" "$HOME/.dotfiles/nvim/lua"
 	check_path_link "$HOME/.config/nvim/after" "$HOME/.dotfiles/nvim/after"
 
-	# TODO:
-	# Fix after plugin folder
 	success "Setup correctly"
 	;;
 remove)
