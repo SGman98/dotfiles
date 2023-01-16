@@ -14,7 +14,12 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-require("lazy").setup("plugins")
+require("lazy").setup({
+    spec = { { import = "plugins" } },
+    defaults = { version = "*" },
+    checker = { enabled = true },
+})
+
 
 require("custom.clipboard")
 require("custom.set")

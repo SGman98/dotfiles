@@ -39,8 +39,8 @@ lsp.on_attach(function(_, bufnr)
     map("n", "<leader>lh", vim.lsp.buf.hover, "Hover")
     map("n", "<leader>ld", telescope.lsp_definitions, "Definitions")
     map("n", "<leader>lr", telescope.lsp_references, "References")
-    map("n", "<leader>lws", telescope.lsp_workspace_symbols, "Workspace Symbols")
-    map("n", "<leader>lds", telescope.lsp_document_symbols, "Document Symbols")
+    map("n", "<leader>lsw", telescope.lsp_workspace_symbols, "Workspace Symbols")
+    map("n", "<leader>lsd", telescope.lsp_document_symbols, "Document Symbols")
     map("n", "<leader>dl", telescope.loclist, "View loclist")
     map("i", "<C-h>", vim.lsp.buf.signature_help)
 
@@ -83,6 +83,9 @@ null_ls.setup({
 
         -- Gitsigns
         null_ls.builtins.code_actions.gitsigns,
+
+        -- Shell
+        null_ls.builtins.formatting.shfmt,
     },
 })
 

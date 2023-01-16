@@ -1,6 +1,3 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- Improvements
 vim.keymap.set({ "n", "v" }, "U", "<C-r>")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
