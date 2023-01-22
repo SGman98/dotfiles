@@ -4,7 +4,7 @@ return {
         { "<leader>e", vim.cmd.NvimTreeToggle },
         { "<leader>o", vim.cmd.NvimTreeFocus },
     },
-    config = {
+    opts = {
         update_focused_file = {
             enable = true,
             update_cwd = true,
