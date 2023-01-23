@@ -20,7 +20,10 @@ $time\
 """
 
 [fill]
-symbol = " "
+symbol = " . "
+
+[character]
+vicmd_symbol = "[](bold green)"
 
 # [time]
 # disabled = false
