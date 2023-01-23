@@ -21,9 +21,13 @@ $time\
 
 [fill]
 symbol = " . "
+style = "bold white"
 
 [character]
-vicmd_symbol = "[](bold green)"
+vimcmd_symbol = "[](bold cyan)"
+vimcmd_replace_one_symbol = "[](bold purple)"
+vimcmd_replace_symbol = "[](bold purple)"
+vimcmd_visual_symbol = "[](bold yellow)"
 
 # [time]
 # disabled = false
