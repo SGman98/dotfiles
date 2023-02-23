@@ -1,8 +1,12 @@
 return {
     "tpope/vim-sleuth",
-    "christoomey/vim-tmux-navigator",
     "tpope/vim-obsession",
     "tpope/vim-abolish",
+
+    "christoomey/vim-tmux-navigator",
+
+    { "windwp/nvim-autopairs", config = true },
+    { "windwp/nvim-ts-autotag", config = true },
     { "kylechui/nvim-surround", config = true },
 
     "JoosepAlviste/nvim-ts-context-commentstring",
