@@ -27,5 +27,11 @@ colors: *one_dark
 
 live_config_reload: true
 
+# # Shell configuration for wsl
+# shell:
+#   program: wsl
+#   args:
+#     - --cd ~
+
 key_bindings:
   - { key: Space,  mods: Control, chars: "\x00" }
