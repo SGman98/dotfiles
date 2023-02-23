@@ -22,13 +22,15 @@ require("nvim-treesitter.configs").setup({
                 ["aa"] = "@parameter.outer",
                 ["ia"] = "@parameter.inner",
                 ["ab"] = "@block.outer",
-                ["ac"] = "@class.outer",
                 ["ib"] = "@block.inner",
-                ["ic"] = "@class.inner",
+                ["as"] = "@class.outer", -- class or struct
+                ["is"] = "@class.inner", -- class or struct
                 ["af"] = "@function.outer",
                 ["if"] = "@function.inner",
-                ["il"] = "@loop.inner",
                 ["al"] = "@loop.outer",
+                ["il"] = "@loop.inner",
+                ["ac"] = "@comment.outer",
+                ["ic"] = "@comment.inner",
             },
         },
         move = {
@@ -36,22 +38,26 @@ require("nvim-treesitter.configs").setup({
             set_jumps = true, -- whether to set jumps in the jumplist
             goto_next_start = {
                 ["]f"] = "@function.outer",
-                ["]c"] = "@class.outer",
+                ["]s"] = "@class.outer",
+                ["]c"] = "@comment.outer",
                 ["]a"] = "@parameter.inner",
             },
             goto_next_end = {
                 ["]F"] = "@function.outer",
-                ["]C"] = "@class.outer",
+                ["]S"] = "@class.outer",
+                ["]C"] = "@comment.outer",
                 ["]A"] = "@parameter.inner",
             },
             goto_previous_start = {
                 ["[f"] = "@function.outer",
-                ["[c"] = "@class.outer",
+                ["[s"] = "@class.outer",
+                ["[c"] = "@comment.outer",
                 ["[a"] = "@parameter.inner",
             },
             goto_previous_end = {
                 ["[F"] = "@function.outer",
-                ["[C"] = "@class.outer",
+                ["[S"] = "@class.outer",
+                ["[C"] = "@comment.outer",
                 ["[A"] = "@parameter.inner",
             },
         },
