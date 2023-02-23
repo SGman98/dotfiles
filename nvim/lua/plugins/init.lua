@@ -2,6 +2,7 @@ return {
     "tpope/vim-sleuth",
     "christoomey/vim-tmux-navigator",
     "tpope/vim-obsession",
+    "tpope/vim-abolish",
     { "kylechui/nvim-surround", config = true },
     { "numToStr/Comment.nvim", config = true },
     { "nvim-lualine/lualine.nvim", config = true },
