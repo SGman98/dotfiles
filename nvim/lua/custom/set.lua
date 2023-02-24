@@ -2,7 +2,6 @@
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.mouse = nil
-vim.opt.termguicolors = true
 
 -- History
 vim.opt.swapfile = false
