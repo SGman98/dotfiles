@@ -4,7 +4,7 @@ return {
     "tpope/vim-abolish",
 
     "christoomey/vim-tmux-navigator",
-    { "norcalli/nvim-colorizer.lua", config = true },
+    { "norcalli/nvim-colorizer.lua", opts = { "*" } },
 
     { "windwp/nvim-autopairs", config = true },
     { "windwp/nvim-ts-autotag", config = true },
