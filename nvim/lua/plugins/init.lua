@@ -4,7 +4,19 @@ return {
     "tpope/vim-abolish",
 
     "christoomey/vim-tmux-navigator",
-    { "norcalli/nvim-colorizer.lua", opts = { "*" } },
+    {
+        "NvChad/nvim-colorizer.lua",
+        opts = {
+            filetypes = {
+                "*",
+                "!fugitive", -- it was causing issues in status file
+            },
+            user_default_options = {
+                css = true,
+                sass = { enable = true },
+            },
+        },
+    },
 
     { "windwp/nvim-autopairs", config = true },
     { "windwp/nvim-ts-autotag", config = true },

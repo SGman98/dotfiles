@@ -25,9 +25,7 @@ lsp.set_preferences({
     sign_icons = {},
 })
 
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings,
-})
+lsp.setup_nvim_cmp({ mapping = cmp_mappings })
 
 lsp.on_attach(function(_, bufnr)
     local telescope = require("telescope.builtin")
