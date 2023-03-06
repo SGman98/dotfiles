@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # Load helper functions
-curl -s https://raw.githubusercontent.com/SGman98/.dotfiles/master/functions.sh >/tmp/functions.sh
-source /tmp/functions.sh && rm /tmp/functions.sh
+source ./functions.sh
 
 info "Starting bootstrap script..."
 
@@ -17,25 +16,6 @@ fi
 
 # Check pacman is installed
 command -v pacman &>/dev/null || abort "Pacman is not installed"
-
-if [[ -d "$HOME/.dotfiles" ]]; then
-	if confirm "Do you want to change dotfiles? (it will move the existing dotfiles repo to $HOME/.dotfiles.bak)" "N"; then
-		info "Changing dotfiles..."
-		manage "remove"
-		mv "$HOME/.dotfiles" "$HOME/.dotfiles.bak" || abort "Failed to move existing dotfiles repo check if $HOME/.dotfiles.bak already exists"
-		sed -i "s/$PROMPT End of bootstrap script/$PROMPT DEPRECATED End of bootstrap script/g" "$HOME/.bootstrap.log" &>/dev/null || abort "Failed to update bootstrap log"
-		success "Old dotfiles repo moved to $HOME/.dotfiles.bak"
-	fi
-fi
-
-if [[ ! -d "$HOME/.dotfiles" ]]; then
-	REPO_URL="git@github.com:SGman98/.dotfiles.git"
-
-	info "Cloning dotfiles repo $REPO_URL into $HOME/.dotfiles ..."
-
-	git clone "$REPO_URL" "$HOME/.dotfiles" || abort "Failed to clone dotfiles repo"
-	success "Dotfiles repo cloned"
-fi
 
 manage "setup"
 

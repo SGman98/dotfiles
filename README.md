@@ -1,7 +1,6 @@
 # My dotfiles
 
 > Currently using [ArchWSL](https://wsldl-pg.github.io/ArchW-docs/How-to-Setup/)
-
 > Set XDG Base Directory if not set using a /etc/profile.d [script](https://github.com/Conaclos/profile.d/blob/master/10-xdg-base-dirs.sh)
 
 ## Dotfiles Instalation
@@ -24,15 +23,19 @@ sudo pacman -S base-devel git openssh wget
 
 > Or import existing gpg key from a file
 
-```
+```sh
 gpg --import <key-file>
 ```
 
 ## Bootstrap dotfiles
 
+Clone the repo
+
 ```sh
-bash <(curl -s https://raw.githubusercontent.com/SGman98/.dotfiles/main/bootstrap.sh)
+git clone https://github.com/SGman98/.dotfiles.git $HOME/.dotfiles
 ```
+
+Then run then bootstrap.sh script
 
 ### Neovim
 
