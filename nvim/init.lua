@@ -17,8 +17,8 @@ vim.opt.termguicolors = true -- set before plugins for colorizer to work
 
 require("lazy").setup({
     spec = { { import = "plugins" } },
-    checker = { enabled = true },
     -- defaults = { version = "*" },
+    checker = { enabled = true, notify = false },
 })
 
 require("custom.clipboard")
