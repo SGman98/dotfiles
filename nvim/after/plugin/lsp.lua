@@ -1,31 +1,15 @@
 local lsp = require("lsp-zero")
 
-lsp.preset("recommended")
-
-lsp.ensure_installed({
-    "clangd",
-    "gopls",
-    "pyright",
-    "rust_analyzer",
-    "sumneko_lua",
-    "tsserver",
-    "eslint",
-})
-
-local cmp = require("cmp")
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-    ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-    ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-    ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-    ["<C-Space>"] = cmp.mapping.complete(),
+lsp.preset({
+    name = "minimal",
+    set_lsp_keymaps = false,
+    manage_nvim_cmp = true,
+    suggest_lsp_servers = true,
 })
 
 lsp.set_preferences({
     sign_icons = {},
 })
-
-lsp.setup_nvim_cmp({ mapping = cmp_mappings })
 
 lsp.on_attach(function(_, bufnr)
     local telescope = require("telescope.builtin")
@@ -51,43 +35,33 @@ lsp.on_attach(function(_, bufnr)
     map("n", "]d", vim.diagnostic.goto_next)
 end)
 
-lsp.configure("sumneko_lua", {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { "vim" },
-            },
-        },
-    },
-})
+lsp.nvim_workspace()
+
+lsp.setup()
 
 local null_ls = require("null-ls")
+local null_opts = lsp.build_options("null-ls", {})
+
+require("mason-null-ls").setup({
+    ensure_installed = { "stylua", "markdownlint", "prettier", "shfmt", "black", "flake8" },
+    automatic_setup = true,
+    automatic_installation = true,
+})
+
+require("mason-null-ls").setup_handlers()
 
 null_ls.setup({
+    on_attach = function(client, bufnr)
+        null_opts.on_attach(client, bufnr)
+    end,
     sources = {
-        --- do whatever you need to do
-        null_ls.builtins.formatting.prettier,
-        null_ls.builtins.diagnostics.eslint,
-
-        -- markdown
-        null_ls.builtins.formatting.markdownlint,
-
-        -- python
-        null_ls.builtins.formatting.black,
+        -- Python
         null_ls.builtins.diagnostics.flake8.with({ extra_args = { "--max-line-length=88", "--extend-ignore=E203" } }),
-
-        -- Lua
-        null_ls.builtins.formatting.stylua,
 
         -- Gitsigns
         null_ls.builtins.code_actions.gitsigns,
-
-        -- Shell
-        null_ls.builtins.formatting.shfmt,
     },
 })
-
-lsp.setup()
 
 vim.diagnostic.config({
     virtual_text = true,
