@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Load helper functions
-source ./functions.sh
+source "$HOME/.dotfiles/functions.sh"
 
 info "Starting bootstrap script..."
 
