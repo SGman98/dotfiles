@@ -42,14 +42,6 @@ lsp.setup()
 local null_ls = require("null-ls")
 local null_opts = lsp.build_options("null-ls", {})
 
-require("mason-null-ls").setup({
-    ensure_installed = { "stylua", "markdownlint", "prettier", "shfmt", "black", "flake8" },
-    automatic_setup = true,
-    automatic_installation = true,
-})
-
-require("mason-null-ls").setup_handlers()
-
 null_ls.setup({
     on_attach = function(client, bufnr)
         null_opts.on_attach(client, bufnr)
@@ -62,6 +54,14 @@ null_ls.setup({
         null_ls.builtins.code_actions.gitsigns,
     },
 })
+
+require("mason-null-ls").setup({
+    ensure_installed = { "stylua", "markdownlint", "prettier", "shfmt", "black", "flake8" },
+    automatic_setup = true,
+    automatic_installation = true,
+})
+
+require("mason-null-ls").setup_handlers()
 
 vim.diagnostic.config({
     virtual_text = true,
