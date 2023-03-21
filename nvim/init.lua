@@ -14,11 +14,17 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.opt.termguicolors = true -- set before plugins for colorizer to work
+vim.opt.spelllang = "en,es"
 
 require("lazy").setup({
     spec = { { import = "plugins" } },
     -- defaults = { version = "*" },
     checker = { enabled = true, notify = false },
+    performance = {
+        rtp = {
+            paths = { vim.fn.stdpath("data") .. "/site" },
+        },
+    },
 })
 
 require("custom.clipboard")
