@@ -24,7 +24,6 @@ return {
     },
 
     -- Useful status updates for LSP
-    "j-hui/fidget.nvim",
     "jose-elias-alvarez/null-ls.nvim",
     "jay-babu/mason-null-ls.nvim",
     "mfussenegger/nvim-dap",

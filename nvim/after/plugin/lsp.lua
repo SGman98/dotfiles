@@ -66,5 +66,3 @@ require("mason-null-ls").setup_handlers()
 vim.diagnostic.config({
     virtual_text = true,
 })
-
-require("fidget").setup()
