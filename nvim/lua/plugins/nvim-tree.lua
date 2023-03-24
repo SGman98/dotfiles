@@ -1,5 +1,5 @@
 return {
-    { 
+    {
         "nvim-tree/nvim-tree.lua",
         keys = {
             { "<leader>e", vim.cmd.NvimTreeToggle },
