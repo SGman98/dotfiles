@@ -28,7 +28,7 @@ vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 
 vim.opt.list = true
-vim.opt.listchars = "tab:  ›,trail:·,eol:⏎"
+vim.opt.listchars = "tab:  ›,trail:·,eol:⏎,space:⋅"
 
 -- Tabs
 vim.opt.tabstop = 4

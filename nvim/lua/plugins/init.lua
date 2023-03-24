@@ -18,6 +18,7 @@ return {
         },
     },
 
+    { "lukas-reineke/indent-blankline.nvim", opts = { show_current_context = true } },
     { "windwp/nvim-autopairs",               config = true },
     { "windwp/nvim-ts-autotag",              config = true },
     { "kylechui/nvim-surround",              config = true },
