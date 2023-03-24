@@ -22,16 +22,6 @@ return {
     { "windwp/nvim-ts-autotag", config = true },
     { "kylechui/nvim-surround", config = true },
     { "tummetott/unimpaired.nvim", config = true },
-
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    {
-        "numToStr/Comment.nvim",
-        config = function()
-            require("Comment").setup({
-                pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-            })
-        end,
-    },
     { "nvim-lualine/lualine.nvim", config = true },
 
     { "stevearc/dressing.nvim", event = "VeryLazy" },
