@@ -10,8 +10,7 @@ return {
         { "<bs>",      desc = "Decrement selection", mode = "x" },
     },
     opts = {
-        -- Add languages to be installed here that you want installed for treesitter
-        ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "typescript", "help" },
+        auto_install = true,
         highlight = { enable = true },
         indent = { enable = true },
         incremental_selection = {
