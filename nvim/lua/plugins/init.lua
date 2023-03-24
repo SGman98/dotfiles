@@ -21,6 +21,7 @@ return {
     { "windwp/nvim-autopairs", config = true },
     { "windwp/nvim-ts-autotag", config = true },
     { "kylechui/nvim-surround", config = true },
+    { "tummetott/unimpaired.nvim", config = true },
 
     "JoosepAlviste/nvim-ts-context-commentstring",
     {
