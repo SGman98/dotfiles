@@ -39,7 +39,7 @@ return {
                     ["al"] = "@loop.outer",
                     ["il"] = "@loop.inner",
                     ["ac"] = "@comment.outer",
-                    ["ic"] = "@comment.inner",
+                    ["ic"] = "@comment.outer", -- inner not working
                 },
             },
             move = {
