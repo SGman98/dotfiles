@@ -56,7 +56,7 @@ null_ls.setup({
 })
 
 require("mason-null-ls").setup({
-    ensure_installed = { "stylua", "markdownlint", "prettier", "shfmt", "black", "flake8" },
+    ensure_installed = { "markdownlint", "prettier", "shfmt", "black", "flake8" },
     automatic_setup = true,
     automatic_installation = true,
 })
