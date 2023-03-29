@@ -12,22 +12,15 @@ lsp.set_preferences({
 })
 
 lsp.on_attach(function(_, bufnr)
-    local telescope = require("telescope.builtin")
     local function map(mode, l, r, desc)
         local opts = { desc = desc, buffer = bufnr }
         vim.keymap.set(mode, l, r, opts)
     end
 
-    map("n", "<leader>lh", vim.lsp.buf.hover, "Hover")
-    map("n", "<leader>ld", telescope.lsp_definitions, "Definitions")
-    map("n", "<leader>lr", telescope.lsp_references, "References")
-    map("n", "<leader>lsw", telescope.lsp_workspace_symbols, "Workspace Symbols")
-    map("n", "<leader>lsd", telescope.lsp_document_symbols, "Document Symbols")
-    map("n", "<leader>dl", telescope.loclist, "View loclist")
-    map("i", "<C-h>", vim.lsp.buf.signature_help)
-
     map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
     map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
+    map("n", "<leader>lh", vim.lsp.buf.hover, "Hover")
+    map("i", "<C-h>", vim.lsp.buf.signature_help)
 
     -- Diagnostics
     map("n", "<leader>dv", vim.diagnostic.open_float, "View Diagnostics")
