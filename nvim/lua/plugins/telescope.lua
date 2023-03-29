@@ -63,4 +63,13 @@ return {
             require("telescope").load_extension("fzf")
         end,
     },
+    {
+        "nvim-telescope/telescope-file-browser.nvim",
+        dependencies = "nvim-telescope/telescope.nvim",
+        config = function()
+            require("telescope").load_extension("file_browser")
+
+            vim.keymap.set("n", "<leader>e", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>")
+        end,
+    },
 }

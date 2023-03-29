@@ -4,6 +4,8 @@ return {
     "tpope/vim-abolish",
 
     "christoomey/vim-tmux-navigator",
+    "kyazdani42/nvim-web-devicons",
+
     {
         "NvChad/nvim-colorizer.lua",
         opts = {
