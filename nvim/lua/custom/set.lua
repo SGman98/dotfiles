@@ -1,7 +1,8 @@
 -- Basic
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
-vim.opt.mouse = nil
+-- vim.opt.mouse = nil
+vim.opt.mousemodel = "extend"
 
 -- History
 vim.opt.swapfile = false
