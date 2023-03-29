@@ -17,7 +17,6 @@ end
 vim.keymap.set("n", "<leader>sb", telescope.buffers, { desc = "Search buffers" })
 vim.keymap.set("n", "<leader>sc", telescope.grep_string, { desc = "Search current word" })
 vim.keymap.set("n", "<leader>sd", telescope.diagnostics, { desc = "Search diagnostics" })
-vim.keymap.set("n", "<leader>sd", telescope.diagnostics, { desc = "Search diagnostics" })
 vim.keymap.set("n", "<leader>sf", project_files, { desc = "Search project files" })
 vim.keymap.set("n", "<leader>sh", telescope.help_tags, { desc = "Search help" })
 vim.keymap.set("n", "<leader>sk", telescope.keymaps, { desc = "Search keymaps" })
