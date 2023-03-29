@@ -7,7 +7,7 @@ return {
     },
     keys = {
         { "<c-space>", desc = "Increment selection" },
-        { "<bs>",      desc = "Decrement selection", mode = "x" },
+        { "<bs>", desc = "Decrement selection", mode = "x" },
     },
     opts = {
         auto_install = true,

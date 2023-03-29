@@ -1,0 +1,7 @@
+{
+    "diagnostics.globals": [
+        "vim",
+        "require"
+    ],
+    "format.enable": false
+}
