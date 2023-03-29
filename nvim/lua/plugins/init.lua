@@ -25,5 +25,5 @@ return {
     { "windwp/nvim-ts-autotag",              config = true },
     { "kylechui/nvim-surround",              config = true },
     { "tummetott/unimpaired.nvim",           config = true },
-    { "nvim-lualine/lualine.nvim",           config = true },
+    { "nvim-lualine/lualine.nvim",           opts = { options = { icons_enabled = false } } },
 }
