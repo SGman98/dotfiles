@@ -4,14 +4,14 @@ return {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
         dependencies = { "nvim-lua/plenary.nvim" },
-        opts = {
-            pickers = {
-                colorscheme = {
-                    enable_preview = true,
-                },
-            },
-        },
         config = function()
+            require("telescope").setup({
+                pickers = {
+                    colorscheme = {
+                        enable_preview = true,
+                    },
+                },
+            })
             local telescope = require("telescope.builtin")
 
             local function project_files()
@@ -67,9 +67,18 @@ return {
         "nvim-telescope/telescope-file-browser.nvim",
         dependencies = "nvim-telescope/telescope.nvim",
         config = function()
+            require("telescope").setup({
+                extensions = {
+                    file_browser = {
+                        path = "%:p:h",
+                        select_buffer = true,
+                        hijack_netrw = true,
+                    },
+                },
+            })
             require("telescope").load_extension("file_browser")
 
-            vim.keymap.set("n", "<leader>e", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>")
+            vim.keymap.set("n", "<leader>e", "<cmd>Telescope file_browser<CR>")
         end,
     },
 }
