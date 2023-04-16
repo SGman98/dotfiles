@@ -3,6 +3,7 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 -- vim.opt.mouse = nil
 vim.opt.mousemodel = "extend"
+vim.opt.exrc = true
 
 -- History
 vim.opt.swapfile = false
@@ -12,7 +13,8 @@ vim.opt.undofile = true
 -- Columns
 vim.opt.signcolumn = "yes"
 
-vim.opt.colorcolumn = "80"
+vim.opt.textwidth = 80
+vim.opt.colorcolumn = "+1"
 vim.opt.wrap = false
 
 vim.opt.number = true
