@@ -19,7 +19,15 @@ return {
             "saadparwaiz1/cmp_luasnip",
 
             -- Snippets
-            "L3MON4D3/LuaSnip",
+            {
+                "L3MON4D3/LuaSnip",
+                config = function()
+                    require("luasnip").filetype_extend("javascript", {
+                        "javascriptreact",
+                        "html",
+                    })
+                end,
+            },
             "rafamadriz/friendly-snippets",
         },
     },
