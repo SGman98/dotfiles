@@ -21,10 +21,10 @@ return {
     },
 
     { "windwp/nvim-autopairs", config = true },
-    { "windwp/nvim-ts-autotag", config = true },
-    { "kylechui/nvim-surround", config = true },
     { "tummetott/unimpaired.nvim", config = true },
 
+    { "kylechui/nvim-surround", version = "*", event = "VeryLazy", config = true },
     { "lukas-reineke/indent-blankline.nvim", opts = { show_current_context = true } },
-    { "nvim-lualine/lualine.nvim", opts = { options = { icons_enabled = false } } },
+    { "folke/neodev.nvim", config = true },
+    { "folke/neoconf.nvim", config = true },
 }
