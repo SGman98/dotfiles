@@ -7,9 +7,10 @@ return {
         "nvim-treesitter/nvim-treesitter-context",
     },
     keys = {
-        { "<c-space>", desc = "Increment selection" },
-        { "<bs>", desc = "Decrement selection", mode = "x" },
+        { "v", desc = "Increment selection", mode = "x" },
+        { "V", desc = "Shrink selection", mode = "x" },
     },
+    cmd = { "TSUpdate", "TSInstall", "TSInstallInfo", "TSModuleInfo", "TSConfigInfo" },
     opts = {
         auto_install = true,
         highlight = { enable = true },
@@ -17,18 +18,19 @@ return {
         incremental_selection = {
             enable = true,
             keymaps = {
-                init_selection = "<c-space>",
-                node_incremental = "<c-space>",
-                scope_incremental = "<nop>",
-                node_decremental = "<bs>",
+                init_selection = nil,
+                node_incremental = "v",
+                scope_incremental = nil,
+                node_decremental = "V",
             },
         },
+
+        -- See: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
         textobjects = {
             select = {
                 enable = true,
-                lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+                lookahead = true,
                 keymaps = {
-                    -- You can use the capture groups defined in textobjects.scm
                     ["aa"] = "@parameter.outer",
                     ["ia"] = "@parameter.inner",
                     ["ab"] = "@block.outer",
