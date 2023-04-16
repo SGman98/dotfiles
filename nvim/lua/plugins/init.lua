@@ -3,7 +3,6 @@ return {
     "tpope/vim-obsession",
     "tpope/vim-abolish",
 
-    "christoomey/vim-tmux-navigator",
     "kyazdani42/nvim-web-devicons",
 
     {
