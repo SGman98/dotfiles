@@ -1,14 +1,20 @@
 local lsp = require("lsp-zero")
 
 lsp.preset({
-    name = "minimal",
+    name = "recommended",
     set_lsp_keymaps = false,
     manage_nvim_cmp = true,
     suggest_lsp_servers = true,
 })
 
-lsp.set_preferences({
-    sign_icons = {},
+lsp.format_mapping("gq", {
+    format_opts = {
+        async = false,
+        timeout_ms = 10000,
+    },
+    servers = {
+        ["null-ls"] = { "java" },
+    },
 })
 
 lsp.on_attach(function(_, bufnr)
@@ -28,41 +34,8 @@ lsp.on_attach(function(_, bufnr)
     map("n", "]d", vim.diagnostic.goto_next)
 end)
 
-lsp.nvim_workspace()
+lsp.nvim_lua_ls()
 
 lsp.setup()
 
-local null_ls = require("null-ls")
-local null_opts = lsp.build_options("null-ls", {})
-
-null_ls.setup({
-    on_attach = function(client, bufnr)
-        null_opts.on_attach(client, bufnr)
-    end,
-    sources = {
-        -- Python
-        null_ls.builtins.diagnostics.flake8.with({ extra_args = { "--max-line-length=88", "--extend-ignore=E203" } }),
-
-        -- Gitsigns
-        null_ls.builtins.code_actions.gitsigns,
-    },
-})
-
-require("mason-null-ls").setup({
-    ensure_installed = {
-        "markdownlint",
-        "prettier",
-        "shfmt",
-        "black",
-        "flake8",
-        "stylua",
-    },
-    automatic_setup = true,
-    automatic_installation = true,
-})
-
-require("mason-null-ls").setup_handlers()
-
-vim.diagnostic.config({
-    virtual_text = true,
-})
+vim.diagnostic.config({ virtual_text = true })

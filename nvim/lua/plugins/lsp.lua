@@ -32,8 +32,35 @@ return {
         },
     },
 
-    -- Useful status updates for LSP
-    "jose-elias-alvarez/null-ls.nvim",
-    "jay-babu/mason-null-ls.nvim",
-    "mfussenegger/nvim-dap",
+    { "jose-elias-alvarez/null-ls.nvim", config = true },
+
+    {
+        "jay-babu/mason-null-ls.nvim",
+        dependencies = {
+            "jose-elias-alvarez/null-ls.nvim",
+            "williamboman/mason.nvim",
+        },
+        config = function()
+            local null_ls = require("null-ls")
+
+            require("mason-null-ls").setup({
+                ensure_installed = {
+                    "markdownlint",
+                    "prettier",
+                    "shfmt",
+                    "black",
+                    "flake8",
+                    "stylua",
+                },
+                automatic_installation = true,
+                handlers = {
+                    flake = function(_, _)
+                        null_ls.register(null_ls.builtins.diagnostics.flake8.with({
+                            extra_args = { "--max-line-length=88", "--extend-ignore=E203" },
+                        }))
+                    end,
+                },
+            })
+        end,
+    },
 }
