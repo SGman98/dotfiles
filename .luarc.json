@@ -3,5 +3,6 @@
         "vim",
         "require"
     ],
-    "format.enable": false
+    "format.enable": false,
+    "workspace.checkThirdParty": false
 }
