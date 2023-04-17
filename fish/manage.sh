@@ -23,6 +23,7 @@ setup)
 	confirm "Do you want to set fish as default shell?" "Y" &&
 		(sudo chsh -s "/usr/bin/fish" "$USER" || abort "Failed to set fish as default shell")
 
+	info "To install plugins, run: curl -sL https://git.io/fisher | source && fisher update"
 	info "To apply changes, please logout and login again"
 
 	success "Setup correctly"
