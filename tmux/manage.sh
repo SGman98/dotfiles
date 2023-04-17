@@ -11,7 +11,9 @@ setup)
 	install_package "tmuxinator" || abort "Failed to install tmuxinator"
 
 	check_path_link "$HOME/.config/tmux/tmux.conf" "$HOME/.dotfiles/tmux/tmux.conf"
-	git clone https://github.com/tmux-plugins/tpm "$HOME/.config/tmux/plugins/tpm"
+	if [[ ! -d "$HOME/.config/tmux/plugins/tpm" ]]; then
+		git clone https://github.com/tmux-plugins/tpm "$HOME/.config/tmux/plugins/tpm"
+	fi
 
 	info "When you start tmux, press prefix + I to install plugins"
 
