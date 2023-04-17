@@ -43,12 +43,12 @@ Open neovim to start installing the plugins
 
 ### Tmux & Tmux Plugin Manager
 
-> Within tmux, press `prefix + I` to install the plugins
+Within tmux, press `prefix + I` to install the plugins
 
-### TheFuck in WSL
+### Fish plugins
 
 ```sh
-echo "excluded_search_path_prefixes = ['/mnt/']" | tee -a $XDG_CONFIG_HOME/thefuck/settings.py
+curl -sL https://git.io/fisher | source && fisher update
 ```
 
 ## Install Languages
@@ -56,7 +56,7 @@ echo "excluded_search_path_prefixes = ['/mnt/']" | tee -a $XDG_CONFIG_HOME/thefu
 ### Node
 
 ```sh
-nvm install --lts
+nvm install lts
 ```
 
 ### Python
