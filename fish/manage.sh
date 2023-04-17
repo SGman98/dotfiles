@@ -9,9 +9,14 @@ setup)
 	confirm "Do you want to setup fish?" "Y" || abort "Aborting..."
 	install_package "fish" || abort "Failed to install fish"
 
-	check_path_link "$HOME/.config/fish/conf.d" "$HOME/.dotfiles/fish/conf.d" || abort "Failed to link $HOME/.config/fish/conf.d"
-	check_path_link "$HOME/.config/fish/functions" "$HOME/.dotfiles/fish/functions" || abort "Failed to link $HOME/.config/fish/functions"
-	check_path_link "$HOME/.config/fish/completions" "$HOME/.dotfiles/fish/completions" || abort "Failed to link $HOME/.config/fish/completions"
+	for file in "$HOME/.dotfiles/fish/conf.d/"*; do
+		check_path_link "$HOME/.config/fish/conf.d/$(basename "$file")" "$file" || abort "Failed to link $HOME/.config/fish/conf.d/$(basename "$file")"
+	done
+
+	for file in "$HOME/.dotfiles/fish/functions/"*; do
+		check_path_link "$HOME/.config/fish/functions/$(basename "$file")" "$file" || abort "Failed to link $HOME/.config/fish/functions/$(basename "$file")"
+	done
+
 	check_path_link "$HOME/.config/fish/config.fish" "$HOME/.dotfiles/fish/config.fish" || abort "Failed to link $HOME/.config/fish/config.fish"
 	check_path_link "$HOME/.config/fish/fish_plugins" "$HOME/.dotfiles/fish/fish_plugins" || abort "Failed to link $HOME/.config/fish/fish_plugins"
 
