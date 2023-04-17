@@ -15,8 +15,8 @@ setup)
 	check_path_link "$HOME/.config/zsh/.zshrc" "$HOME/.dotfiles/zsh/.zshrc" || abort "Failed to link $HOME/.config/zsh/.zshrc"
 	check_path_link "$HOME/.config/zsh/.zshenv" "$HOME/.dotfiles/zsh/.zshenv" || abort "Failed to link $HOME/.config/zsh/.zshenv"
 
-	confirm "Do you want to set zsh as default shell?" "Y" || abort "Aborting..."
-	sudo chsh -s "/usr/bin/zsh" "$USER" || abort "Failed to set zsh as default shell"
+	confirm "Do you want to set zsh as default shell?" "Y" &&
+		(sudo chsh -s "/usr/bin/zsh" "$USER" || abort "Failed to set zsh as default shell")
 
 	info "To apply changes, please logout and login again"
 

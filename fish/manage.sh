@@ -15,8 +15,8 @@ setup)
 	check_path_link "$HOME/.config/fish/config.fish" "$HOME/.dotfiles/fish/config.fish" || abort "Failed to link $HOME/.config/fish/config.fish"
 	check_path_link "$HOME/.config/fish/fish_plugins" "$HOME/.dotfiles/fish/fish_plugins" || abort "Failed to link $HOME/.config/fish/fish_plugins"
 
-	confirm "Do you want to set fish as default shell?" "Y" || abort "Aborting..."
-	sudo chsh -s "/usr/bin/fish" "$USER" || abort "Failed to set fish as default shell"
+	confirm "Do you want to set fish as default shell?" "Y" &&
+		(sudo chsh -s "/usr/bin/fish" "$USER" || abort "Failed to set fish as default shell")
 
 	info "To apply changes, please logout and login again"
 
