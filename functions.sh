@@ -64,12 +64,33 @@ check_package() { pacman -Qs "$1" &>/dev/null; }
 install_package() {
 	NAME=$1
 	CONFIRM=$2
-	if [[ -n $CONFIRM ]]; then
-		confirm "Do you want to install/update $NAME" || return 1
+	if ! check_package "$NAME"; then
+		if [[ -n $CONFIRM ]]; then
+			confirm "Do you want to install $NAME" || return 1
+		fi
+		info "Installing $NAME"
+		sudo pacman -S --noconfirm --needed "$NAME" ||
+			(install_aur_helper "yay" && yay -S --noconfirm --needed "$NAME") ||
+			abort "Failed to install $NAME"
+		success "$NAME installed/updated with pacman"
 	fi
-	info "Installing/Updating $NAME"
-	sudo pacman -S --noconfirm --needed "$NAME" || abort "Failed to install/update $NAME with pacman"
-	success "$NAME installed/updated with pacman"
+}
+install_aur_helper() {
+	NAME=$1
+	if ! command -v "$NAME" &>/dev/null; then
+		confirm "Do you want to install $NAME?" "Y" || return 1
+		git clone "https://aur.archlinux.org/$NAME.git" "/tmp/$NAME" ||
+			abort "Failed to clone $NAME"
+		sudo chown -R "$USER:$USER" "/tmp/$NAME" ||
+			abort "Failed to change ownership of /tmp/$NAME"
+		cd "/tmp/$NAME"
+		makepkg -si --noconfirm ||
+			abort "Failed to install $NAME"
+		cd -
+		confirm "Would you like to update your system with $NAME?" "N" &&
+			$NAME -Syu --noconfirm
+		success "$NAME installed"
+	fi
 }
 manage() {
 	# First install all packages
