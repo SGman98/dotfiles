@@ -16,6 +16,9 @@ fi
 # Check pacman is installed
 command -v pacman &>/dev/null || abort "Pacman is not installed"
 
+confirm "Would you like to configure gpg?" "Y" && config_gpg
+confirm "Would you like to configure ssh?" "Y" && config_ssh
+
 manage "setup"
 
 if ! grep -q "$PROMPT End of bootstrap script" "$HOME/bootstrap.log" &>/dev/null; then
