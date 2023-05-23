@@ -22,10 +22,7 @@ return {
             {
                 "L3MON4D3/LuaSnip",
                 config = function()
-                    require("luasnip").filetype_extend("javascript", {
-                        "javascriptreact",
-                        "html",
-                    })
+                    require("luasnip").filetype_extend("typescriptreact", { "javascriptreact" })
                 end,
             },
             "rafamadriz/friendly-snippets",

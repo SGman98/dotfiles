@@ -1,23 +1,23 @@
-local lsp = require("lsp-zero")
+local lsp = require("lsp-zero").preset({})
 
-lsp.preset({
-    name = "recommended",
-    set_lsp_keymaps = false,
-    manage_nvim_cmp = true,
-    suggest_lsp_servers = true,
-})
-
-lsp.format_mapping("gq", {
+lsp.format_mapping("<leader>lf", {
     format_opts = {
         async = false,
         timeout_ms = 10000,
     },
     servers = {
-        ["null-ls"] = { "java" },
+        ["null-ls"] = {
+            "java",
+            "javascriptreact",
+            "typescriptreact",
+            "typescript",
+            "javascript",
+        },
     },
 })
 
 lsp.on_attach(function(_, bufnr)
+    lsp.default_keymaps({ buffer = bufnr })
     local function map(mode, l, r, desc)
         local opts = { desc = desc, buffer = bufnr }
         vim.keymap.set(mode, l, r, opts)
@@ -34,8 +34,24 @@ lsp.on_attach(function(_, bufnr)
     map("n", "]d", vim.diagnostic.goto_next)
 end)
 
-lsp.nvim_lua_ls()
+require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
 
-vim.diagnostic.config({ virtual_text = true })
+local cmp = require("cmp")
+local cmp_action = require("lsp-zero").cmp_action()
+
+require("luasnip.loaders.from_vscode").lazy_load()
+
+cmp.setup({
+    sources = {
+        { name = "path" },
+        { name = "nvim_lsp" },
+        { name = "buffer", keyword_length = 3 },
+        { name = "luasnip" },
+    },
+    mapping = {
+        ["<C-f>"] = cmp_action.luasnip_jump_forward(),
+        ["<C-b>"] = cmp_action.luasnip_jump_backward(),
+    },
+})
