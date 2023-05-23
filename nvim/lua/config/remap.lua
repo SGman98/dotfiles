@@ -24,6 +24,3 @@ vim.keymap.set("v", "p", '"_pP', { desc = "Paste and don't copy" })
 -- Search and Replace
 vim.keymap.set("n", "<leader>sr", ":%s///g<Left><Left><Left>", { desc = "Search and Replace" })
 vim.keymap.set("v", "<leader>sr", ":s/\\%V//g<Left><Left><Left>", { desc = "Search and Replace" })
-
--- File format
-vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format)

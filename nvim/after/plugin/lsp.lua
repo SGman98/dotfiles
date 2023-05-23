@@ -1,26 +1,20 @@
 local lsp = require("lsp-zero").preset({})
 
-lsp.format_mapping("<leader>lf", {
-    format_opts = {
-        async = false,
-        timeout_ms = 10000,
-    },
-    servers = {
-        ["null-ls"] = {
-            "java",
-            "javascriptreact",
-            "typescriptreact",
-            "typescript",
-            "javascript",
-        },
-    },
-})
-
 lsp.on_attach(function(_, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
     local function map(mode, l, r, desc)
         local opts = { desc = desc, buffer = bufnr }
         vim.keymap.set(mode, l, r, opts)
+    end
+    local function format()
+        local allowed_servers = { "null-ls", "rust_analyzer", "lua_ls" }
+        vim.lsp.buf.format({
+            async = false,
+            timeout_ms = 10000,
+            filter = function(client)
+                return vim.tbl_contains(allowed_servers, client.name)
+            end,
+        })
     end
 
     map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
@@ -32,6 +26,9 @@ lsp.on_attach(function(_, bufnr)
     map("n", "<leader>dv", vim.diagnostic.open_float, "View Diagnostics")
     map("n", "[d", vim.diagnostic.goto_prev)
     map("n", "]d", vim.diagnostic.goto_next)
+
+    -- Formatting
+    map({ "n", "v" }, "<leader>ff", format, "Format")
 end)
 
 require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
