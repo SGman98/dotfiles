@@ -4,6 +4,8 @@ vim.opt.updatetime = 50
 -- vim.opt.mouse = nil
 vim.opt.mousemodel = "extend"
 vim.opt.exrc = true
+vim.opt.termguicolors = true
+vim.opt.spelllang = "en,es"
 
 -- History
 vim.opt.swapfile = false
@@ -40,3 +42,14 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
+
+-- Leader
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+-- Signs
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end

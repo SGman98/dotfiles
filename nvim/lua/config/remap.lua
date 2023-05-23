@@ -12,10 +12,14 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- Copy and Paste
-vim.keymap.set("x", "<leader>p", '"_dP', { desc = 'Paste "without losing' })
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Copy system" })
 vim.keymap.set("n", "Y", "y$", { desc = "Copy from cursor to eol" })
 vim.keymap.set("n", "<leader>Y", '"+y$', { desc = "Copy system" })
+vim.keymap.set("n", "x", '"_x', { desc = "Delete char and don't copy" })
+vim.keymap.set("n", "X", '"_X', { desc = "Delete char and don't copy" })
+vim.keymap.set("v", "x", '"_x', { desc = "Delete char and don't copy" })
+vim.keymap.set("v", "X", '"_X', { desc = "Delete char and don't copy" })
+vim.keymap.set("v", "p", '"_pP', { desc = "Paste and don't copy" })
 
 -- Search and Replace
 vim.keymap.set("n", "<leader>sr", ":%s///g<Left><Left><Left>", { desc = "Search and Replace" })
