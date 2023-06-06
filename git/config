@@ -1,6 +1,4 @@
-# vim:ft=toml
-[commit]
-	template = ~/.config/git/gitmessage.txt
+# vim:ft=gitconfig
 [gpg]
 	program = gpg
 [alias]
