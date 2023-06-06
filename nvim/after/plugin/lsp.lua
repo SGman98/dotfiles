@@ -7,7 +7,7 @@ lsp.on_attach(function(_, bufnr)
         vim.keymap.set(mode, l, r, opts)
     end
     local function format()
-        local allowed_servers = { "null-ls", "rust_analyzer", "lua_ls" }
+        local allowed_servers = { "null-ls", "rust_analyzer", "lua_ls", "clangd" }
         vim.lsp.buf.format({
             async = false,
             timeout_ms = 10000,
