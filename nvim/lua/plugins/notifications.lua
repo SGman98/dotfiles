@@ -1,20 +1,41 @@
 return {
-    "folke/noice.nvim",
-    dependencies = {
-        "MunifTanjim/nui.nvim",
-        {
-            "rcarriga/nvim-notify",
-            opts = { background_colour = "#000000", top_down = false },
-        },
+    {
+        "rcarriga/nvim-notify",
+        dependencies = "nvim-telescope/telescope.nvim",
+        config = function()
+            require("telescope").load_extension("notify")
+            require("notify").setup({
+                background_colour = "#000000",
+                top_down = false,
+            })
+        end,
     },
-    opts = {
-        cmdline = {
-            view = "cmdline",
+    {
+        "folke/noice.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "nvim-telescope/telescope.nvim",
+            "rcarriga/nvim-notify",
         },
-        presets = {
-            bottom_search = true,
-            command_palette = true,
-            long_message_to_split = true,
-        },
+        config = function()
+            require("telescope").load_extension("noice")
+            require("noice").setup({
+                cmdline = {
+                    view = "cmdline",
+                },
+                lsp = {
+                    override = {
+                        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                        ["vim.lsp.util.stylize_markdown"] = true,
+                        ["cmp.entry.get_documentation"] = true,
+                    },
+                },
+                presets = {
+                    bottom_search = true,
+                    command_palette = true,
+                    long_message_to_split = true,
+                },
+            })
+        end,
     },
 }
