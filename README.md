@@ -32,7 +32,7 @@ gpg --import <key-file>
 Clone the repo
 
 ```sh
-git clone https://github.com/SGman98/.dotfiles.git $HOME/.dotfiles
+git clone https://github.com/SGman98/dotfiles.git $HOME/.dotfiles
 ```
 
 Then run then bootstrap.sh script
