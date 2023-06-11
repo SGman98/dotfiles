@@ -13,6 +13,9 @@ pkgs=(
 	openssh # SSH server
 	gnupg   # GPG
 
+	# RTX
+	rtx
+
 	# CLI Tools
 	bat         # Cat clone with syntax highlighting
 	bat-extras  # Bat extensions
