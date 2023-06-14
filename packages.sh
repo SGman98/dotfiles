@@ -28,7 +28,7 @@ pkgs=(
 	thefuck     # Correct mistyped commands
 	git-delta   # Git diff viewer
 	gitflow-avh # Git flow command tool
-   	github-cli  # Git hub cli
+	github-cli  # Git hub cli
 
 	# Fun
 	cowsay      # Cow that says things
