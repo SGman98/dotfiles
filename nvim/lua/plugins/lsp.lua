@@ -51,7 +51,7 @@ return {
                 },
                 automatic_installation = true,
                 handlers = {
-                    flake = function(_, _)
+                    flake8 = function(_, _)
                         null_ls.register(null_ls.builtins.diagnostics.flake8.with({
                             extra_args = { "--max-line-length=88", "--extend-ignore=E203" },
                         }))
