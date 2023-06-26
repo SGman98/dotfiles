@@ -56,4 +56,16 @@ function M.show_macro_recording()
     end
 end
 
+function M.format()
+    local allowed_servers = { "null-ls", "rust_analyzer", "lua_ls", "clangd" }
+    vim.lsp.buf.format({
+        async = false,
+        timeout_ms = 10000,
+        filter = function(client)
+            return vim.tbl_contains(allowed_servers, client.name)
+        end,
+    })
+end
+
+
 return M
