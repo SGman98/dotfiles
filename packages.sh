@@ -22,13 +22,15 @@ pkgs=(
 	exa         # ls clone
 	fd          # Find files
 	fzf         # Fuzzy finder
-	ripgrep     # Search files
-	jq          # JSON parser
-	htop        # Process viewer
-	thefuck     # Correct mistyped commands
 	git-delta   # Git diff viewer
 	gitflow-avh # Git flow command tool
 	github-cli  # Git hub cli
+	htop        # Process viewer
+	hurl-bin    # HTTP requests and test
+	jq          # JSON parser
+	ripgrep     # Search files
+	thefuck     # Correct mistyped commands
+	tldr        # Simple help for tools
 
 	# Fun
 	cowsay      # Cow that says things
