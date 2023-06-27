@@ -3,7 +3,6 @@ return {
     {
         "nvim-lualine/lualine.nvim",
         dependencies = {
-            { "tpope/vim-fugitive" },
             { "nvim-treesitter/nvim-treesitter" },
         },
         opts = {
@@ -17,11 +16,6 @@ return {
                 lualine_x = { "encoding", "fileformat", "filetype" },
                 lualine_y = { myFunc.get_lsp_client, myFunc.get_null_client },
                 lualine_z = { "progress", "location" },
-            },
-            extensions = {
-                "fugitive",
-                "lazy",
-                "man",
             },
         },
     },
