@@ -61,11 +61,7 @@ return {
             { "williamboman/mason-lspconfig.nvim" },
             {
                 "williamboman/mason.nvim",
-                build = function()
-                    pcall(function()
-                        vim.cmd([[MasonUpdate]])
-                    end)
-                end,
+                build = ":MasonUpdate",
             },
         },
         config = function()
@@ -105,11 +101,7 @@ return {
             "jose-elias-alvarez/null-ls.nvim",
             {
                 "williamboman/mason.nvim",
-                build = function()
-                    pcall(function()
-                        vim.cmd([[MasonUpdate]])
-                    end)
-                end,
+                build = ":MasonUpdate",
             },
         },
         config = function()
