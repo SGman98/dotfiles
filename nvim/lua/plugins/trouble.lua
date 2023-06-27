@@ -1,7 +1,9 @@
 return {
     {
         "folke/trouble.nvim",
-        dependencies = { "kyazdani42/nvim-web-devicons" },
+        dependencies = {
+            { "nvim-tree/nvim-web-devicons" },
+        },
         opts = {
             auto_close = true,
             use_diagnostic_signs = true,

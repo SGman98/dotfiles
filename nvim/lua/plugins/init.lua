@@ -2,8 +2,6 @@ return {
     "tpope/vim-sleuth",
     "tpope/vim-obsession",
 
-    "kyazdani42/nvim-web-devicons",
-
     {
         "NvChad/nvim-colorizer.lua",
         opts = {

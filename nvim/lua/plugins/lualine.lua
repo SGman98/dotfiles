@@ -2,10 +2,12 @@ local myFunc = require("config.functions")
 return {
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = { "tpope/vim-fugitive" },
+        dependencies = {
+            { "tpope/vim-fugitive" },
+            { "nvim-treesitter/nvim-treesitter" },
+        },
         opts = {
             options = {
-                icons_enabled = false,
                 globalstatus = true,
             },
             sections = {
