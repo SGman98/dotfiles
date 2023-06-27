@@ -4,7 +4,7 @@ return {
         config = true,
         lazy = false,
         keys = {
-            { "-", "<cmd>Oil<cr>", desc = "Open parent directory" },
+            { "-", vim.cmd.Oil, desc = "Open parent directory" },
         },
     },
 }
