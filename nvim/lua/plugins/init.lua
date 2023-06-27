@@ -1,7 +1,6 @@
 return {
     "tpope/vim-sleuth",
     "tpope/vim-obsession",
-    "tpope/vim-abolish",
 
     "kyazdani42/nvim-web-devicons",
 
@@ -19,6 +18,4 @@ return {
 
     { "kylechui/nvim-surround", version = "*", event = "VeryLazy", config = true },
     { "lukas-reineke/indent-blankline.nvim", opts = { show_current_context = true } },
-    { "folke/neodev.nvim", config = true },
-    { "folke/neoconf.nvim", config = true },
 }
