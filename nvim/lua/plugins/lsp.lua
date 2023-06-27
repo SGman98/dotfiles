@@ -59,10 +59,7 @@ return {
         dependencies = {
             { "hrsh7th/cmp-nvim-lsp" },
             { "williamboman/mason-lspconfig.nvim" },
-            {
-                "williamboman/mason.nvim",
-                build = ":MasonUpdate",
-            },
+            { "williamboman/mason.nvim", build = ":MasonUpdate" },
         },
         config = function()
             local lsp = require("lsp-zero")
@@ -95,18 +92,16 @@ return {
 
     -- Formatter using null-ls
     {
-        "jay-babu/mason-null-ls.nvim",
+        "jose-elias-alvarez/null-ls.nvim",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
-            "jose-elias-alvarez/null-ls.nvim",
-            {
-                "williamboman/mason.nvim",
-                build = ":MasonUpdate",
-            },
+            { "jay-babu/mason-null-ls.nvim" },
+            { "williamboman/mason.nvim", build = ":MasonUpdate" },
         },
         config = function()
             local null_ls = require("null-ls")
 
+            require("null-ls").setup()
             require("mason-null-ls").setup({
                 ensure_installed = {
                     "markdownlint",
