@@ -2,6 +2,7 @@ return {
     -- Git related plugins
     {
         "tpope/vim-fugitive",
+        lazy = false,
         keys = {
             { "<leader>gg", "<cmd>rightbelow vertical G<cr>", desc = "Git fugitive" },
         },
