@@ -4,9 +4,7 @@ function M.get_lsp_client()
     local clients = vim.lsp.get_active_clients()
     local buf_client_names = {}
     for _, client in ipairs(clients) do
-        if client.name ~= "null-ls" then
-            table.insert(buf_client_names, client.name)
-        end
+        if client.name ~= "null-ls" then table.insert(buf_client_names, client.name) end
     end
     return table.concat(buf_client_names, ", ")
 end
@@ -61,11 +59,8 @@ function M.format()
     vim.lsp.buf.format({
         async = false,
         timeout_ms = 10000,
-        filter = function(client)
-            return vim.tbl_contains(allowed_servers, client.name)
-        end,
+        filter = function(client) return vim.tbl_contains(allowed_servers, client.name) end,
     })
 end
-
 
 return M

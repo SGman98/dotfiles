@@ -15,9 +15,7 @@ local function fold_virt_text_handler(virtText, lnum, endLnum, width, truncate)
             table.insert(newVirtText, { chunkText, hlGroup })
             chunkWidth = vim.fn.strdisplaywidth(chunkText)
             -- str width returned from truncate() may less than 2nd argument, need padding
-            if curWidth + chunkWidth < targetWidth then
-                suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
-            end
+            if curWidth + chunkWidth < targetWidth then suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth) end
             break
         end
         curWidth = curWidth + chunkWidth
@@ -36,9 +34,7 @@ return {
         event = { "BufReadPost", "BufNewFile" },
         config = function()
             require("ufo").setup({
-                provider_selector = function(_, _, _)
-                    return { "treesitter", "indent" }
-                end,
+                provider_selector = function(_, _, _) return { "treesitter", "indent" } end,
                 fold_virt_text_handler = fold_virt_text_handler,
             })
 
@@ -50,10 +46,10 @@ return {
             vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
         end,
         keys = {
-            { "zR", "<cmd>lua require('ufo').openAllFolds()<cr>" },
-            { "zM", "<cmd>lua require('ufo').closeAllFolds()<cr>" },
-            { "zr", "<cmd>lua require('ufo').openFoldsExceptKinds()<cr>" },
-            { "zm", "<cmd>lua require('ufo').closeFoldsWith()<cr>" },
+            { "zR", function() require("ufo").openAllFolds() end, desc = "Open all folds" },
+            { "zM", function() require("ufo").closeAllFolds() end, desc = "Close all folds" },
+            { "zr", function() require("ufo").openFoldsExceptKinds() end, desc = "Open folds except kinds" },
+            { "zm", function() require("ufo").closeFoldsWith() end, desc = "Close folds with" },
         },
     },
 }

@@ -12,9 +12,7 @@ return {
                     "python",
                 },
                 handlers = {
-                    function(config)
-                        require("mason-nvim-dap").default_setup(config)
-                    end,
+                    function(config) require("mason-nvim-dap").default_setup(config) end,
                     python = function(config)
                         local mason_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/")
                         config.adapters = {
@@ -28,15 +26,9 @@ return {
             })
 
             local dap, dapui = require("dap"), require("dapui")
-            dap.listeners.after.event_initialized["dapui_config"] = function()
-                dapui.open()
-            end
-            dap.listeners.before.event_terminated["dapui_config"] = function()
-                dapui.close()
-            end
-            dap.listeners.before.event_exited["dapui_config"] = function()
-                dapui.close()
-            end
+            dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() end
+            dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
+            dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
             dapui.setup()
 
             -- Dap signs
@@ -53,29 +45,17 @@ return {
             end
         end,
         keys = {
-            { "<leader>dt", "<cmd>lua require('dap').toggle_breakpoint()<cr>", desc = "DAP Toggle Breakpoint" },
-            {
-                "<leader>db",
-                "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
-                desc = "DAP Set Conditional Breakpoint",
-            },
-            {
-                "<leader>dp",
-                "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>",
-                desc = "DAP Set Log Point",
-            },
-            { "<leader>dc", "<cmd>lua require('dap').continue()<cr>", desc = "DAP Continue" },
-            { "<leader>dd", "<cmd>lua require('dap').disconnect()<cr>", desc = "DAP Disconnect" },
-            {
-                "<leader>de",
-                "<cmd>lua require('dap').set_exception_breakpoints({ 'all' })<cr>",
-                desc = "DAP Set Exception Breakpoints",
-            },
-            { "<leader>di", "<cmd>lua require('dap').step_into()<cr>", desc = "DAP Step Into" },
-            { "<leader>do", "<cmd>lua require('dap').step_over()<cr>", desc = "DAP Step Over" },
-            { "<leader>du", "<cmd>lua require('dap').step_out()<cr>", desc = "DAP Step Out" },
-            { "<leader>dr", "<cmd>lua require('dap').repl.open()<cr>", desc = "DAP REPL Open" },
-            { "<leader>dl", "<cmd>lua require('dap').run_last()<cr>", desc = "DAP Run Last" },
+            { "<leader>dt", function() require("dap").toggle_breakpoint() end, desc = "DAP Toggle Breakpoint" },
+            { "<leader>db", function() require("dap").set_breakpoint(vim.fn.input("Condition: ")) end, desc = "DAP Conditional Breakpoint" },
+            { "<leader>dp", function() require("dap").set_breakpoint(nil, vim.fn.input("Log point message: ")) end, desc = "DAP Log Point" },
+            { "<leader>de", function() require("dap").set_exception_breakpoints({ "all" }) end, desc = "DAP Exception Breakpoints" },
+            { "<leader>dc", function() require("dap").continue() end, desc = "DAP Continue" },
+            { "<leader>di", function() require("dap").step_into() end, desc = "DAP Step Into" },
+            { "<leader>do", function() require("dap").step_over() end, desc = "DAP Step Over" },
+            { "<leader>du", function() require("dap").step_out() end, desc = "DAP Step Out" },
+            { "<leader>dl", function() require("dap").run_last() end, desc = "DAP Run Last" },
+            { "<leader>dr", function() require("dap").repl.open() end, desc = "DAP REPL Open" },
+            { "<leader>dd", function() require("dap").disconnect() end, desc = "DAP Disconnect" },
         },
     },
 }
