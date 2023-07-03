@@ -38,6 +38,19 @@ return {
                 dapui.close()
             end
             dapui.setup()
+
+            -- Dap signs
+            local signs = {
+                Breakpoint = "",
+                BreakpointCondition = "ﳁ",
+                BreakpointRejected = "",
+                LogPoint = "",
+                Stopped = "",
+            }
+            for type, icon in pairs(signs) do
+                local hl = "Dap" .. type
+                vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+            end
         end,
         keys = {
             { "<leader>dt", "<cmd>lua require('dap').toggle_breakpoint()<cr>", desc = "DAP Toggle Breakpoint" },
