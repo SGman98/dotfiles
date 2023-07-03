@@ -13,7 +13,7 @@ return {
     -- Autocompletion
     {
         "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
+        event = { "InsertEnter" },
         dependencies = {
             {
                 "L3MON4D3/LuaSnip",
@@ -25,8 +25,8 @@ return {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-nvim-lua",
             "hrsh7th/cmp-path",
-            "saadparwaiz1/cmp_luasnip",
             "rafamadriz/friendly-snippets",
+            "saadparwaiz1/cmp_luasnip",
         },
         config = function()
             require("lsp-zero.cmp").extend()
@@ -38,10 +38,11 @@ return {
 
             cmp.setup({
                 sources = {
-                    { name = "path" },
-                    { name = "nvim_lsp" },
                     { name = "buffer", keyword_length = 3 },
+                    { name = "copilot" },
                     { name = "luasnip", keyword_length = 2 },
+                    { name = "nvim_lsp" },
+                    { name = "path" },
                 },
                 mapping = {
                     ["<C-f>"] = cmp_action.luasnip_jump_forward(),

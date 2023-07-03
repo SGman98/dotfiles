@@ -1,7 +1,7 @@
 return {
     {
         "folke/noice.nvim",
-        -- event = "VeryLazy", -- Need fix, message when opening nvim
+        event = "VeryLazy",
         dependencies = {
             "MunifTanjim/nui.nvim",
             {

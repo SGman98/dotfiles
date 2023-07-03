@@ -11,7 +11,7 @@ return {
         },
     },
 
-    { "windwp/nvim-autopairs", config = true },
+    { "windwp/nvim-autopairs", config = true, event = { "InsertEnter" } },
     { "tummetott/unimpaired.nvim", config = true },
 
     { "kylechui/nvim-surround", version = "*", event = "VeryLazy", config = true },

@@ -3,7 +3,11 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
-        dependencies = { "nvim-lua/plenary.nvim" },
+        dependencies = {
+            { "nvim-lua/plenary.nvim" },
+            { "nvim-tree/nvim-web-devicons" },
+            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+        },
         config = function()
             require("telescope").setup({
                 pickers = {
@@ -12,6 +16,10 @@ return {
                     },
                 },
             })
+
+            -- Load extensions
+            require("telescope").load_extension("fzf")
+
             local telescope = require("telescope.builtin")
 
             local function project_files()
@@ -52,15 +60,6 @@ return {
             vim.keymap.set("n", "<leader>gb", telescope.git_branches, { desc = "Git commits" })
             vim.keymap.set("n", "<leader>gs", telescope.git_status, { desc = "Git status" })
             vim.keymap.set("n", "<leader>gt", telescope.git_stash, { desc = "Git stash" })
-        end,
-    },
-    {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-        cond = vim.fn.executable("make") == 1,
-        dependencies = "nvim-telescope/telescope.nvim",
-        config = function()
-            require("telescope").load_extension("fzf")
         end,
     },
 }

@@ -5,6 +5,7 @@ return {
         dependencies = {
             { "nvim-treesitter/nvim-treesitter" },
         },
+        event = { "BufReadPost", "BufNewFile" },
         opts = {
             options = {
                 globalstatus = true,
