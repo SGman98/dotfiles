@@ -53,18 +53,6 @@ curl -sL https://git.io/fisher | source && fisher update
 
 ## Install Languages
 
-### Node
-
-```sh
-nvm install lts
-```
-
-### Python
-
-```sh
-sudo pacman -S python python-pip tk
-```
-
 ### Rust
 
 ```sh
