@@ -3,9 +3,18 @@ return {
         "folke/flash.nvim",
         event = "VeryLazy",
         opts = {
+            labels = "arstdhneiofwuygmplcxzbkvjq",
             search = {
                 mode = function(str) return "\\<" .. str end,
             },
+            modes = {
+                search = {
+                    enabled = false,
+                },
+                char = {
+                    jump_labels = true,
+                }
+            }
         },
         keys = {
             { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
