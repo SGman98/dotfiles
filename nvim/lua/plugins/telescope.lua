@@ -19,47 +19,46 @@ return {
 
             -- Load extensions
             require("telescope").load_extension("fzf")
-
-            local telescope = require("telescope.builtin")
-
-            local function project_files()
-                vim.fn.system("git rev-parse --is-inside-work-tree")
-                if vim.v.shell_error == 0 then
-                    telescope.git_files({
-                        show_untracked = true,
-                    })
-                else
-                    telescope.find_files()
-                end
-            end
-
-            -- FILE PICKERS
-            vim.keymap.set("n", "<leader>sf", project_files, { desc = "Search project files" })
-            vim.keymap.set("n", "<leader>sc", telescope.grep_string, { desc = "Search current word" })
-            vim.keymap.set("n", "<leader>sw", telescope.live_grep, { desc = "Search by grep" })
-
-            -- VIM PICKERS
-            vim.keymap.set("n", "<leader>sb", telescope.buffers, { desc = "Search buffers" })
-            vim.keymap.set("n", "<leader>so", telescope.oldfiles, { desc = "Search oldfiles" })
-            vim.keymap.set("n", "<leader>st", telescope.tags, { desc = "Search tags" })
-            vim.keymap.set("n", "<leader>sh", telescope.help_tags, { desc = "Search help" })
-            vim.keymap.set("n", "<leader>dl", telescope.loclist, { desc = "Search loclist" })
-            vim.keymap.set("n", "<leader>sk", telescope.keymaps, { desc = "Search keymaps" })
-            vim.keymap.set("n", "z=", telescope.spell_suggest, { desc = "Spell suggest" })
-            vim.keymap.set("n", "<leader>sp", telescope.pickers, { desc = "Search pickers" })
-
-            -- LSP PICKERS
-            vim.keymap.set("n", "<leader>lr", telescope.lsp_references, { desc = "Search references" })
-            vim.keymap.set("n", "<leader>lsd", telescope.lsp_document_symbols, { desc = "Search document symbols" })
-            vim.keymap.set("n", "<leader>lsw", telescope.lsp_workspace_symbols, { desc = "Search workspace symbols" })
-            vim.keymap.set("n", "<leader>sd", telescope.diagnostics, { desc = "Search diagnostics" })
-            vim.keymap.set("n", "<leader>ld", telescope.lsp_definitions, { desc = "Go to definition" })
-
-            -- GIT PICKERS
-            vim.keymap.set("n", "<leader>gc", telescope.git_commits, { desc = "Git commits" })
-            vim.keymap.set("n", "<leader>gb", telescope.git_branches, { desc = "Git commits" })
-            vim.keymap.set("n", "<leader>gs", telescope.git_status, { desc = "Git status" })
-            vim.keymap.set("n", "<leader>gt", telescope.git_stash, { desc = "Git stash" })
         end,
+        cmd = "Telescope",
+        keys = {
+            -- FILE PICKERS
+            {
+                "<leader>sf",
+                function()
+                    vim.fn.system("git rev-parse --is-inside-work-tree")
+                    if vim.v.shell_error == 0 then
+                        require("telescope.builtin").git_files({
+                            show_untracked = true,
+                        })
+                    else
+                        require("telescope.builtin").find_files()
+                    end
+                end,
+                desc = "Search Files",
+            },
+            { "<leader>sc", function() require("telescope.builtin").grep_string() end, desc = "Search current word" },
+            { "<leader>sw", function() require("telescope.builtin").live_grep() end, desc = "Search by grep" },
+            -- VIM PICKERS
+            { "<leader>sb", function() require("telescope.builtin").buffers() end, desc = "Search buffers" },
+            { "<leader>so", function() require("telescope.builtin").oldfiles() end, desc = "Search oldfiles" },
+            { "<leader>st", function() require("telescope.builtin").tags() end, desc = "Search tags" },
+            { "<leader>sh", function() require("telescope.builtin").help_tags() end, desc = "Search help" },
+            { "<leader>sk", function() require("telescope.builtin").keymaps() end, desc = "Search keymaps" },
+            { "<leader>sp", function() require("telescope.builtin").pickers() end, desc = "Search pickers" },
+            { "<leader>dl", function() require("telescope.builtin").loclist() end, desc = "Search loclist" },
+            { "z=", function() require("telescope.builtin").spell_suggest() end, desc = "Spell suggest" },
+            -- LSP PICKERS
+            { "<leader>ld", function() require("telescope.builtin").lsp_definitions() end, desc = "Go to definition" },
+            { "<leader>lr", function() require("telescope.builtin").lsp_references() end, desc = "Search references" },
+            { "<leader>lsd", function() require("telescope.builtin").lsp_document_symbols() end, desc = "Search document symbols" },
+            { "<leader>lsw", function() require("telescope.builtin").lsp_workspace_symbols() end, desc = "Search workspace symbols" },
+            { "<leader>sd", function() require("telescope.builtin").diagnostics() end, desc = "Search diagnostics" },
+            -- GIT PICKERS
+            { "<leader>gc", function() require("telescope.builtin").git_commits() end, desc = "Git commits" },
+            { "<leader>gb", function() require("telescope.builtin").git_branches() end, desc = "Git commits" },
+            { "<leader>gs", function() require("telescope.builtin").git_status() end, desc = "Git status" },
+            { "<leader>gt", function() require("telescope.builtin").git_stash() end, desc = "Git stash" },
+        },
     },
 }
