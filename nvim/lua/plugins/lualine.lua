@@ -2,10 +2,6 @@ local myFunc = require("config.functions")
 return {
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = {
-            { "nvim-treesitter/nvim-treesitter" },
-        },
-        event = { "BufReadPost", "BufNewFile" },
         opts = {
             options = {
                 globalstatus = true,
