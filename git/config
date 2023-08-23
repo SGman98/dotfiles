@@ -1,4 +1,6 @@
 # vim:ft=gitconfig
+[commit]
+	gpgSign = true
 [gpg]
 	program = gpg
 [alias]
