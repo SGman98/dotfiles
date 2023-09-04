@@ -4,16 +4,10 @@ return {
         event = "VeryLazy",
         opts = {
             labels = "arstdhneiofwuygmplcxzbkvjq",
-            search = {
-                mode = function(str) return "\\<" .. str end,
-            },
             modes = {
                 search = {
                     enabled = false,
                 },
-                char = {
-                    jump_labels = true,
-                }
             }
         },
         keys = {
