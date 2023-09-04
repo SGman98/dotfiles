@@ -5,9 +5,7 @@ return {
         "VonHeikemen/lsp-zero.nvim",
         branch = "v2.x",
         lazy = true,
-        config = function()
-            require("lsp-zero.settings").preset({})
-        end,
+        config = function() require("lsp-zero.settings").preset({}) end,
     },
 
     -- Autocompletion
@@ -17,16 +15,33 @@ return {
         dependencies = {
             {
                 "L3MON4D3/LuaSnip",
-                config = function()
-                    require("luasnip").filetype_extend("typescriptreact", { "javascriptreact" })
-                end,
+                config = function() require("luasnip").filetype_extend("typescriptreact", { "javascriptreact" }) end,
             },
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-nvim-lsp",
+            "neovim/nvim-lspconfig",
             "hrsh7th/cmp-nvim-lua",
             "hrsh7th/cmp-path",
             "rafamadriz/friendly-snippets",
             "saadparwaiz1/cmp_luasnip",
+            {
+                "zbirenbaum/copilot.lua",
+                build = ":Copilot auth",
+                dependencies = { "zbirenbaum/copilot-cmp" },
+                config = function()
+                    require("copilot").setup({
+                        suggestion = { enabled = false },
+                        panel = { enabled = false },
+                        filetypes = {
+                            yaml = true,
+                            markdown = true,
+                            gitcommit = true,
+                            -- ["."] = true,
+                        },
+                    })
+                    require("copilot_cmp").setup()
+                end,
+            },
         },
         config = function()
             require("lsp-zero.cmp").extend()
