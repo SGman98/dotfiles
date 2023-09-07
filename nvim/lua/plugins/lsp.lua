@@ -13,17 +13,16 @@ return {
         "hrsh7th/nvim-cmp",
         event = { "InsertEnter" },
         dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-buffer",
+            "rafamadriz/friendly-snippets",
+            "saadparwaiz1/cmp_luasnip",
             {
                 "L3MON4D3/LuaSnip",
                 config = function() require("luasnip").filetype_extend("typescriptreact", { "javascriptreact" }) end,
             },
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-nvim-lsp",
-            "neovim/nvim-lspconfig",
-            "hrsh7th/cmp-nvim-lua",
-            "hrsh7th/cmp-path",
-            "rafamadriz/friendly-snippets",
-            "saadparwaiz1/cmp_luasnip",
+            { "petertriho/cmp-git", config = true },
             {
                 "zbirenbaum/copilot.lua",
                 build = ":Copilot auth",
@@ -53,11 +52,12 @@ return {
 
             cmp.setup({
                 sources = {
-                    { name = "buffer", keyword_length = 3 },
-                    { name = "copilot" },
-                    { name = "luasnip", keyword_length = 2 },
                     { name = "nvim_lsp" },
                     { name = "path" },
+                    { name = "git" },
+                    { name = "copilot" },
+                    { name = "luasnip" },
+                    { name = "buffer", keyword_length = 5 },
                 },
                 mapping = {
                     ["<C-f>"] = cmp_action.luasnip_jump_forward(),
