@@ -55,9 +55,9 @@ return {
                     { name = "nvim_lsp" },
                     { name = "path" },
                     { name = "git" },
-                    { name = "copilot" },
                     { name = "luasnip" },
                     { name = "buffer", keyword_length = 5 },
+                    { name = "copilot" },
                 },
                 mapping = {
                     ["<C-f>"] = cmp_action.luasnip_jump_forward(),
