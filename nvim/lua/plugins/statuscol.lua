@@ -6,9 +6,13 @@ return {
             require("statuscol").setup({
                 relculright = true,
                 segments = {
-                    { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+                    { text = { builtin.foldfunc }, maxwidth = 1, click = "v:lua.ScFa" },
                     {
-                        sign = { name = { "Diagnostic" }, maxwidth = 1 },
+                        sign = { name = { "Diagnostic" }, maxwidth = 1, auto = true },
+                        click = "v:lua.ScSa",
+                    },
+                    {
+                        sign = { name = { "Dap*" }, maxwidth = 1, auto = true },
                         click = "v:lua.ScSa",
                     },
                     {
@@ -17,7 +21,7 @@ return {
                     },
                     { text = { builtin.lnumfunc }, click = "v:lua.ScLa" },
                     {
-                        sign = { name = { "GitSigns" }, maxwidth = 2, colwidth = 1 },
+                        sign = { namespace = { "gitsign*" }, maxwidth = 1, colwidth = 1 },
                         click = "v:lua.ScSa",
                     },
                 },
