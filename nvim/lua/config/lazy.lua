@@ -17,7 +17,7 @@ require("lazy").setup({
     checker = { enabled = true, notify = false },
     performance = {
         rtp = {
-            paths = { vim.fn.stdpath("data") .. "/site" },
+            -- paths = { vim.fn.stdpath("data") .. "/site" },
             disabled_plugins = {
                 "netrwPlugin",
             },
