@@ -33,7 +33,9 @@ return {
         "lukas-reineke/indent-blankline.nvim",
         event = { "BufReadPre", "BufNewFile" },
         main = "ibl",
-        opts = {},
+        opts = {
+            scope = { enabled = false },
+        },
     },
     {
         "kristijanhusak/vim-dadbod-ui",
