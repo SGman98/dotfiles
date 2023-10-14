@@ -1,0 +1,1 @@
+set -gx THEME catppuccin
