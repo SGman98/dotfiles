@@ -17,21 +17,22 @@ pkgs=(
 	rtx
 
 	# CLI Tools
-	bat                # Cat clone with syntax highlighting
+	bat                # `cat` replacement with syntax highlighting
 	bat-extras         # Bat extensions
-	exa                # ls clone
-	fd                 # Find files
+	exa                # `ls` replacement with better formatting
+	fd                 # `find` replacement faster
 	fzf                # Fuzzy finder
 	git-delta          # Git diff viewer
 	gitflow-avh        # Git flow command tool
 	github-cli         # Git hub cli
 	htop               # Process viewer
 	hurl-bin           # HTTP requests and test
-	jq                 # JSON parser
-	ripgrep            # Search files
+	jq                 # JSON processor
+	nodejs-live-server # basic http server with live reloading
+	ripgrep            # `grep` replacement faster
 	thefuck            # Correct mistyped commands
-	tldr               # Simple help for tools
-	nodejs-live-server # Live server
+	tldr               # Simplified version of `man`
+	unzip              # ZIP files extractor
 
 	# Fun
 	cowsay      # Cow that says things
