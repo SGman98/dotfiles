@@ -76,20 +76,20 @@ install_package() {
 	fi
 }
 install_aur_helper() {
-	NAME=$1
-	if ! command -v "$NAME" &>/dev/null; then
-		confirm "Do you want to install $NAME?" "Y" || return 1
-		git clone "https://aur.archlinux.org/$NAME.git" "/tmp/$NAME" ||
-			abort "Failed to clone $NAME"
-		sudo chown -R "$USER:$USER" "/tmp/$NAME" ||
-			abort "Failed to change ownership of /tmp/$NAME"
-		cd "/tmp/$NAME"
+	AUR_NAME=$1
+	if ! command -v "$AUR_NAME" &>/dev/null; then
+		confirm "Do you want to install $AUR_NAME?" "Y" || return 1
+		git clone "https://aur.archlinux.org/$AUR_NAME.git" "/tmp/$AUR_NAME" ||
+			abort "Failed to clone $AUR_NAME"
+		sudo chown -R "$USER:$USER" "/tmp/$AUR_NAME" ||
+			abort "Failed to change ownership of /tmp/$AUR_NAME"
+		cd "/tmp/$AUR_NAME"
 		makepkg -si --noconfirm ||
-			abort "Failed to install $NAME"
+			abort "Failed to install $AUR_NAME"
 		cd -
-		confirm "Would you like to update your system with $NAME?" "N" &&
-			$NAME -Syu --noconfirm
-		success "$NAME installed"
+		confirm "Would you like to update your system with $AUR_NAME?" "N" &&
+			$AUR_NAME -Syu --noconfirm
+		success "$AUR_NAME installed"
 	fi
 }
 config_gpg() {
