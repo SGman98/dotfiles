@@ -93,48 +93,46 @@ install_aur_helper() {
 	fi
 }
 config_gpg() {
-    if install_package "gpg"; then
-        echo "Creating gpg key"
-        select opt in "New" "Existing"; do
-            case $opt in
-                "New")
-                    gpg --full-generate-key
-                    gpg --list-secret-keys --keyid-format LONG
-                    ID=$(gpg --list-secret-keys --keyid-format LONG | grep sec | cut -d "/" -f 2 | cut -d " " -f 1)
-                    echo "Please copy this key and add it to github at https://github.com/settings/keys"
-                    echo "Key > $ID"
-                    gpg --armor --export "$ID"
-                    break
-                    ;;
-                "Existing")
-                    read -rep "Enter path to gpg private key (leave empty to skip): " path_to_private_key
-                    if [ -n "$path_to_private_key" ]
-                    then
-                        gpg --import "$path_to_private_key"
-                    fi
-                    read -rep "Enter path to gpg public key (leave empty to skip): " path_to_public_key
-                    if [ -n "$path_to_public_key" ]
-                    then
-                        gpg --import "$path_to_public_key"
-                    fi
-                    break
-                    ;;
-                *) echo "Invalid option";;
-            esac
-        done
-    fi
+	if install_package "gpg"; then
+		echo "Creating gpg key"
+		select opt in "New" "Existing"; do
+			case $opt in
+			"New")
+				gpg --full-generate-key
+				gpg --list-secret-keys --keyid-format LONG
+				ID=$(gpg --list-secret-keys --keyid-format LONG | grep sec | cut -d "/" -f 2 | cut -d " " -f 1)
+				echo "Please copy this key and add it to github at https://github.com/settings/keys"
+				echo "Key > $ID"
+				gpg --armor --export "$ID"
+				break
+				;;
+			"Existing")
+				read -rep "Enter path to gpg private key (leave empty to skip): " path_to_private_key
+				if [ -n "$path_to_private_key" ]; then
+					gpg --import "$path_to_private_key"
+				fi
+				read -rep "Enter path to gpg public key (leave empty to skip): " path_to_public_key
+				if [ -n "$path_to_public_key" ]; then
+					gpg --import "$path_to_public_key"
+				fi
+				break
+				;;
+			*) echo "Invalid option" ;;
+			esac
+		done
+	fi
 }
 config_ssh() {
-    if install_package "ssh"; then
-        echo "Creating ssh key"
-        read -rp "Enter your email for ssh key: " email
-        ssh-keygen -t ed25519 -C "$email"
-        eval "$(ssh-agent -s)"
-        ssh-add ~/.ssh/id_ed25519
-        echo "ssh key created"
-        echo "Copy this key and add it to github at https://github.com/settings/keys"
-        echo "Key > $(cat ~/.ssh/id_ed25519.pub)"
-    fi
+	if install_package "ssh"; then
+		echo "Creating ssh key"
+		read -rp "Enter your email for ssh key: " email
+		ssh-keygen -t ed25519 -C "$email"
+		eval "$(ssh-agent -s)"
+		ssh-add ~/.ssh/id_ed25519
+		echo "ssh key created"
+		echo "Copy this key and add it to github at https://github.com/settings/keys"
+		echo "Key > $(cat ~/.ssh/id_ed25519.pub)"
+	fi
 }
 manage() {
 	sh "$HOME/.dotfiles/packages.sh" || abort "Failed to install packages"
