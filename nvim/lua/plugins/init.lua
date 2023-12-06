@@ -38,6 +38,12 @@ return {
         },
     },
     {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        cmd = { "TodoTelescope" },
+        opts = {},
+    },
+    {
         "kristijanhusak/vim-dadbod-ui",
         dependencies = {
             { "tpope/vim-dadbod", lazy = true },
