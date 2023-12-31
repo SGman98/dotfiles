@@ -1,5 +1,5 @@
 [tools]
 node = "lts-hydrogen"
-python = "latest"
+python = "3.10"
 pnpm = "latest"
 yarn = "latest"
