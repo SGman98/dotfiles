@@ -25,3 +25,7 @@ abbr -a vs nvim -S
 
 # ---- GPG ----
 set -x GPG_TTY (tty)
+
+if test (uname -r | grep -i microsoft) != ""
+    set -x BROWSER wsl-open
+end
