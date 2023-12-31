@@ -9,7 +9,7 @@ return {
         config = function()
             local null_ls = require("null-ls")
 
-            require("null-ls").setup()
+            null_ls.setup()
             require("mason-null-ls").setup({
                 ensure_installed = {
                     "markdownlint",
@@ -28,6 +28,22 @@ return {
                     end,
                 },
             })
+
+            -- TODO: use separate file for this uiua configuration
+            ---- UIUA ----
+            vim.filetype.add({ extension = { ua = "uiua" } })
+
+            null_ls.register({
+                name = "uiua_fmt",
+                method = null_ls.methods.FORMATTING,
+                filetypes = { "uiua" },
+                generator = null_ls.formatter({
+                    command = "uiua",
+                    args = { "fmt", "-O", "$FILENAME" },
+                    to_stdin = true,
+                }),
+            })
+            --------------
         end,
     },
 }
