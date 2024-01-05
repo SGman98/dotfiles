@@ -1,0 +1,7 @@
+# vim:ft=gitignore
+
+### Vim ###
+Session.vim
+
+### RTX ###
+.rtx.toml

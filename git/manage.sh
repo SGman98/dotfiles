@@ -11,7 +11,7 @@ setup)
 
 	check_path_link "$HOME/.gitconfig"
 	check_path_link "$HOME/.config/git/config" "$HOME/.dotfiles/git/config"
-	check_path_link "$HOME/.config/git/gitmessage.txt" "$HOME/.dotfiles/git/gitmessage.txt"
+	check_path_link "$HOME/.config/git/ignore" "$HOME/.dotfiles/git/ignore"
 
 	if [[ -z $(git config --global --includes user.name) ]]; then
 		ask "Enter your git username: " &&
