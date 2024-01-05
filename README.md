@@ -15,18 +15,6 @@ sudo pacman -Syyu
 sudo pacman -S base-devel git openssh wget
 ```
 
-## SSH and GPG
-
-- Generate SSH key [Github SSH](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-
-- Generate GPG key [Github GPG](https://docs.github.com/en/github/authenticating-to-github/managing-commit-signature-verification/generating-a-new-gpg-key)
-
-> Or import existing gpg key from a file
-
-```sh
-gpg --import <key-file>
-```
-
 ## Bootstrap dotfiles
 
 Clone the repo

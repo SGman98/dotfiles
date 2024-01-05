@@ -24,7 +24,5 @@ manage "setup"
 if ! grep -q "$PROMPT End of bootstrap script" "$HOME/bootstrap.log" &>/dev/null; then
 	success "End of bootstrap script"
 	info "Please restart your shell to apply changes"
-	info "Then run this script with the following command:"
-	info "sh $HOME/.dotfiles/bootstrap.sh"
 	exit 0
 fi
