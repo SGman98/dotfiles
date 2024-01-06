@@ -31,11 +31,11 @@ vimcmd_visual_symbol = "[](bold yellow)"
 
 # [time]
 # disabled = false
-# format = '[ $time]($style)'
+# format = '[ $time]($style)'
 # time_range = "22:00:00-06:00:00"
 
 [package]
-symbol = " "
+symbol = "󰏗 "
 
 [rust]
 symbol = " "
@@ -59,5 +59,5 @@ symbol = " "
 symbol = " "
 
 [sudo]
-symbol = " "
+symbol = " "
 disabled = false
