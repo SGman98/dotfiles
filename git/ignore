@@ -3,5 +3,5 @@
 ### Vim ###
 Session.vim
 
-### RTX ###
-.rtx.toml
+### mise ###
+.mise.local.toml
