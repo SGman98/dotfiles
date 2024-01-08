@@ -6,8 +6,10 @@ log() { echo "$(date) $PROMPT $1" | tee -a "$HOME/.bootstrap.log" &>/dev/null; }
 info() { echo -e "\e[1;34m$PROMPT\e[0m $1"; }
 success() { echo -e "\e[1;32m$PROMPT\e[0m $1" && log "$1"; }
 warn() { echo -e "\e[1;33m$PROMPT\e[0m $1"; }
+important() { echo -e "\e[1;35m$PROMPT\e[0m $1"; }
 abort() { echo -e "\e[1;31m$PROMPT\e[0m $1" && exit 1; }
 ask() { read -rp $'\e[1;34m'"$PROMPT"$'\e[0m'" $1" RES; }
+askpath() { read -rep $'\e[1;34m'"$PROMPT"$'\e[0m'" $1" RES; }
 confirm() {
 	DEFAULT=$([[ $2 =~ ^[Yy]?$ ]] && echo "Y" || echo "N")
 	YN=$([[ $DEFAULT =~ ^[Yy]$ ]] && echo "[Y/n]" || echo "[y/N]")
@@ -83,10 +85,10 @@ install_aur_helper() {
 			abort "Failed to clone $AUR_NAME"
 		sudo chown -R "$USER:$USER" "/tmp/$AUR_NAME" ||
 			abort "Failed to change ownership of /tmp/$AUR_NAME"
-		cd "/tmp/$AUR_NAME"
+		cd "/tmp/$AUR_NAME" || abort "Failed to cd to /tmp/$AUR_NAME"
 		makepkg -si --noconfirm ||
 			abort "Failed to install $AUR_NAME"
-		cd -
+		cd - || abort "Failed to cd back"
 		confirm "Would you like to update your system with $AUR_NAME?" "N" &&
 			$AUR_NAME -Syu --noconfirm
 		success "$AUR_NAME installed"
@@ -94,44 +96,43 @@ install_aur_helper() {
 }
 config_gpg() {
 	if install_package "gpg"; then
-		echo "Creating gpg key"
+		info "Creating gpg key"
 		select opt in "New" "Existing"; do
 			case $opt in
 			"New")
 				gpg --full-generate-key
 				gpg --list-secret-keys --keyid-format LONG
 				ID=$(gpg --list-secret-keys --keyid-format LONG | grep sec | cut -d "/" -f 2 | cut -d " " -f 1)
-				echo "Please copy this key and add it to github at https://github.com/settings/keys"
-				echo "Key > $ID"
+				important "Please copy this key and add it to github at https://github.com/settings/keys"
 				gpg --armor --export "$ID"
 				break
 				;;
 			"Existing")
-				read -rep "Enter path to gpg private key (leave empty to skip): " path_to_private_key
-				if [ -n "$path_to_private_key" ]; then
-					gpg --import "$path_to_private_key"
+				askpath "Enter path to gpg private key (leave empty to skip): "
+				if [ -n "$RES" ]; then
+					gpg --import "$RES"
 				fi
-				read -rep "Enter path to gpg public key (leave empty to skip): " path_to_public_key
-				if [ -n "$path_to_public_key" ]; then
-					gpg --import "$path_to_public_key"
+				askpath "Enter path to gpg public key (leave empty to skip): "
+				if [ -n "$RES" ]; then
+					gpg --import "$RES"
 				fi
 				break
 				;;
-			*) echo "Invalid option" ;;
+			*) abort "Invalid option" ;;
 			esac
 		done
 	fi
 }
 config_ssh() {
 	if install_package "ssh"; then
-		echo "Creating ssh key"
-		read -rp "Enter your email for ssh key: " email
-		ssh-keygen -t ed25519 -C "$email"
+		info "Creating ssh key"
+		ask "Enter your email for ssh key: "
+		ssh-keygen -t ed25519 -C "$RES"
 		eval "$(ssh-agent -s)"
 		ssh-add ~/.ssh/id_ed25519
-		echo "ssh key created"
-		echo "Copy this key and add it to github at https://github.com/settings/keys"
-		echo "Key > $(cat ~/.ssh/id_ed25519.pub)"
+		info "ssh key created"
+		important "Copy this key and add it to github at https://github.com/settings/keys"
+		cat ~/.ssh/id_ed25519.pub
 	fi
 }
 manage() {
