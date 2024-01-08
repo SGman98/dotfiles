@@ -29,6 +29,7 @@ pkgs=(
 	ripgrep            # `grep` replacement faster
 	thefuck            # Correct mistyped commands
 	tldr               # Simplified version of `man`
+	zip                # ZIP files
 	unzip              # ZIP files extractor
 
 	# Fun
@@ -42,3 +43,8 @@ pkgs=(
 for pkg in "${pkgs[@]}"; do
 	install_package "$pkg" || warn "Failed to install $pkg"
 done
+
+if uname -r | grep -q microsoft; then
+	install_package "wsl-open" || warn "Failed to install wsl-open"
+	check_path_link "/usr/bin/wsl-open" "/usr/bin/xdg-open" || warn "Failed to link xdg-open"
+fi
