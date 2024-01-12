@@ -33,11 +33,11 @@ return {
 
             -- Dap signs
             local signs = {
-                Breakpoint = "",
-                BreakpointCondition = "ﳁ",
-                BreakpointRejected = "",
-                LogPoint = "",
-                Stopped = "",
+                Breakpoint = "",
+                BreakpointCondition = "",
+                BreakpointRejected = "",
+                LogPoint = "",
+                Stopped = "",
             }
             for type, icon in pairs(signs) do
                 local hl = "Dap" .. type
