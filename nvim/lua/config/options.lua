@@ -6,6 +6,7 @@ vim.opt.mousemodel = "extend"
 vim.opt.exrc = true
 vim.opt.termguicolors = true
 vim.opt.spelllang = "en,es"
+vim.opt.conceallevel = 2
 
 -- History
 vim.opt.swapfile = false

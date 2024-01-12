@@ -52,6 +52,7 @@ return {
 
             cmp.setup({
                 sources = {
+                    { name = "neorg" },
                     { name = "nvim_lsp" },
                     { name = "path" },
                     { name = "git" },
