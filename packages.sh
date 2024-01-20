@@ -46,5 +46,5 @@ done
 
 if uname -r | grep -q microsoft; then
 	install_package "wsl-open" || warn "Failed to install wsl-open"
-	check_path_link "/usr/bin/wsl-open" "/usr/bin/xdg-open" || warn "Failed to link xdg-open"
+	sudo ln -s "/usr/bin/wsl-open" "/usr/bin/xdg-open" || warn "Failed to link xdg-open"
 fi
