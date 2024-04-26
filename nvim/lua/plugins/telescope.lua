@@ -6,6 +6,7 @@ return {
         dependencies = {
             { "nvim-lua/plenary.nvim" },
             { "nvim-tree/nvim-web-devicons" },
+            { "nvim-telescope/telescope-live-grep-args.nvim", version = "^1.0.0" },
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         },
         config = function()
@@ -19,6 +20,7 @@ return {
 
             -- Load extensions
             require("telescope").load_extension("fzf")
+            require("telescope").load_extension("live_grep_args")
         end,
         cmd = "Telescope",
         keys = {
@@ -38,7 +40,7 @@ return {
                 desc = "Search Files",
             },
             { "<leader>sc", function() require("telescope.builtin").grep_string() end, desc = "Search current word" },
-            { "<leader>sw", function() require("telescope.builtin").live_grep() end, desc = "Search by grep" },
+            { "<leader>sw", function() require("telescope").extensions.live_grep_args.live_grep_args() end, desc = "Search by grep" },
             -- VIM PICKERS
             { "<leader>sb", function() require("telescope.builtin").buffers() end, desc = "Search buffers" },
             { "<leader>so", function() require("telescope.builtin").oldfiles() end, desc = "Search oldfiles" },
