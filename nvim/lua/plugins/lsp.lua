@@ -59,7 +59,6 @@ return {
             cmp.setup({
                 formatting = cmp_format,
                 sources = {
-                    { name = "neorg" },
                     { name = "nvim_lsp" },
                     { name = "path" },
                     { name = "git" },
