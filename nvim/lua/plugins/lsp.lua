@@ -3,9 +3,13 @@ local myFunc = require("config.functions")
 return {
     {
         "VonHeikemen/lsp-zero.nvim",
-        branch = "v2.x",
+        branch = "v3.x",
         lazy = true,
-        config = function() require("lsp-zero.settings").preset({}) end,
+        config = false,
+        init = function()
+            vim.g.lsp_zero_extend_cmp = 0
+            vim.g.lsp_zero_extend_lspconfig = 0
+        end,
     },
 
     -- Autocompletion
@@ -43,14 +47,17 @@ return {
             },
         },
         config = function()
-            require("lsp-zero.cmp").extend()
+            local lsp_zero = require("lsp-zero")
+            lsp_zero.extend_cmp()
 
             local cmp = require("cmp")
-            local cmp_action = require("lsp-zero.cmp").action()
+            local cmp_action = lsp_zero.cmp_action()
+            local cmp_format = lsp_zero.cmp_format()
 
             require("luasnip.loaders.from_vscode").lazy_load()
 
             cmp.setup({
+                formatting = cmp_format,
                 sources = {
                     { name = "neorg" },
                     { name = "nvim_lsp" },
@@ -60,9 +67,12 @@ return {
                     { name = "buffer", keyword_length = 5 },
                     { name = "copilot" },
                 },
-                mapping = {
+                mapping = cmp.mapping.preset.insert({
                     ["<C-f>"] = cmp_action.luasnip_jump_forward(),
                     ["<C-b>"] = cmp_action.luasnip_jump_backward(),
+                }),
+                completion = {
+                    completeopt = "menu,menuone,noinsert",
                 },
             })
         end,
@@ -78,11 +88,13 @@ return {
             { "williamboman/mason-lspconfig.nvim" },
             { "williamboman/mason.nvim", build = ":MasonUpdate" },
         },
-        config = function()
-            local lsp = require("lsp-zero")
 
-            lsp.on_attach(function(_, bufnr)
-                lsp.default_keymaps({ buffer = bufnr })
+        config = function()
+            local lsp_zero = require("lsp-zero")
+            lsp_zero.extend_lspconfig()
+
+            lsp_zero.on_attach(function(_, bufnr)
+                lsp_zero.default_keymaps({ buffer = bufnr })
                 local function map(mode, l, r, desc)
                     local opts = { desc = desc, buffer = bufnr }
                     vim.keymap.set(mode, l, r, opts)
@@ -101,9 +113,32 @@ return {
                 map({ "n", "v" }, "<leader>ff", myFunc.format, "Format")
             end)
 
-            require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
-
-            lsp.setup()
+            require("mason").setup()
+            require("mason-lspconfig").setup({
+                handlers = {
+                    lsp_zero.default_setup,
+                    lua_ls = function() require("lspconfig").lua_ls.setup(lsp_zero.nvim_lua_ls()) end,
+                    eslint = function()
+                        require("lspconfig").eslint.setup({
+                            on_attach = function(_, bufnr)
+                                vim.api.nvim_create_autocmd("BufWritePre", {
+                                    buffer = bufnr,
+                                    command = "EslintFixAll",
+                                })
+                            end,
+                        })
+                    end,
+                    tsserver = function()
+                        require("lspconfig").tsserver.setup({
+                            init_options = {
+                                preferences = {
+                                    importModuleSpecifierPreference = "non-relative",
+                                },
+                            },
+                        })
+                    end,
+                },
+            })
 
             -- Signs
             local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
