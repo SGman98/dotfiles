@@ -61,3 +61,10 @@ symbol = " "
 [sudo]
 symbol = " "
 disabled = false
+
+[custom.amplify]
+detect_folders = ["amplify"]
+command = "jq -cr '.envName' amplify/.config/local-env-info.json"
+style = "purple"
+symbol = "󰸏"
+format = """[$symbol $output]($style) """
