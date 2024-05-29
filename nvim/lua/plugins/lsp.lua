@@ -127,15 +127,6 @@ return {
                             end,
                         })
                     end,
-                    tsserver = function()
-                        require("lspconfig").tsserver.setup({
-                            init_options = {
-                                preferences = {
-                                    importModuleSpecifierPreference = "non-relative",
-                                },
-                            },
-                        })
-                    end,
                 },
             })
 
