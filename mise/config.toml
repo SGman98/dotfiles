@@ -1,3 +1,4 @@
 [tools]
 node = "lts-hydrogen"
 python = "3.10"
+usage = "latest"
