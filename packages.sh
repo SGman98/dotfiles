@@ -23,7 +23,7 @@ pkgs=(
 	gitflow-avh        # Git flow command tool
 	github-cli         # Git hub cli
 	htop               # Process viewer
-	hurl-bin           # HTTP requests and test
+	hurl               # HTTP requests and test
 	jq                 # JSON processor
 	nodejs-live-server # basic http server with live reloading
 	ripgrep            # `grep` replacement faster
