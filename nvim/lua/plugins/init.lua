@@ -15,19 +15,19 @@ return {
     {
         "windwp/nvim-autopairs",
         event = { "InsertEnter" },
-        config = true,
+        opts = {},
     },
     {
         "tummetott/unimpaired.nvim",
         event = { "VeryLazy" },
-        config = true,
+        opts = {},
     },
 
     {
         "kylechui/nvim-surround",
         version = "*",
-        event = "VeryLazy",
-        config = true,
+        event = { "VeryLazy" },
+        opts = {},
     },
     {
         "lukas-reineke/indent-blankline.nvim",

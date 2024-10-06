@@ -35,24 +35,22 @@ return {
                 "L3MON4D3/LuaSnip",
                 config = function() require("luasnip").filetype_extend("typescriptreact", { "javascriptreact" }) end,
             },
-            { "petertriho/cmp-git", config = true },
+            { "petertriho/cmp-git", opts = {} },
             {
                 "zbirenbaum/copilot.lua",
                 build = ":Copilot auth",
-                dependencies = { "zbirenbaum/copilot-cmp" },
-                config = function()
-                    require("copilot").setup({
-                        suggestion = { enabled = false },
-                        panel = { enabled = false },
-                        filetypes = {
-                            yaml = true,
-                            markdown = true,
-                            gitcommit = true,
-                            -- ["."] = true,
-                        },
-                    })
-                    require("copilot_cmp").setup()
-                end,
+                cmd = "Copilot",
+                dependencies = { "zbirenbaum/copilot-cmp", opts = {} },
+                opts = {
+                    suggestion = { enabled = false },
+                    panel = { enabled = false },
+                    filetypes = {
+                        yaml = true,
+                        markdown = true,
+                        gitcommit = true,
+                        -- ["."] = true,
+                    },
+                },
             },
         },
         config = function()

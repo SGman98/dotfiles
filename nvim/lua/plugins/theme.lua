@@ -3,15 +3,13 @@ return {
         "navarasu/onedark.nvim",
         lazy = false,
         priority = 1000,
-        config = function()
-            require("onedark").setup({
-                style = "darker",
+        opts = {
+            style = "darker",
+            transparent = true,
+            lualine = {
                 transparent = true,
-                lualine = {
-                    transparent = true,
-                }
-            })
-        end,
+            },
+        },
     },
     {
         "catppuccin/nvim",
@@ -23,5 +21,5 @@ return {
         "folke/tokyonight.nvim",
         lazy = false,
         priority = 1000,
-    }
+    },
 }
