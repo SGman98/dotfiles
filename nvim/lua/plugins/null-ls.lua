@@ -39,7 +39,7 @@ return {
                 filetypes = { "uiua" },
                 generator = null_ls.formatter({
                     command = "uiua",
-                    args = { "fmt", "-O", "$FILENAME" },
+                    args = { "fmt", "--io" },
                     to_stdin = true,
                 }),
             })

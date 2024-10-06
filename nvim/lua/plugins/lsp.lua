@@ -138,6 +138,7 @@ return {
                     end,
                 },
             })
+            require("lspconfig").uiua.setup({})
 
             -- Signs
             local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
