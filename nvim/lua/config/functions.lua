@@ -1,7 +1,7 @@
 local M = {}
 
 function M.get_lsp_client()
-    local clients = vim.lsp.get_active_clients()
+    local clients = vim.lsp.get_clients()
     local buf_client_names = {}
     for _, client in ipairs(clients) do
         if client.name ~= "null-ls" then table.insert(buf_client_names, client.name) end
@@ -27,8 +27,8 @@ function M.null_ls_sources(filetype, method)
 end
 
 function M.get_null_client()
-    local clients = vim.lsp.get_active_clients()
-    local ft = vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), "filetype")
+    local clients = vim.lsp.get_clients()
+    local ft = vim.api.nvim_buf_get_option_value(vim.api.nvim_get_current_buf(), "filetype")
 
     local buf_client_names = {}
     for _, client in ipairs(clients) do
