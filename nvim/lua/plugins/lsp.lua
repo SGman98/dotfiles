@@ -62,6 +62,7 @@ return {
             cmp.setup({
                 sources = {
                     { name = "nvim_lsp" },
+                    { name = "lazydev", group_index = 0 },
                     { name = "path" },
                     { name = "git" },
                     { name = "luasnip" },
@@ -106,24 +107,12 @@ return {
 
             require("mason").setup({})
             require("mason-lspconfig").setup({
-                ensure_installed = {},
+                ensure_installed = {
+                    "lua_ls",
+                },
+                automatic_installation = true,
                 handlers = {
                     default_setup,
-                    lua_ls = function()
-                        require("lspconfig").lua_ls.setup({
-                            settings = {
-                                Lua = {
-                                    runtime = { version = "LuaJIT" },
-                                    diagnostics = { globals = { "vim" } },
-                                    workspace = {
-                                        library = {
-                                            vim.env.VIMRUNTIME,
-                                        },
-                                    },
-                                },
-                            },
-                        })
-                    end,
                     eslint = function()
                         require("lspconfig").eslint.setup({
                             on_attach = function(_, bufnr)
