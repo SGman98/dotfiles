@@ -33,7 +33,11 @@ return {
             "saadparwaiz1/cmp_luasnip",
             {
                 "L3MON4D3/LuaSnip",
-                config = function() require("luasnip").filetype_extend("typescriptreact", { "javascriptreact" }) end,
+                config = function()
+                    require("luasnip.loaders.from_vscode").lazy_load()
+
+                    require("luasnip").filetype_extend("typescriptreact", { "javascriptreact" })
+                end,
             },
             { "petertriho/cmp-git", opts = {} },
             {
@@ -57,18 +61,16 @@ return {
             local cmp = require("cmp")
             local ls = require("luasnip")
 
-            require("luasnip.loaders.from_vscode").lazy_load()
-
             cmp.setup({
-                sources = {
+                sources = cmp.config.sources({
                     { name = "nvim_lsp" },
-                    { name = "lazydev", group_index = 0 },
+                    { name = "luasnip" },
                     { name = "path" },
                     { name = "git" },
-                    { name = "luasnip" },
-                    { name = "buffer", keyword_length = 5 },
+                }, {
                     { name = "copilot" },
-                },
+                    { name = "buffer" },
+                }),
                 snippet = {
                     expand = function(args) require("luasnip").lsp_expand(args.body) end,
                 },
