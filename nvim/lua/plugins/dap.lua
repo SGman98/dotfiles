@@ -1,3 +1,16 @@
+-- Dap signs
+local signs = {
+    Breakpoint = "",
+    BreakpointCondition = "",
+    BreakpointRejected = "",
+    LogPoint = "",
+    Stopped = "",
+}
+for type, icon in pairs(signs) do
+    local hl = "Dap" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 return {
     {
         "mfussenegger/nvim-dap",
@@ -30,19 +43,6 @@ return {
             dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
             dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
             dapui.setup()
-
-            -- Dap signs
-            local signs = {
-                Breakpoint = "",
-                BreakpointCondition = "",
-                BreakpointRejected = "",
-                LogPoint = "",
-                Stopped = "",
-            }
-            for type, icon in pairs(signs) do
-                local hl = "Dap" .. type
-                vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-            end
         end,
         keys = {
             { "<leader>dt", function() require("dap").toggle_breakpoint() end, desc = "DAP Toggle Breakpoint" },
