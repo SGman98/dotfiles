@@ -36,6 +36,9 @@ vimcmd_visual_symbol = "[](bold yellow)"
 # format = '[ $time]($style)'
 # time_range = "22:00:00-06:00:00"
 
+[aws]
+symbol = " "
+
 [package]
 symbol = "󰏗 "
 
