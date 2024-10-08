@@ -5,3 +5,6 @@ Session.vim
 
 ### mise ###
 .mise.local.toml
+
+### Tmux session ###
+.tmux.sh

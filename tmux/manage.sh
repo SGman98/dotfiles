@@ -8,7 +8,6 @@ case "$1" in
 setup)
 	confirm "Do you want to setup tmux?" "Y" || abort "Aborting..."
 	install_package "tmux" || abort "Failed to install tmux"
-	install_package "tmuxinator" || abort "Failed to install tmuxinator"
 
 	check_path_link "$HOME/.config/tmux/tmux.conf" "$HOME/.dotfiles/tmux/tmux.conf"
 	check_path_link "$HOME/.config/tmux/scripts" "$HOME/.dotfiles/tmux/scripts"
