@@ -28,22 +28,6 @@ return {
                     end,
                 },
             })
-
-            -- TODO: use separate file for this uiua configuration
-            ---- UIUA ----
-            vim.filetype.add({ extension = { ua = "uiua" } })
-
-            null_ls.register({
-                name = "uiua_fmt",
-                method = null_ls.methods.FORMATTING,
-                filetypes = { "uiua" },
-                generator = null_ls.formatter({
-                    command = "uiua",
-                    args = { "fmt", "--io" },
-                    to_stdin = true,
-                }),
-            })
-            --------------
         end,
     },
 }

@@ -33,6 +33,7 @@ return {
 
     config = function()
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
+        local lspconfig = require("lspconfig")
 
         local lsp_capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -51,7 +52,7 @@ return {
             handlers = {
                 default_setup,
                 eslint = function()
-                    require("lspconfig").eslint.setup({
+                    lspconfig.eslint.setup({
                         on_attach = function(_, bufnr)
                             vim.api.nvim_create_autocmd("BufWritePre", {
                                 buffer = bufnr,
@@ -62,7 +63,7 @@ return {
                 end,
             },
         })
-        require("lspconfig").uiua.setup({})
+        lspconfig.uiua.setup({})
 
         -- Signs
         local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
