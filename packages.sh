@@ -16,7 +16,7 @@ pkgs=(
 	# CLI Tools
 	bat                # `cat` replacement with syntax highlighting
 	bat-extras         # Bat extensions
-	exa                # `ls` replacement with better formatting
+	eza                # `ls` replacement with better formatting
 	fd                 # `find` replacement faster
 	fzf                # Fuzzy finder
 	git-delta          # Git diff viewer

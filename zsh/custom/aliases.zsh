@@ -1,6 +1,6 @@
 # ---- General ----
 alias v="nvim"
-alias l="exa -lah"
+alias l="eza -lah"
 alias c="clear"
 alias md="mkdir -p"
 alias rd="rmdir"
