@@ -28,16 +28,22 @@ return {
             {
                 "<leader>sf",
                 function()
-                    vim.fn.system("git rev-parse --is-inside-work-tree")
-                    if vim.v.shell_error == 0 then
-                        require("telescope.builtin").git_files({
-                            show_untracked = true,
-                        })
-                    else
-                        require("telescope.builtin").find_files()
-                    end
+                    require("telescope.builtin").find_files({
+                        hidden = true,
+                        follow = true,
+                        no_ignore = true,
+                    })
                 end,
                 desc = "Search Files",
+            },
+            {
+                "<leader>sgf",
+                function()
+                    require("telescope.builtin").git_files({
+                        show_untracked = true,
+                    })
+                end,
+                desc = "Search Git Files",
             },
             { "<leader>sc", function() require("telescope.builtin").grep_string() end, desc = "Search current word" },
             { "<leader>sw", function() require("telescope").extensions.live_grep_args.live_grep_args() end, desc = "Search by grep" },
