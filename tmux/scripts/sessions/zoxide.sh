@@ -23,6 +23,10 @@ done <<<"$ZOXIDE_RESULT"
 
 project=$(printf "%s\n" "${PROJECTS[@]}" | fzf)
 
+if [ -z "$project" ]; then
+	exit 1
+fi
+
 if command -v tmux &>/dev/null; then
 	cd "$project"
 	dir_path="${PWD/#$HOME\/}"
