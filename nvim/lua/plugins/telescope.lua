@@ -32,6 +32,7 @@ return {
                         hidden = true,
                         follow = true,
                         no_ignore = true,
+                        find_command = { "rg", "--files", "--hidden", "--follow", "--no-ignore", "--glob", "!.git", "--glob", "!node_modules" },
                     })
                 end,
                 desc = "Search Files",
