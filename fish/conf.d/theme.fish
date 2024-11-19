@@ -1,1 +1,1 @@
-set -gx THEME catppuccin
+select_theme "catppuccin" "mocha"
