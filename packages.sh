@@ -20,12 +20,10 @@ pkgs=(
 	fd                 # `find` replacement faster
 	fzf                # Fuzzy finder
 	git-delta          # Git diff viewer
-	gitflow-avh        # Git flow command tool
 	github-cli         # Git hub cli
 	htop               # Process viewer
 	hurl               # HTTP requests and test
 	jq                 # JSON processor
-	nodejs-live-server # basic http server with live reloading
 	ripgrep            # `grep` replacement faster
 	thefuck            # Correct mistyped commands
 	tldr               # Simplified version of `man`
