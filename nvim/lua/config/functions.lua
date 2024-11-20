@@ -28,7 +28,7 @@ end
 
 function M.get_null_client()
     local clients = vim.lsp.get_clients()
-    local ft = vim.api.nvim_buf_get_option_value(vim.api.nvim_get_current_buf(), "filetype")
+    local ft = vim.api.nvim_get_option_value("filetype", { buf = vim.api.nvim_get_current_buf() })
 
     local buf_client_names = {}
     for _, client in ipairs(clients) do
