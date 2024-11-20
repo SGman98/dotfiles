@@ -11,7 +11,14 @@ return {
             "saadparwaiz1/cmp_luasnip",
             {
                 "L3MON4D3/LuaSnip",
-                config = function() require("luasnip").filetype_extend("typescriptreact", { "javascriptreact" }) end,
+                config = function()
+                    local ls = require("luasnip")
+                    ls.filetype_extend("typescriptreact", { "javascriptreact" })
+                    ls.config.set_config({
+                        history = true,
+                        updateevents = "TextChanged,TextChangedI",
+                    })
+                end,
                 dependencies = {
                     {
                         "rafamadriz/friendly-snippets",
