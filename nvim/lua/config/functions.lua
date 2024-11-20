@@ -63,4 +63,17 @@ function M.format()
     })
 end
 
+function M.get_code_snippets()
+    local plenary = require("plenary.scandir")
+    local cwd = vim.fn.getcwd()
+
+    local files = plenary.scan_dir(cwd .. "/.vscode", {
+        depth = 2,
+        hidden = true,
+        search_pattern = ".code[-]snippets$", -- extension ".code-snippets"
+    })
+
+    return files
+end
+
 return M

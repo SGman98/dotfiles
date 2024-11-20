@@ -1,3 +1,5 @@
+local myFunc = require("config.functions")
+
 return {
     {
         "hrsh7th/nvim-cmp",
@@ -11,7 +13,17 @@ return {
                 "L3MON4D3/LuaSnip",
                 config = function() require("luasnip").filetype_extend("typescriptreact", { "javascriptreact" }) end,
                 dependencies = {
-                    { "rafamadriz/friendly-snippets", config = function() require("luasnip.loaders.from_vscode").lazy_load() end },
+                    {
+                        "rafamadriz/friendly-snippets",
+                        config = function()
+                            require("luasnip.loaders.from_vscode").lazy_load()
+                            local files = myFunc.get_code_snippets()
+                            if #files <= 0 then return end
+                            for _, file in ipairs(files) do
+                                require("luasnip.loaders.from_vscode").load_standalone({ lazy = true, path = file })
+                            end
+                        end,
+                    },
                 },
             },
             { "petertriho/cmp-git", opts = {} },
