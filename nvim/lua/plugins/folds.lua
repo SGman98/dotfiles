@@ -33,9 +33,9 @@ return {
         },
         event = { "BufReadPost", "BufNewFile" },
         config = function()
+            ---@diagnostic disable-next-line: missing-fields
             require("ufo").setup({
                 provider_selector = function(_, _, _) return { "treesitter", "indent" } end,
-                fold_virt_text_handler = fold_virt_text_handler,
             })
 
             -- Folds
@@ -45,11 +45,14 @@ return {
             vim.o.foldenable = true
             vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
         end,
-        keys = {
-            { "zR", function() require("ufo").openAllFolds() end, desc = "Open all folds" },
-            { "zM", function() require("ufo").closeAllFolds() end, desc = "Close all folds" },
-            { "zr", function() require("ufo").openFoldsExceptKinds() end, desc = "Open folds except kinds" },
-            { "zm", function() require("ufo").closeFoldsWith() end, desc = "Close folds with" },
-        },
+        keys = function()
+            local ufo = require("ufo")
+            return {
+                { "zR", ufo.openAllFolds, desc = "Open all folds" },
+                { "zM", ufo.closeAllFolds, desc = "Close all folds" },
+                { "zr", ufo.openFoldsExceptKinds, desc = "Open folds except kinds" },
+                { "zm", ufo.closeFoldsWith, desc = "Close folds with" },
+            }
+        end,
     },
 }
