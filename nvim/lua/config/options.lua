@@ -47,3 +47,5 @@ vim.opt.smartindent = true
 -- Leader
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
+vim.filetype.add({ extension = { ua = "uiua", ["code-snippets"] = "jsonc" } })
