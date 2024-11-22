@@ -34,22 +34,7 @@ return {
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-buffer",
             { "petertriho/cmp-git", opts = {} },
-            {
-                "zbirenbaum/copilot.lua",
-                build = ":Copilot auth",
-                cmd = "Copilot",
-                dependencies = { "zbirenbaum/copilot-cmp", opts = {} },
-                opts = {
-                    suggestion = { enabled = false },
-                    panel = { enabled = false },
-                    filetypes = {
-                        yaml = true,
-                        markdown = true,
-                        gitcommit = true,
-                        -- ["."] = true,
-                    },
-                },
-            },
+            { "zbirenbaum/copilot-cmp", opts = {} },
         },
         config = function()
             local cmp = require("cmp")
