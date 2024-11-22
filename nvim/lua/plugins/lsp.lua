@@ -44,6 +44,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 end,
             })
         end
+
+        -- Handle Inlay Hints
+        if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+            map("n", "yoy", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) end, "Toggle Inlay Hints")
+            map("n", "[oy", function() vim.lsp.inlay_hint.enable(true) end, "Show Inlay Hints")
+            map("n", "]oy", function() vim.lsp.inlay_hint.enable(false) end, "Hide Inlay")
+        end
     end,
 })
 
