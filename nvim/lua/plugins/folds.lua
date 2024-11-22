@@ -41,6 +41,7 @@ return {
         event = { "BufReadPost", "BufNewFile" },
         opts = {
             provider_selector = function(_, _, _) return { "treesitter", "indent" } end,
+            fold_virt_text_handler = fold_virt_text_handler,
         },
         keys = function()
             local ufo = require("ufo")
