@@ -69,11 +69,6 @@ return {
                     expand = function(args) ls.lsp_expand(args.body) end,
                 },
                 mapping = cmp.mapping.preset.insert({
-                    ["<C-n>"] = cmp.mapping.select_next_item(),
-                    ["<C-p>"] = cmp.mapping.select_prev_item(),
-                    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-                    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-                    ["<C-y>"] = cmp.mapping.confirm({ select = true }),
                     ["<C-l>"] = cmp.mapping(function()
                         if ls.expand_or_locally_jumpable() then ls.expand_or_jump() end
                     end, { "i", "s" }),
