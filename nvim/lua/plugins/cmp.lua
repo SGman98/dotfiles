@@ -80,22 +80,6 @@ return {
                     completeopt = "menu,menuone,noinsert",
                 },
             })
-            cmp.setup.cmdline({ "/", "?" }, {
-                mapping = cmp.mapping.preset.cmdline(),
-                sources = {
-                    { name = "buffer" },
-                },
-            })
-            cmp.setup.cmdline(":", {
-                mapping = cmp.mapping.preset.cmdline(),
-                sources = cmp.config.sources({
-                    { name = "path" },
-                }, {
-                    { name = "cmdline" },
-                }),
-                ---@diagnostic disable-next-line: missing-fields
-                matching = { disallow_symbol_nonprefix_matching = false },
-            })
         end,
     },
 }
