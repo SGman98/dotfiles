@@ -24,6 +24,13 @@ local function fold_virt_text_handler(virtText, lnum, endLnum, width, truncate)
     return newVirtText
 end
 
+-- Folds
+vim.o.foldcolumn = "1"
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+
 return {
     {
         "kevinhwang91/nvim-ufo",
@@ -32,19 +39,9 @@ return {
             { "nvim-treesitter/nvim-treesitter" },
         },
         event = { "BufReadPost", "BufNewFile" },
-        config = function()
-            ---@diagnostic disable-next-line: missing-fields
-            require("ufo").setup({
-                provider_selector = function(_, _, _) return { "treesitter", "indent" } end,
-            })
-
-            -- Folds
-            vim.o.foldcolumn = "1"
-            vim.o.foldlevel = 99
-            vim.o.foldlevelstart = 99
-            vim.o.foldenable = true
-            vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-        end,
+        opts = {
+            provider_selector = function(_, _, _) return { "treesitter", "indent" } end,
+        },
         keys = function()
             local ufo = require("ufo")
             return {
