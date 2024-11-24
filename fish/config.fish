@@ -31,3 +31,4 @@ if test (uname -r | grep -i microsoft) != ""
 end
 
 fish_add_path -m /usr/local/bin /usr/bin /bin
+fish_add_path -m $HOME/.dotfiles/bin
