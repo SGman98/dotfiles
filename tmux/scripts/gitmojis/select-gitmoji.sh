@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 parent_path=$(
-	cd "$(dirname "${BASH_SOURCE[0]}")"
+	cd "$(dirname "${BASH_SOURCE[0]}")" || exit
 	pwd -P
 )
-echo $parent_path
+echo "$parent_path"
 
-elements=$(cat $parent_path/gitmoji-list.txt)
+elements=$(cat "$parent_path"/gitmoji-list.txt)
 
 selected=$(echo "$elements" | fzf --delimiter '\t')
 

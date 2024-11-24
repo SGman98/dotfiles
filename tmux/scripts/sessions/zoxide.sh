@@ -28,7 +28,7 @@ if [ -z "$project" ]; then
 fi
 
 if command -v tmux &>/dev/null; then
-	cd "$project"
+	cd "$project" || exit 1
 	dir_path="${PWD/#$HOME\/}"
 	SESSION_NAME=$(echo "$dir_path" | tr '/' '-' | sed 's/\.//g')
 	if ! command -v tmux &>/dev/null; then
