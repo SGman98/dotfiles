@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+TMUX_SH_FILE=".tmux.sh"
+
+if [ ! -f "$TMUX_SH_FILE" ]; then
+    exit 0
+fi
+
+# shellcheck disable=1090
+. "$TMUX_SH_FILE"
+
+case "${1:-setup}" in
+    setup)
+        if declare -f setup > /dev/null; then
+            setup
+        else
+            echo "Error: setup function not found"
+            exit 1
+        fi
+        ;;
+    teardown)
+        if declare -f teardown > /dev/null; then
+            teardown
+        else
+            echo "Error: teardown function not found"
+            exit 1
+        fi
+        ;;
+    *)
+        echo "Usage: $0 {setup|teardown}"
+        exit 1
+        ;;
+esac

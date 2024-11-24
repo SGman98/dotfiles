@@ -38,9 +38,7 @@ if command -v tmux &>/dev/null; then
 
 	if ! tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
 		tmux new-session -d -s "$SESSION_NAME"
-		if [ -f "$project/.tmux.sh" ]; then
-			tmux send-keys -t "$SESSION_NAME":0.0 "$project/.tmux.sh" C-m
-		fi
+		tmux run "tmux-use"
 	fi
 
 	if [ -n "$TMUX" ]; then
