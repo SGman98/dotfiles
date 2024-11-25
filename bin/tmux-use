@@ -1,33 +1,91 @@
 #!/usr/bin/env bash
+# shellcheck disable=1090
 
-TMUX_SH_FILE=".tmux.sh"
+# Configurable variable for tmux session file
+TMUX_SESSION_FILE="${TMUX_SESSION_FILE:-.tmux.sh}"
 
-if [ ! -f "$TMUX_SH_FILE" ]; then
-    exit 0
+# tmux is mandatory
+if ! command -v tmux &>/dev/null; then
+	echo "tmux is not installed" >&2
+	exit 1
 fi
 
-# shellcheck disable=1090
-. "$TMUX_SH_FILE"
+get_zoxide_results() {
+	if command -v fish &>/dev/null; then
+		fish -c "z --list | awk '{print \$2}'"
+	elif command -v zoxide &>/dev/null; then
+		zoxide query -l
+	else
+		echo "zoxide not found" >&2
+		exit 1
+	fi
+}
 
-case "${1:-setup}" in
-    setup)
-        if declare -f setup > /dev/null; then
-            setup
-        else
-            echo "Error: setup function not found"
-            exit 1
-        fi
-        ;;
-    teardown)
-        if declare -f teardown > /dev/null; then
-            teardown
-        else
-            echo "Error: teardown function not found"
-            exit 1
-        fi
-        ;;
-    *)
-        echo "Usage: $0 {setup|teardown}"
-        exit 1
-        ;;
+select_project() {
+	local zoxide_result projects
+	zoxide_result=$(get_zoxide_results)
+	[ -z "$zoxide_result" ] && exit 1
+
+	projects=()
+
+	while IFS= read -r line; do
+		[ -d "$line/.git" ] && projects+=("$line")
+	done <<<"$zoxide_result"
+
+	printf "%s\n" "${projects[@]}" | fzf --prompt "Select project: "
+}
+
+select_session() {
+	local sessions
+	sessions=$(tmux list-sessions -F "#{session_name}")
+	[ -z "$sessions" ] && exit 1
+
+	printf "%s\n" "$sessions" | fzf --prompt "Select session: "
+}
+
+get_cwd_session_name() {
+	local dir_path
+	dir_path="${PWD/#$HOME\//}"
+	echo "$dir_path" | tr '/' '-' | sed 's/\.//g'
+}
+
+case "$@" in
+*session*setup*)
+	PROJECT_DIR=$(select_project)
+	[ -z "$PROJECT_DIR" ] && exit 1
+	cd "$PROJECT_DIR" || exit 1
+	;;
+*session*teardown*)
+	SESSION_NAME=$(select_session)
+	[ -z "$SESSION_NAME" ] && exit 1
+	;;
+esac
+
+SESSION_NAME=${SESSION_NAME:-$(get_cwd_session_name)}
+
+case "${@:-setup}" in
+*setup*)
+	[ -f "$TMUX_SESSION_FILE" ] && . "$TMUX_SESSION_FILE"
+	if ! tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
+		tmux new-session -d -s "$SESSION_NAME" -c "$PROJECT_DIR"
+		declare -f setup >/dev/null && setup
+	fi
+
+	if [ -n "$TMUX" ]; then
+		tmux switch-client -t "$SESSION_NAME"
+	else
+		tmux attach-session -t "$SESSION_NAME"
+	fi
+	;;
+*teardown*)
+	[ -f "$TMUX_SESSION_FILE" ] && . "$TMUX_SESSION_FILE"
+	declare -f teardown >/dev/null && teardown
+	if [ -n "$TMUX" ]; then
+		tmux kill-session -t "$SESSION_NAME"
+	fi
+	;;
+*)
+	echo "Usage: $0 {session setup|session teardown|setup|teardown}"
+	exit 1
+	;;
 esac
