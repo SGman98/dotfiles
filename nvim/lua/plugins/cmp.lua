@@ -6,6 +6,7 @@ return {
         event = { "InsertEnter" },
         dependencies = {
             "saadparwaiz1/cmp_luasnip",
+            "onsails/lspkind.nvim",
             {
                 "L3MON4D3/LuaSnip",
                 version = "v2.*",
@@ -41,8 +42,15 @@ return {
         config = function()
             local cmp = require("cmp")
             local ls = require("luasnip")
+            local lspkind = require("lspkind")
 
             cmp.setup({
+                ---@diagnostic disable-next-line: missing-fields
+                formatting = {
+                    format = lspkind.cmp_format({
+                        mode = "symbol_text",
+                    }),
+                },
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
                     { name = "luasnip" },
