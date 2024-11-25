@@ -1,18 +1,25 @@
 return {
     {
-        "stevearc/oil.nvim",
-        dependencies = {
-            { "nvim-tree/nvim-web-devicons" },
-        },
+        "echasnovski/mini.files",
+        version = "*",
         opts = {
-            columns = {
-                "icon",
-                "permissions",
+            mappings = {
+                close = "<Esc>",
+                go_in = "l",
+                go_in_plus = "<CR>",
+                go_out = "h",
+                go_out_plus = "-",
+            },
+            options = {
+                permanent_delete = false,
+            },
+            windows = {
+                preview = true,
             },
         },
         lazy = false,
         keys = {
-            { "-", vim.cmd.Oil, desc = "Open parent directory" },
+            { "-", "<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>", desc = "Open files" },
         },
     },
 }
