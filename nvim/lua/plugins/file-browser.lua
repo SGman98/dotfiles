@@ -5,9 +5,9 @@ return {
         opts = {
             mappings = {
                 close = "<Esc>",
-                go_in = "l",
+                go_in = "<right>",
                 go_in_plus = "<CR>",
-                go_out = "h",
+                go_out = "<left>",
                 go_out_plus = "-",
             },
             options = {
