@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+export DOTFILES_PATH="${DOTFILES_PATH:-$HOME/.dotfiles}"
+export SCOPE
+
+for script in "$DOTFILES_PATH/scripts"/*.sh; do
+	# shellcheck disable=1090
+	source "$script"
+done
+
+SCOPE="$(basename "$0")"
+
+case "$1" in
+run)
+	shift
+	"$@"
+	;;
+*)
+	log::abort "Unknown command $1"
+	;;
+esac
