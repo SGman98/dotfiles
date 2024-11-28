@@ -3,6 +3,15 @@ return {
     "tpope/vim-obsession",
 
     {
+        "nvzone/showkeys",
+        cmd = "ShowkeysToggle",
+        opts = {
+            show_count = true,
+            position = "top-right"
+        },
+    },
+
+    {
         "NvChad/nvim-colorizer.lua",
         cmd = { "ColorizerToggle" },
         opts = {
