@@ -52,13 +52,14 @@ log() {
 	timestamp="$(date +"%Y-%m-%d %H:%M:%S")"
 
 	declare -A level_colors=(
-		["IMPORTANT"]="$(log::ansi magenta)"
-		["INFO"]="$(log::ansi blue)"
+		["ABORT"]="$(log::ansi red)"
+		["CANCEL"]="$(log::ansi red)"
+		["ERROR"]="$(log::ansi red)"
 		["WARN"]="$(log::ansi yellow)"
 
-		["ABORT"]="$(log::ansi red)"
-		["ERROR"]="$(log::ansi red)"
+		["IMPORTANT"]="$(log::ansi magenta)"
 		["SUCCESS"]="$(log::ansi green)"
+		["INFO"]="$(log::ansi blue)"
 		["OK"]="$(log::ansi green)"
 
 		["ASK"]="$(log::ansi cyan)"
@@ -93,13 +94,14 @@ log() {
 	fi
 }
 
-log::important() { log -l "IMPORTANT" "$@"; }
-log::info() { log -l "INFO" "$@"; }
-log::warn() { log -l "WARN" "$@"; }
+log::abort() { log -l "ABORT" "$@" 1>&2 && exit 1; }
+log::cancel() { log -l "CANCEL" "$@" 1>&2 && exit 1; }
+log::error() { log -l "ERROR" "$@" 1>&2; }
+log::warn() { log -l "WARN" "$@" 1>&2; }
 
-log::abort() { log -l "ABORT" "$@" && exit 1; }
-log::error() { log -l "ERROR" "$@"; }
+log::important() { log -l "IMPORTANT" "$@"; }
 log::success() { log -fl "SUCCESS" "$@"; }
+log::info() { log -l "INFO" "$@"; }
 log::ok() { log -l "OK" "$@"; }
 
 log::ask() {
