@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 LOG_FILE="${LOG_FILE:-/tmp/dotfiles.log}"
 
@@ -68,26 +68,11 @@ log() {
 
 	reset="$(log::ansi reset)"
 
-	scopes=()
-	ignored_scopes=("main" "log")
-	for ((i = ${#FUNCNAME[@]} - 1; i > 0; i--)); do
-		IFS="::" read -r -a parts <<<"${FUNCNAME[$i]}"
-		if [[ ! ${ignored_scopes[*]} =~ ${parts[0]} ]]; then
-			scopes+=("${parts[0]}")
-		fi
-	done
-
-	scopes_str=$(
-		IFS="::"
-		echo "${scopes[*]}"
-	)
-
-	scope="${SCOPE:+$SCOPE::}${scopes_str:+$scopes_str::}$level"
-	scope=$(echo "$scope" | tr '[:lower:]' '[:upper:]')
-
 	level_color="${level_colors["$level"]}"
+	scope=$(log::get_scope)
+	scope="${scope:+"$scope:"}$level"
 
-	printf "%s [%s] %s\n" "$timestamp" "$level_color$scope$reset" "$message"
+	printf "[%s] %s\n" "$level_color$scope$reset" "$message"
 
 	if [ "$file" = true ]; then
 		printf "%s [%s] %s\n" "$timestamp" "$scope" "$message" >>"$LOG_FILE"
@@ -145,4 +130,27 @@ log::confirm() {
 	[Nn][Oo] | [Nn]) false ;;
 	*) echo "Invalid input" && exit 1 ;;
 	esac
+}
+
+log::get_scope() {
+	local scopes=() ignored_scopes scopes_str parts
+	ignored_scopes=("main" "log")
+	[[ -n $SCOPE ]] && scopes+=("$SCOPE")
+	for ((i = ${#FUNCNAME[@]} - 1; i > 0; i--)); do
+		IFS=":" read -r -a parts <<<"${FUNCNAME[$i]}"
+		if [[ ! ${ignored_scopes[*]} =~ ${parts[0]} ]]; then
+			if [[ ${#scopes[@]} -eq 0 ]]; then
+				scopes+=("${parts[0]}")
+			else
+				[[ ${scopes[-1]} != "${parts[0]}" ]] && scopes+=("${parts[0]}")
+			fi
+		fi
+	done
+
+	scopes_str=$(
+		IFS=":"
+		echo "${scopes[*]}"
+	)
+
+	echo "${scopes_str}" | tr '[:lower:]' '[:upper:]'
 }
