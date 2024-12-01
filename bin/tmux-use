@@ -29,7 +29,7 @@ select_project() {
 	projects=()
 
 	while IFS= read -r line; do
-		[ -d "$line/.git" ] && projects+=("$line")
+		[ -e "$line/.git" ] && projects+=("$line")
 	done <<<"$zoxide_result"
 
 	printf "%s\n" "${projects[@]}" | fzf --prompt "Select project: "
