@@ -67,6 +67,7 @@ function M.get_code_snippets()
     local plenary = require("plenary.scandir")
     local cwd = vim.fn.getcwd()
 
+    if vim.fn.isdirectory(cwd .. "/.vscode") == 0 then return {} end
     local files = plenary.scan_dir(cwd .. "/.vscode", {
         depth = 2,
         hidden = true,
