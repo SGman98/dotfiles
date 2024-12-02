@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 export DOTFILES_PATH="${DOTFILES_PATH:-$HOME/.dotfiles}"
 export SCOPE
 
