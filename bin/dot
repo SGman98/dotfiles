@@ -15,11 +15,11 @@ trap 'echo ""; log::cancel' INT
 SCOPE="$(basename "$0")"
 
 case "$1" in
-run)
-	shift
-	"$@"
-	;;
-*)
-	log::abort "Unknown command $1"
-	;;
+	run)
+		shift
+		"$@"
+		;;
+	*)
+		log::abort "Unknown command $1"
+		;;
 esac
