@@ -72,7 +72,8 @@ log() {
 				;;
 			-l | --level)
 				level="$2"
-				[[ ! ${!level_colors[*]} =~ $level ]] && log::usage
+				level="$(echo "$level" | tr '[:lower:]' '[:upper:]')"
+				[[ ! ${!level_colors[*]} =~ $level ]] && log::usage "Invalid level: $level"
 				shift 2
 				;;
 			--)
