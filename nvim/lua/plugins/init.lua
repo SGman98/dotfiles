@@ -4,10 +4,27 @@ return {
 
     {
         "nvzone/showkeys",
-        cmd = "ShowkeysToggle",
+        cmd = { "ShowkeysToggle" },
         opts = {
             show_count = true,
             position = "top-right",
+        },
+    },
+
+    {
+        "ellisonleao/carbon-now.nvim",
+        cmd = { "CarbonNow" },
+        keys = {
+            { "<leader>cn", mode = { "v" }, ":CarbonNow<cr>", desc = "Carbon Now" },
+        },
+        opts = {
+            options = {
+                theme = "one-dark",
+                font_family = "Cascadia Code",
+                padding_horizontal = "10px",
+                padding_vertical = "10px",
+                window_theme = "rounded",
+            },
         },
     },
 
