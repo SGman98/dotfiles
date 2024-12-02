@@ -10,6 +10,8 @@ for script in "$DOTFILES_PATH/scripts"/*.sh; do
 	source "$script"
 done
 
+trap 'echo ""; log::cancel' INT
+
 SCOPE="$(basename "$0")"
 
 case "$1" in
