@@ -36,22 +36,7 @@ log::ansi() {
 }
 
 log() {
-	local level="INFO" scope file=false message level_color reset timestamp
-
-	OPTIND=1
-	while getopts "l:f" opt; do
-		case $opt in
-		l) level=$OPTARG ;;
-		f) file=true ;;
-		*) log::abort "Usage: log [-l level] message" ;;
-		esac
-	done
-	shift $((OPTIND - 1))
-
-	message="$*"
-	timestamp="$(date +"%Y-%m-%d %H:%M:%S")"
-
-	declare -A level_colors=(
+	local -A level_colors=(
 		["ABORT"]="$(log::ansi red)"
 		["CANCEL"]="$(log::ansi red)"
 		["ERROR"]="$(log::ansi red)"
@@ -59,6 +44,7 @@ log() {
 
 		["IMPORTANT"]="$(log::ansi magenta)"
 		["SUCCESS"]="$(log::ansi green)"
+		["USAGE"]="$(log::ansi cyan)"
 		["INFO"]="$(log::ansi blue)"
 		["OK"]="$(log::ansi green)"
 
@@ -66,17 +52,51 @@ log() {
 		["CONFIRM"]="$(log::ansi yellow)"
 	)
 
-	reset="$(log::ansi reset)"
+	local level="INFO" file=false
 
+	local usage_cmd usage_help usage_options parsed
+	usage_cmd=$(basename "$0")
+	usage_cmd=${usage_cmd:+"$usage_cmd run log"}
+	usage_help+="[-f] [-l <level>] [message]\n"
+	usage_help+="[-u] [test]"
+	usage_options+="-f, --file\t\tLog to file\n"
+	usage_options+="-l, --level <level>\tDefault: $level\tAvailable levels: ${!level_colors[*]}"
+
+	parsed=$(getopt -o ful: -l file,level: -n "$usage_cmd" -- "$@") || log::usage
+	eval set -- "$parsed"
+	while true; do
+		case "$1" in
+		-f | --file)
+			file=true
+			shift
+			;;
+		-l | --level)
+			level="$2"
+			[[ ! ${!level_colors[*]} =~ $level ]] && log::usage
+			shift 2
+			;;
+		--)
+			shift
+			break
+			;;
+		*) log::usage "Not implemented: $1" ;;
+		esac
+	done
+	local message="$*"
+
+	local level_color scope
 	level_color="${level_colors["$level"]}"
 	scope=$(log::get_scope)
 	scope="${scope:+"$scope:"}$level"
 
-	printf "[%s] %s\n" "$level_color$scope$reset" "$message"
+	local reset underline timestamp
+	reset="$(log::ansi reset)"
+	underline=$(log::ansi underline)
+	timestamp="$(date +"%Y-%m-%d %H:%M:%S")"
 
-	if [ "$file" = true ]; then
-		printf "%s [%s] %s\n" "$timestamp" "$scope" "$message" >>"$LOG_FILE"
-	fi
+	printf "%s [%s] %s\n" "$underline$timestamp$reset" "$level_color$scope$reset" "$(echo -e "$message")"
+
+	[ "$file" = true ] && printf "%s [%s] %s\n" "$timestamp" "$scope" "$message" >>"$LOG_FILE"
 }
 
 log::abort() { log -l "ABORT" "$@" 1>&2 && exit 1; }
@@ -86,6 +106,24 @@ log::warn() { log -l "WARN" "$@" 1>&2; }
 
 log::important() { log -l "IMPORTANT" "$@"; }
 log::success() { log -fl "SUCCESS" "$@"; }
+log::usage() {
+	local usage="" options="" error=""
+	if [[ -v usage_cmd ]] && [[ -v usage_help ]]; then
+		usage="\n$(log::ansi cyan)Usage:$(log::ansi reset)\n"
+		usage_cmd="$(log::ansi underline)$usage_cmd$(log::ansi reset)"
+		usage+=$(echo -e "$usage_help" | sed "s/^/\t$usage_cmd /g")
+	fi
+	if [[ -v usage_options ]]; then
+		options="\n$(log::ansi cyan)Options:$(log::ansi reset)\n"
+		options+=$(echo -e "$usage_options" | sed 's/^/\t/g')
+	fi
+	if [[ -n "$*" ]]; then
+		error="\n$(log::ansi red)Error:$(log::ansi reset)\n"
+		error+=$(echo -e "$*" | sed 's/^/\t/g')
+	fi
+	unset usage_cmd usage_help usage_options
+	log -l "USAGE" "$usage$options$error" 1>&2 && exit 1
+}
 log::info() { log -l "INFO" "$@"; }
 log::ok() { log -l "OK" "$@"; }
 
