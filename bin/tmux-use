@@ -59,6 +59,9 @@ case "$@" in
 *session*teardown*)
 	SESSION_NAME=$(select_session)
 	[ -z "$SESSION_NAME" ] && exit 1
+	PROJECT_DIR=$(tmux list-windows -t "$SESSION_NAME" -F "#{pane_current_path}" | head -n 1)
+	[ -z "$PROJECT_DIR" ] && exit 1
+	cd "$PROJECT_DIR" || exit 1
 	;;
 esac
 
