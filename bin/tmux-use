@@ -54,14 +54,13 @@ case "$@" in
 	PROJECT_DIR=$(select_project)
 	[ -z "$PROJECT_DIR" ] && exit 1
 	cd "$PROJECT_DIR" || exit 1
+	SESSION_NAME=${SESSION_NAME:-$(get_cwd_session_name)}
 	;;
 *session*teardown*)
 	SESSION_NAME=$(select_session)
 	[ -z "$SESSION_NAME" ] && exit 1
 	;;
 esac
-
-SESSION_NAME=${SESSION_NAME:-$(get_cwd_session_name)}
 
 case "${@:-setup}" in
 *setup*)
