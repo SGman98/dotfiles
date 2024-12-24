@@ -50,44 +50,44 @@ get_cwd_session_name() {
 }
 
 case "$@" in
-*session*setup*)
-	PROJECT_DIR=$(select_project)
-	[ -z "$PROJECT_DIR" ] && exit 1
-	cd "$PROJECT_DIR" || exit 1
-	SESSION_NAME=${SESSION_NAME:-$(get_cwd_session_name)}
-	;;
-*session*teardown*)
-	SESSION_NAME=$(select_session)
-	[ -z "$SESSION_NAME" ] && exit 1
-	PROJECT_DIR=$(tmux list-windows -t "$SESSION_NAME" -F "#{pane_current_path}" | head -n 1)
-	[ -z "$PROJECT_DIR" ] && exit 1
-	cd "$PROJECT_DIR" || exit 1
-	;;
+	*session*setup*)
+		PROJECT_DIR=$(select_project)
+		[ -z "$PROJECT_DIR" ] && exit 1
+		cd "$PROJECT_DIR" || exit 1
+		SESSION_NAME=${SESSION_NAME:-$(get_cwd_session_name)}
+		;;
+	*session*teardown*)
+		SESSION_NAME=$(select_session)
+		[ -z "$SESSION_NAME" ] && exit 1
+		PROJECT_DIR=$(tmux list-windows -t "$SESSION_NAME" -F "#{pane_current_path}" | head -n 1)
+		[ -z "$PROJECT_DIR" ] && exit 1
+		cd "$PROJECT_DIR" || exit 1
+		;;
 esac
 
 [ -f "$TMUX_SESSION_FILE" ] && . "$TMUX_SESSION_FILE"
 
 case "${@:-setup}" in
-*setup*)
-	if ! tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
-		tmux new-session -d -s "$SESSION_NAME" -c "$PROJECT_DIR"
-		declare -f setup >/dev/null && setup
-	fi
+	*setup*)
+		if ! tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
+			tmux new-session -d -s "$SESSION_NAME" -c "$PROJECT_DIR"
+			declare -f setup >/dev/null && setup
+		fi
 
-	if [ -n "$TMUX" ]; then
-		tmux switch-client -t "$SESSION_NAME"
-	else
-		tmux attach-session -t "$SESSION_NAME"
-	fi
-	;;
-*teardown*)
-	declare -f teardown >/dev/null && teardown
-	if [ -n "$TMUX" ]; then
-		tmux kill-session -t "$SESSION_NAME"
-	fi
-	;;
-*)
-	echo "Usage: $0 {session setup|session teardown|setup|teardown}"
-	exit 1
-	;;
+		if [ -n "$TMUX" ]; then
+			tmux switch-client -t "$SESSION_NAME"
+		else
+			tmux attach-session -t "$SESSION_NAME"
+		fi
+		;;
+	*teardown*)
+		declare -f teardown >/dev/null && teardown
+		if [ -n "$TMUX" ]; then
+			tmux kill-session -t "$SESSION_NAME"
+		fi
+		;;
+	*)
+		echo "Usage: $0 {session setup|session teardown|setup|teardown}"
+		exit 1
+		;;
 esac
