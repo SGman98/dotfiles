@@ -22,14 +22,20 @@ get_zoxide_results() {
 }
 
 select_project() {
-	local zoxide_result projects
+	local zoxide_result projects detect_files
 	zoxide_result=$(get_zoxide_results)
 	[ -z "$zoxide_result" ] && exit 1
 
 	projects=()
 
+	detect_files=(.git .tmux.sh .venv)
 	while IFS= read -r line; do
-		[ -e "$line/.git" ] && projects+=("$line")
+		for file in "${detect_files[@]}"; do
+			if [ -e "$line/$file" ]; then
+				projects+=("$line")
+				break
+			fi
+		done
 	done <<<"$zoxide_result"
 
 	printf "%s\n" "${projects[@]}" | fzf --prompt "Select project: "
