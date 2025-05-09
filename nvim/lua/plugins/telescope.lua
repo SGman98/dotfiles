@@ -42,11 +42,22 @@ return {
             {
                 "<leader>sf",
                 function()
+                    local excludes = { ".git", "node_modules", ".next", "amplify" }
+
                     require("telescope.builtin").find_files({
                         hidden = true,
                         follow = true,
                         no_ignore = true,
-                        find_command = { "rg", "--files", "--hidden", "--follow", "--no-ignore", "--glob", "!.git", "--glob", "!node_modules" },
+                        find_command = vim.iter({
+                            "rg",
+                            "--files",
+                            "--hidden",
+                            "--follow",
+                            "--no-ignore",
+                            vim.tbl_map(function(dir) return { "--glob", "!" .. dir } end, excludes),
+                        })
+                            :flatten(2)
+                            :totable(),
                     })
                 end,
                 desc = "Search Files",
