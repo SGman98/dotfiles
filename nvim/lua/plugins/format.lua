@@ -1,6 +1,6 @@
 return {
     {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             { "jay-babu/mason-null-ls.nvim" },
@@ -16,17 +16,11 @@ return {
                     "prettier",
                     "shfmt",
                     "black",
-                    "flake8",
+                    "ruff",
                     "stylua",
                 },
                 automatic_installation = true,
-                handlers = {
-                    flake8 = function(_, _)
-                        null_ls.register(null_ls.builtins.diagnostics.flake8.with({
-                            extra_args = { "--max-line-length=88", "--extend-ignore=E203" },
-                        }))
-                    end,
-                },
+                handlers = {},
             })
         end,
     },
