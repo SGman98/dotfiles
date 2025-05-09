@@ -3,3 +3,6 @@ node = "lts-hydrogen"
 python = "3.10"
 usage = "latest"
 "npm:neovim" = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["node"]
