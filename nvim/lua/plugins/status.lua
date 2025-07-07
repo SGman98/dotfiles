@@ -26,7 +26,7 @@ return {
                 segments = {
                     { text = { builtin.foldfunc }, auto = true, click = "v:lua.ScFa" },
                     { text = { " " }, hl = "FoldColumn" }, -- Empty column
-                    { sign = { namespace = { "diagnostic/signs" }, maxwidth = 2, auto = true }, click = "v:lua.ScSa" },
+                    { sign = { namespace = { "diagnostic.signs" }, maxwidth = 2, auto = true }, click = "v:lua.ScSa" },
                     { sign = { name = { "Dap*" }, maxwidth = 1, auto = true }, click = "v:lua.ScSa" },
                     { sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true }, click = "v:lua.ScSa" },
                     { text = { builtin.lnumfunc }, click = "v:lua.ScLa" },

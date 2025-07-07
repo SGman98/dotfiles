@@ -10,8 +10,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
         -- Diagnostics
         map("n", "<leader>dv", vim.diagnostic.open_float, "View Diagnostics")
-        map("n", "[d", vim.diagnostic.goto_prev)
-        map("n", "]d", vim.diagnostic.goto_next)
+        map("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end)
+        map("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end)
         -- LSP
         map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
         map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         -- Highlight current cursor
         local client = vim.lsp.get_client_by_id(event.data.client_id)
-        if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
             vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
                 buffer = event.buf,
@@ -46,7 +46,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         -- Handle Inlay Hints
-        if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map("n", "yoy", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) end, "Toggle Inlay Hints")
             map("n", "[oy", function() vim.lsp.inlay_hint.enable(true) end, "Show Inlay Hints")
             map("n", "]oy", function() vim.lsp.inlay_hint.enable(false) end, "Hide Inlay")
