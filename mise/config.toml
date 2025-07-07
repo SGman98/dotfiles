@@ -1,8 +1,7 @@
 [tools]
-node = "lts-hydrogen"
 python = "3.10"
 usage = "latest"
-"npm:neovim" = "latest"
+node = "lts-hydrogen"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]

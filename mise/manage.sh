@@ -10,6 +10,7 @@ setup)
 	install_package "mise" || abort "Failed to install mise"
 
 	check_path_link "$HOME/.config/mise/config.toml" "$HOME/.dotfiles/mise/config.toml"
+	check_path_link "$HOME/.config/mise/default-packages" "$HOME/.dotfiles/mise/default-packages"
 
 	success "Setup correctly"
 	;;
