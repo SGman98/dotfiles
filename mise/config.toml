@@ -1,7 +1,9 @@
 [tools]
-python = "3.10"
 usage = "latest"
 node = "lts-hydrogen"
+uv = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
+experimental = true
+python.uv_venv_auto = true

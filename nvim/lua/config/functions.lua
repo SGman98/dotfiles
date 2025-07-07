@@ -55,7 +55,7 @@ function M.show_macro_recording()
 end
 
 function M.format()
-    local allowed_servers = { "null-ls", "rust_analyzer", "lua_ls", "clangd", "uiua" }
+    local allowed_servers = { "null-ls", "rust_analyzer", "lua_ls", "clangd", "uiua", "taplo" }
     vim.lsp.buf.format({
         async = false,
         timeout_ms = 10000,
