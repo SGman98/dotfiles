@@ -98,6 +98,11 @@ return {
         })
         lspconfig.uiua.setup({})
 
+        vim.diagnostic.config({
+            -- virtual_text = { source = true },
+            virtual_lines = { current_line = true },
+        })
+
         -- Signs
         local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
         for type, icon in pairs(signs) do
