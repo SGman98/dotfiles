@@ -12,11 +12,11 @@ return {
             null_ls.setup()
             require("mason-null-ls").setup({
                 ensure_installed = {
+                    "black",
                     "markdownlint",
                     "prettier",
+                    "shellcheck",
                     "shfmt",
-                    "black",
-                    "ruff",
                     "stylua",
                 },
                 automatic_installation = true,

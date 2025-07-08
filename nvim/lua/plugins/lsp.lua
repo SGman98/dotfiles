@@ -85,7 +85,13 @@ return {
         require("mason").setup({})
         require("mason-lspconfig").setup({
             ensure_installed = {
+                "bashls",
+                "eslint",
                 "lua_ls",
+                "ruff",
+                "taplo",
+                "tinymist",
+                "ts_ls",
             },
             automatic_installation = true,
             handlers = {
