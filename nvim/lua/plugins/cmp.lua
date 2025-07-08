@@ -37,7 +37,6 @@ return {
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-buffer",
             { "petertriho/cmp-git", opts = {} },
-            { "zbirenbaum/copilot-cmp", opts = {} },
         },
         config = function()
             local cmp = require("cmp")
@@ -57,7 +56,7 @@ return {
                     { name = "path" },
                     { name = "git" },
                 }, {
-                    { name = "copilot" },
+                    { name = "codeium" },
                     { name = "buffer" },
                 }),
                 snippet = {

@@ -1,24 +1,11 @@
 return {
     {
-        "zbirenbaum/copilot.lua",
-        build = ":Copilot auth",
-        cmd = "Copilot",
-        opts = {
-            suggestion = { enabled = false },
-            panel = { enabled = false },
-            filetypes = {
-                yaml = true,
-                markdown = true,
-                gitcommit = true,
-                -- ["."] = true,
-            },
+        "Exafunction/windsurf.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "hrsh7th/nvim-cmp",
         },
-    },
-    {
-        "CopilotC-Nvim/CopilotChat.nvim",
-        branch = "canary",
-        build = "make tiktoken", -- Only on MacOS or Linux
-        cmd = { "CopilotChat" },
-        opts = {},
+        config = function() require("codeium").setup({}) end,
+        event = "VeryLazy",
     },
 }
