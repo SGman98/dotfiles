@@ -19,6 +19,9 @@ vim.opt.signcolumn = "yes"
 vim.opt.textwidth = 80
 vim.opt.colorcolumn = "+1"
 vim.opt.wrap = false
+vim.api.nvim_create_autocmd("BufEnter", {
+    callback = function() vim.opt_local.formatoptions:remove("t") end,
+})
 
 vim.opt.number = true
 vim.opt.relativenumber = true
