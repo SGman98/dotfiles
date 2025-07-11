@@ -14,21 +14,22 @@ pkgs=(
 	gnupg   # GPG
 
 	# CLI Tools
-	bat                # `cat` replacement with syntax highlighting
-	bat-extras         # Bat extensions
-	eza                # `ls` replacement with better formatting
-	fd                 # `find` replacement faster
-	fzf                # Fuzzy finder
-	git-delta          # Git diff viewer
-	github-cli         # Git hub cli
-	htop               # Process viewer
-	hurl               # HTTP requests and test
-	jq                 # JSON processor
-	ripgrep            # `grep` replacement faster
-	thefuck            # Correct mistyped commands
-	tldr               # Simplified version of `man`
-	zip                # ZIP files
-	unzip              # ZIP files extractor
+	bat        # `cat` replacement with syntax highlighting
+	bat-extras # Bat extensions
+	eza        # `ls` replacement with better formatting
+	fd         # `find` replacement faster
+	fzf        # Fuzzy finder
+	git-delta  # Git diff viewer
+	github-cli # Git hub cli
+	htop       # Process viewer
+	hurl       # HTTP requests and test
+	jq         # JSON processor
+	ripgrep    # `grep` replacement faster
+	thefuck    # Correct mistyped commands
+	tldr       # Simplified version of `man`
+	typst      # Simplified TeX
+	unzip      # ZIP files extractor
+	zip        # ZIP files
 
 	# Fun
 	cowsay      # Cow that says things
