@@ -42,7 +42,9 @@ return {
         },
         cmd = { "TSConfigInfo", "TSInstall", "TSInstallInfo", "TSModuleInfo", "TSUpdate" },
         opts = {
+            ensure_installed = { "regex", "bash", "query" },
             auto_install = true,
+            ignore_install = { "csv" },
             highlight = { enable = true },
             indent = { enable = true },
             incremental_selection = {
