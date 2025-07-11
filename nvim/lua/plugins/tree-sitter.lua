@@ -36,10 +36,6 @@ return {
                 end,
             },
         },
-        keys = {
-            { "v", desc = "Increment selection", mode = "x" },
-            { "V", desc = "Shrink selection", mode = "x" },
-        },
         cmd = { "TSConfigInfo", "TSInstall", "TSInstallInfo", "TSModuleInfo", "TSUpdate" },
         opts = {
             ensure_installed = { "regex", "bash", "query" },
@@ -51,9 +47,9 @@ return {
                 enable = true,
                 keymaps = {
                     init_selection = nil,
-                    node_incremental = "v",
+                    node_incremental = "<leader>v",
                     scope_incremental = nil,
-                    node_decremental = "V",
+                    node_decremental = "<leader>V",
                 },
             },
         },
