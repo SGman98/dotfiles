@@ -43,7 +43,7 @@ for pkg in "${pkgs[@]}"; do
 	install_package "$pkg" || warn "Failed to install $pkg"
 done
 
-if uname -r | grep -q microsoft; then
-	install_package "wsl-open" || warn "Failed to install wsl-open"
-	sudo ln -s "/usr/bin/wsl-open" "/usr/bin/xdg-open" || warn "Failed to link xdg-open"
-fi
+# if uname -r | grep -q microsoft; then
+# 	install_package "wsl-open" || warn "Failed to install wsl-open"
+# 	sudo ln -s "/usr/bin/wsl-open" "/usr/bin/xdg-open" || warn "Failed to link xdg-open"
+# fi
