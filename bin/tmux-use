@@ -38,7 +38,7 @@ select_project() {
 		done
 	done <<<"$zoxide_result"
 
-	printf "%s\n" "${projects[@]}" | fzf --prompt "Select project: "
+	printf "%s\n" "${projects[@]}" | fzf --prompt "Select project: " --cycle
 }
 
 select_session() {
@@ -46,7 +46,7 @@ select_session() {
 	sessions=$(tmux list-sessions -F "#{session_name}")
 	[ -z "$sessions" ] && exit 1
 
-	printf "%s\n" "$sessions" | fzf --prompt "Select session: "
+	printf "%s\n" "$sessions" | fzf --prompt "Select session: " --cycle
 }
 
 get_cwd_session_name() {
