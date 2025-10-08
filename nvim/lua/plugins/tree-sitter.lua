@@ -46,10 +46,10 @@ return {
             incremental_selection = {
                 enable = true,
                 keymaps = {
-                    init_selection = nil,
-                    node_incremental = "<leader>v",
+                    init_selection = "<Enter>",
+                    node_incremental = "<Enter>",
                     scope_incremental = nil,
-                    node_decremental = "<leader>V",
+                    node_decremental = "<Backspace>",
                 },
             },
         },
