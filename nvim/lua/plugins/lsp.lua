@@ -66,7 +66,6 @@ return {
 
     config = function()
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
-        local lspconfig = require("lspconfig")
 
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
@@ -98,11 +97,16 @@ return {
                 function(server_name)
                     local server = servers[server_name] or {}
                     server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-                    require("lspconfig")[server_name].setup(server)
+                    vim.lsp.config(server_name, server)
                 end,
             },
         })
-        lspconfig.uiua.setup({})
+        -- vim.lsp.config("uiua")
+        vim.lsp.config("tinymist", {
+            settings = {
+                exportPdf = "onType",
+            },
+        })
 
         vim.diagnostic.config({
             virtual_lines = { current_line = true },
