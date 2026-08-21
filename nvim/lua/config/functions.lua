@@ -55,7 +55,7 @@ function M.show_macro_recording()
 end
 
 function M.format()
-    local excluded_servers = { "eslint", "sqls" }
+    local excluded_servers = { "eslint", "sqls", "ts_ls" }
     vim.lsp.buf.format({
         async = false,
         timeout_ms = 10000,
