@@ -60,8 +60,8 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         { "hrsh7th/cmp-nvim-lsp" },
-        { "williamboman/mason-lspconfig.nvim" },
-        { "williamboman/mason.nvim", build = ":MasonUpdate" },
+        { "mason-org/mason-lspconfig.nvim" },
+        { "mason-org/mason.nvim", build = ":MasonUpdate" },
     },
 
     config = function()
