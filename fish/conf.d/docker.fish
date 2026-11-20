@@ -5,9 +5,5 @@ if command -v docker &>/dev/null
     abbr -a dk docker
     abbr -a dkcu docker compose up
     abbr -a dkcd docker compose down
-    abbr -a dkcr "docker-compose down && docker-compose up -d --build"
-
-    if ! grep -q docker /etc/group
-        sudo groupadd docker
-    end
+    abbr -a dkcr "docker compose down && docker compose up -d --build"
 end
