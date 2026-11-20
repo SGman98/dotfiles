@@ -24,7 +24,7 @@ return {
                         mappings = {
                             i = {
                                 ["<C-k>"] = lga_actions.quote_prompt(),
-                                ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+                                ["<C-g>"] = lga_actions.quote_prompt({ postfix = " --iglob " }), -- <C-i> is <Tab> in terminals
                                 ["<C-space>"] = lga_actions.to_fuzzy_refine,
                             },
                         },
@@ -80,7 +80,7 @@ return {
             { "<leader>sh", function() require("telescope.builtin").help_tags() end, desc = "Search help" },
             { "<leader>sk", function() require("telescope.builtin").keymaps() end, desc = "Search keymaps" },
             { "<leader>sp", function() require("telescope.builtin").pickers() end, desc = "Search pickers" },
-            { "<leader>dl", function() require("telescope.builtin").loclist() end, desc = "Search loclist" },
+            { "<leader>sl", function() require("telescope.builtin").loclist() end, desc = "Search loclist" },
             { "z=", function() require("telescope.builtin").spell_suggest() end, desc = "Spell suggest" },
             -- LSP PICKERS
             { "<leader>ld", function() require("telescope.builtin").lsp_definitions() end, desc = "Go to definition" },
@@ -90,7 +90,7 @@ return {
             { "<leader>sd", function() require("telescope.builtin").diagnostics() end, desc = "Search diagnostics" },
             -- GIT PICKERS
             { "<leader>gc", function() require("telescope.builtin").git_commits() end, desc = "Git commits" },
-            { "<leader>gb", function() require("telescope.builtin").git_branches() end, desc = "Git commits" },
+            { "<leader>gb", function() require("telescope.builtin").git_branches() end, desc = "Git branches" },
             { "<leader>gs", function() require("telescope.builtin").git_status() end, desc = "Git status" },
             { "<leader>gt", function() require("telescope.builtin").git_stash() end, desc = "Git stash" },
         },

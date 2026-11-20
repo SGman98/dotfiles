@@ -16,7 +16,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
         map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
         map("n", "<leader>lh", vim.lsp.buf.hover, "Hover")
-        map("i", "<C-h>", vim.lsp.buf.signature_help)
         -- Formatting
         map({ "n", "v" }, "<leader>ff", myFunc.format, "Format")
 
