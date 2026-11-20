@@ -30,5 +30,4 @@ set -x GPG_TTY (tty)
 #     set -x BROWSER wsl-open
 # end
 
-fish_add_path -m /usr/local/bin /usr/bin /bin
 fish_add_path -m $HOME/.dotfiles/bin
