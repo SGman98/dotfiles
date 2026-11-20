@@ -56,7 +56,6 @@ return {
                     { name = "path" },
                     { name = "git" },
                 }, {
-                    { name = "codeium" },
                     { name = "buffer" },
                 }),
                 snippet = {
