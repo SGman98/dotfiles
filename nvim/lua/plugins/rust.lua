@@ -1,44 +1,43 @@
 return {
     {
-        "simrat39/rust-tools.nvim",
-        opts = {
-            tools = {
-                inlay_hints = {
-                    only_current_line = true,
+        "mrcjkb/rustaceanvim",
+        version = "^6",
+        -- rustaceanvim is already lazy and only activates on rust buffers
+        lazy = false,
+        init = function()
+            -- Must be set before the plugin loads
+            vim.g.rustaceanvim = {
+                tools = {
+                    hover_actions = {
+                        auto_focus = true,
+                    },
                 },
-                hover_actions = {
-                    auto_focus = true,
-                },
-                runnables = {
-                    use_telescope = true,
-                },
-            },
-            server = {
-                settings = {
-                    ["rust-analyzer"] = {
-                        lens = {
-                            enable = true,
-                        },
-                        checkOnSave = {
-                            enable = true,
-                            command = "clippy",
+                server = {
+                    default_settings = {
+                        ["rust-analyzer"] = {
+                            lens = {
+                                enable = true,
+                            },
+                            check = {
+                                command = "clippy",
+                            },
                         },
                     },
                 },
-            },
-        },
-        ft = { "rust", "rs" },
+            }
+        end,
     },
     {
         "saecki/crates.nvim",
-        tag = "v0.3.0",
-        dependencies = { "nvim-lua/plenary.nvim" },
+        tag = "stable",
+        event = { "BufRead Cargo.toml" },
         opts = {
-            null_ls = {
+            lsp = {
                 enabled = true,
-                name = "crates.nvim",
+                actions = true,
+                completion = true,
+                hover = true,
             },
         },
-        event = { "BufRead Cargo.toml" },
     },
 }
