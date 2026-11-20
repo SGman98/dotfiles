@@ -18,7 +18,7 @@ return {
             { "rcarriga/nvim-dap-ui" },
             { "nvim-neotest/nvim-nio" },
             { "jay-babu/mason-nvim-dap.nvim" },
-            { "williamboman/mason.nvim", build = ":MasonUpdate" },
+            { "mason-org/mason.nvim", build = ":MasonUpdate" },
         },
         config = function()
             require("mason-nvim-dap").setup({

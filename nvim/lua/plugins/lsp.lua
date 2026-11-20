@@ -65,23 +65,31 @@ return {
     },
 
     config = function()
-        local cmp_nvim_lsp = require("cmp_nvim_lsp")
+        -- Applies to every server
+        vim.lsp.config("*", {
+            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        })
 
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
+        -- Keep lspconfig's eslint on_attach (defines LspEslintFixAll) and fix on save
+        local eslint_on_attach = vim.lsp.config.eslint.on_attach
+        vim.lsp.config("eslint", {
+            on_attach = function(client, bufnr)
+                if eslint_on_attach then eslint_on_attach(client, bufnr) end
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                    buffer = bufnr,
+                    command = "LspEslintFixAll",
+                })
+            end,
+        })
 
-        local servers = {
-            eslint = {
-                on_attach = function(_, bufnr)
-                    vim.api.nvim_create_autocmd("BufWritePre", {
-                        buffer = bufnr,
-                        command = "EslintFixAll",
-                    })
-                end,
+        vim.lsp.config("tinymist", {
+            settings = {
+                exportPdf = "onType",
             },
-        }
+        })
 
         require("mason").setup({})
+        -- Installed servers are enabled automatically (automatic_enable)
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "bashls",
@@ -92,19 +100,9 @@ return {
                 "tinymist",
                 "ts_ls",
             },
-            automatic_installation = true,
-            handlers = {
-                function(server_name)
-                    local server = servers[server_name] or {}
-                    server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-                    vim.lsp.config(server_name, server)
-                end,
-            },
-        })
-        -- vim.lsp.config("uiua")
-        vim.lsp.config("tinymist", {
-            settings = {
-                exportPdf = "onType",
+            automatic_enable = {
+                -- rust-analyzer is managed by rustaceanvim, stylua runs through none-ls
+                exclude = { "rust_analyzer", "stylua" },
             },
         })
 
