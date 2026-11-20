@@ -71,6 +71,12 @@ case "$@" in
 		;;
 esac
 
+# Plain setup/teardown act on the current directory
+PROJECT_DIR=${PROJECT_DIR:-$PWD}
+SESSION_NAME=${SESSION_NAME:-$(get_cwd_session_name)}
+
+# TODO: only source allowlisted session files (like `direnv allow`), a cloned
+# repo with a .tmux.sh currently runs arbitrary code when selected
 [ -f "$TMUX_SESSION_FILE" ] && . "$TMUX_SESSION_FILE"
 
 case "${@:-setup}" in
@@ -88,9 +94,7 @@ case "${@:-setup}" in
 		;;
 	*teardown*)
 		declare -f teardown >/dev/null && teardown
-		if [ -n "$TMUX" ]; then
-			tmux kill-session -t "$SESSION_NAME"
-		fi
+		tmux kill-session -t "$SESSION_NAME"
 		;;
 	*)
 		echo "Usage: $0 {session setup|session teardown|setup|teardown}"
