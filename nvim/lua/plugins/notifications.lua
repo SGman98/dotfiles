@@ -14,7 +14,10 @@ return {
         },
         opts = {
             cmdline = {
-                view = "cmdline",
+                format = {
+                    search_down = { view = "cmdline_popup" },
+                    search_up = { view = "cmdline_popup" },
+                },
             },
             lsp = {
                 override = {
@@ -24,9 +27,9 @@ return {
                 },
             },
             presets = {
-                bottom_search = true,
                 command_palette = true,
                 long_message_to_split = true,
+                lsp_doc_border = true,
             },
         },
     },
