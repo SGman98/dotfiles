@@ -78,8 +78,11 @@ return {
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
-        cmd = { "TodoTelescope" },
         opts = {},
+        keys = {
+            -- The key loads todo-comments, which registers this snacks source
+            { "<leader>sT", function() Snacks.picker.todo_comments() end, desc = "Search TODOs" },
+        },
     },
     {
         "kristijanhusak/vim-dadbod-ui",

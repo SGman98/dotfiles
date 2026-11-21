@@ -1,6 +1,6 @@
 -- All lazy: config/theme.lua runs `:colorscheme $NVIM_THEME` and lazy.nvim
 -- loads the matching plugin on demand, so only the active theme is loaded.
--- `:Telescope colorscheme` still lists the unloaded ones.
+-- The colorschemes picker (<leader>sp) still lists the unloaded ones.
 return {
     {
         "navarasu/onedark.nvim",
