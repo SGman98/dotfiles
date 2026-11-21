@@ -95,3 +95,5 @@ The bootstrap script still offers to set them up.
 - [ ] Create the `docker` group (removed from `fish/conf.d/docker.fish`).
 - [ ] The unfinished `bin/dot` + `scripts/` rewrite lives on the
       `bootstrap-rewrite` branch.
+- [ ] Try Astral's `ty` in place of basedpyright once it reaches 1.0
+      (`nvim/lua/config/languages.lua`).

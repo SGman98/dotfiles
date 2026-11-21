@@ -1,3 +1,65 @@
+---Per-server settings, merged over lspconfig's defaults
+---@return table<string, vim.lsp.Config>
+local function server_settings()
+    local mason = vim.env.MASON or ""
+
+    -- Keep lspconfig's eslint on_attach (defines LspEslintFixAll) and fix on save
+    local eslint_on_attach = vim.lsp.config.eslint.on_attach
+
+    -- jdtls needs Java 25+ to run; projects keep their own JDK (mise.toml)
+    local jdtls_cmd = vim.lsp.config.jdtls.cmd --[[@as fun(dispatchers: vim.lsp.rpc.Dispatchers, config: vim.lsp.ClientConfig): vim.lsp.rpc.PublicClient]]
+
+    -- vue_ls handles templates; TypeScript inside .vue goes through ts_ls + this plugin
+    local vue_plugin = mason .. "/packages/vue-language-server/node_modules/@vue/language-server"
+    local has_vue = vim.uv.fs_stat(vue_plugin) ~= nil
+
+    return {
+        basedpyright = {
+            settings = {
+                basedpyright = {
+                    disableOrganizeImports = true,
+                    analysis = { typeCheckingMode = "standard" },
+                },
+            },
+        },
+        ruff = {
+            on_attach = function(client) client.server_capabilities.hoverProvider = false end, -- basedpyright provides hover
+        },
+        eslint = {
+            on_attach = function(client, bufnr)
+                if eslint_on_attach then eslint_on_attach(client, bufnr) end
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                    buffer = bufnr,
+                    command = "LspEslintFixAll",
+                })
+            end,
+        },
+        ts_ls = has_vue and {
+            filetypes = vim.list_extend(vim.deepcopy(vim.lsp.config.ts_ls.filetypes or {}), { "vue" }),
+            init_options = {
+                plugins = { { name = "@vue/typescript-plugin", location = vue_plugin, languages = { "vue" } } },
+            },
+        } or {},
+        jdtls = {
+            cmd = function(dispatchers, config)
+                local java_home = vim.trim(vim.fn.system({ "mise", "where", "java@temurin-25" }))
+                if vim.v.shell_error == 0 then
+                    config = vim.tbl_deep_extend("force", config, { cmd_env = { JAVA_HOME = java_home } })
+                else
+                    vim.notify("jdtls: Java 25 not found, run `mise install`", vim.log.levels.WARN)
+                end
+                return jdtls_cmd(dispatchers, config)
+            end,
+        },
+        gopls = {
+            settings = { gopls = { gofumpt = true } },
+        },
+        tinymist = {
+            settings = { exportPdf = "onType", formatterMode = "typstyle" },
+        },
+    }
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
     desc = "LSP Actions",
     group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
@@ -29,67 +91,37 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 return {
-    "neovim/nvim-lspconfig",
-    cmd = "LspInfo",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-        { "hrsh7th/cmp-nvim-lsp" },
-        { "mason-org/mason-lspconfig.nvim" },
-        { "mason-org/mason.nvim", build = ":MasonUpdate" },
-    },
+    {
+        "neovim/nvim-lspconfig",
+        cmd = "LspInfo",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            { "hrsh7th/cmp-nvim-lsp" },
+            { "mason-org/mason.nvim" },
+        },
 
-    config = function()
-        -- Applies to every server
-        vim.lsp.config("*", {
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
-        })
+        config = function()
+            -- Applies to every server
+            vim.lsp.config("*", {
+                capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            })
 
-        -- Keep lspconfig's eslint on_attach (defines LspEslintFixAll) and fix on save
-        local eslint_on_attach = vim.lsp.config.eslint.on_attach
-        vim.lsp.config("eslint", {
-            on_attach = function(client, bufnr)
-                if eslint_on_attach then eslint_on_attach(client, bufnr) end
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                    buffer = bufnr,
-                    command = "LspEslintFixAll",
-                })
-            end,
-        })
+            for name, config in pairs(server_settings()) do
+                vim.lsp.config(name, config)
+            end
+            vim.lsp.enable(require("config.tools").list("lsp"))
 
-        vim.lsp.config("tinymist", {
-            settings = {
-                exportPdf = "onType",
-            },
-        })
-
-        require("mason").setup({})
-        -- Installed servers are enabled automatically (automatic_enable)
-        require("mason-lspconfig").setup({
-            ensure_installed = {
-                "bashls",
-                "eslint",
-                "lua_ls",
-                "ruff",
-                "taplo",
-                "tinymist",
-                "ts_ls",
-            },
-            automatic_enable = {
-                -- rust-analyzer is managed by rustaceanvim, stylua runs through conform
-                exclude = { "rust_analyzer", "stylua" },
-            },
-        })
-
-        vim.diagnostic.config({
-            virtual_lines = { current_line = true },
-            signs = {
-                text = {
-                    [vim.diagnostic.severity.ERROR] = " ",
-                    [vim.diagnostic.severity.WARN] = " ",
-                    [vim.diagnostic.severity.HINT] = " ",
-                    [vim.diagnostic.severity.INFO] = " ",
+            vim.diagnostic.config({
+                virtual_lines = { current_line = true },
+                signs = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = " ",
+                        [vim.diagnostic.severity.WARN] = " ",
+                        [vim.diagnostic.severity.HINT] = " ",
+                        [vim.diagnostic.severity.INFO] = " ",
+                    },
                 },
-            },
-        })
-    end,
+            })
+        end,
+    },
 }

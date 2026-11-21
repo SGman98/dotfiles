@@ -2,7 +2,8 @@
 usage = "latest"
 node = "lts-jod"
 uv = "latest"
-java = "temurin-17"
+# 17 for projects (first on PATH); 25 only runs jdtls (nvim)
+java = ["temurin-17", "temurin-25"]
 maven = "3.9"
 
 [settings]

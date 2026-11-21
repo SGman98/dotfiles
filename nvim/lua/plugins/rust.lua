@@ -13,6 +13,8 @@ return {
                     },
                 },
                 server = {
+                    -- rustup's rust-analyzer proxy is first on PATH but not installed
+                    cmd = function() return { vim.env.MASON and vim.env.MASON .. "/bin/rust-analyzer" or "rust-analyzer" } end,
                     default_settings = {
                         ["rust-analyzer"] = {
                             lens = {
