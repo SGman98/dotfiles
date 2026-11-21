@@ -1,12 +1,6 @@
-# Repo tooling: `mise install`, then `mise run lint` or `mise run fmt`.
-# (mise/config.toml is the global mise config, linked into ~/.config/mise.)
-
-[tools]
-shellcheck = "latest"
-shfmt = "latest"
-stylua = "latest"
-taplo = "latest"
-lua-language-server = "latest"
+# The tools come from Neovim's Mason install: open nvim once first
+[env]
+_.path = ["{{env.HOME}}/.local/share/nvim/mason/bin"]
 
 [tasks.lint]
 env = { RUST_LOG = "warn" }
