@@ -3,6 +3,8 @@
 
 # Configurable variable for tmux session file
 TMUX_SESSION_FILE="${TMUX_SESSION_FILE:-.tmux.sh}"
+# Session files that were reviewed and allowed, as `<sha256>  <path>` lines
+TMUX_USE_ALLOW_FILE="${TMUX_USE_ALLOW_FILE:-${XDG_DATA_HOME:-$HOME/.local/share}/tmux-use/allowed}"
 
 # tmux is mandatory
 if ! command -v tmux &>/dev/null; then
@@ -72,9 +74,43 @@ esac
 PROJECT_DIR=${PROJECT_DIR:-$PWD}
 SESSION_NAME=${SESSION_NAME:-$(get_cwd_session_name)}
 
-# TODO: only source allowlisted session files (like `direnv allow`), a cloned
-# repo with a .tmux.sh currently runs arbitrary code when selected
-[ -f "$TMUX_SESSION_FILE" ] && . "$TMUX_SESSION_FILE"
+# Session files are code: only source them once reviewed and allowed (like
+# `direnv allow`). Any change to the file asks again.
+load_session_file() {
+	local file="$PROJECT_DIR/$TMUX_SESSION_FILE" hash answer
+	[ -f "$file" ] || return 0
+
+	hash=$(sha256sum "$file" | cut -d " " -f 1)
+	if grep -qxF "$hash  $file" "$TMUX_USE_ALLOW_FILE" 2>/dev/null; then
+		. "$file"
+		return
+	fi
+
+	if [ ! -t 0 ]; then
+		echo "Skipping $file: not allowed yet, run tmux-use from a terminal to review it" >&2
+		return 0
+	fi
+
+	echo "$file is new or changed since it was last allowed:"
+	echo
+	bat --paging=never --style=numbers,header --language=bash "$file" 2>/dev/null ||
+		cat -n "$file"
+	echo
+	read -rp "Allow and run it? [y/N] " answer
+	case "$answer" in
+		[Yy] | [Yy][Ee][Ss])
+			mkdir -p "$(dirname "$TMUX_USE_ALLOW_FILE")"
+			touch "$TMUX_USE_ALLOW_FILE"
+			# Replace any previous hash for this path
+			awk -v f="$file" 'substr($0, 67) != f' "$TMUX_USE_ALLOW_FILE" >"$TMUX_USE_ALLOW_FILE.tmp"
+			echo "$hash  $file" >>"$TMUX_USE_ALLOW_FILE.tmp"
+			mv "$TMUX_USE_ALLOW_FILE.tmp" "$TMUX_USE_ALLOW_FILE"
+			. "$file"
+			;;
+		*) echo "Skipping $file" >&2 ;;
+	esac
+}
+load_session_file
 
 case "${@:-setup}" in
 	*setup*)

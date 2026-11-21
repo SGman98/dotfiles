@@ -70,5 +70,3 @@ The bootstrap script still offers to set them up.
         of `log::important`.
   - [ ] Skip deprecated modules.
   - [ ] Create the `docker` group (removed from `fish/conf.d/docker.fish`).
-- [ ] `bin/tmux-use`: only source allowlisted `.tmux.sh` files (like
-      `direnv allow`).
