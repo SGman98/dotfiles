@@ -10,10 +10,24 @@ case "$1" in
 		confirm "Do you want to setup neovim?" "Y" || abort "Aborting..."
 		install_package "neovim" || abort "Failed to install neovim"
 
-		check_path_link "$HOME/.config/nvim/init.lua" "$HOME/.dotfiles/nvim/init.lua"
-		check_path_link "$HOME/.config/nvim/lua" "$HOME/.dotfiles/nvim/lua"
-		check_path_link "$HOME/.config/nvim/after" "$HOME/.dotfiles/nvim/after"
-		check_path_link "$HOME/.config/nvim/lazy-lock.json" "$HOME/.dotfiles/nvim/lazy-lock.json"
+		# Older setups linked each item into a real ~/.config/nvim: remove those
+		# links and move its local files (e.g. spell/) into the repo
+		if [[ -d $HOME/.config/nvim && ! -L $HOME/.config/nvim ]]; then
+			info "Migrating $HOME/.config/nvim to a single symlink"
+			shopt -s nullglob dotglob
+			for item in "$HOME/.config/nvim"/*; do
+				if [[ -L $item && $(readlink -f "$item") == "$HOME/.dotfiles/nvim/"* ]]; then
+					rm "$item"
+				elif [[ -e $HOME/.dotfiles/nvim/$(basename "$item") ]]; then
+					warn "$(basename "$item") exists in both, leaving it in the backup"
+				else
+					mv "$item" "$HOME/.dotfiles/nvim/" || abort "Failed to move $item"
+				fi
+			done
+			shopt -u nullglob dotglob
+			rmdir "$HOME/.config/nvim" 2>/dev/null
+		fi
+		check_path_link "$HOME/.config/nvim" "$HOME/.dotfiles/nvim"
 
 		success "Setup correctly"
 		;;

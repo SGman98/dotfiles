@@ -1,0 +1,3 @@
+# Local files nvim writes into its config folder (~/.config/nvim links here).
+# Not an allowlist (`/*` + `!/lua/`): lua-language-server would skip every file.
+/spell/
