@@ -77,9 +77,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
         map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
         map("n", "<leader>lh", vim.lsp.buf.hover, "Hover")
-        -- Formatting is <leader>ff from conform (plugins/format.lua)
 
-        -- Reference highlighting under the cursor is done by snacks.words
         local client = vim.lsp.get_client_by_id(event.data.client_id)
 
         -- Handle Inlay Hints
