@@ -1,28 +1,17 @@
--- All lazy: config/theme.lua runs `:colorscheme $NVIM_THEME` and lazy.nvim
--- loads the matching plugin on demand, so only the active theme is loaded.
--- The colorschemes picker (<leader>sp) still lists the unloaded ones.
+-- Catppuccin Mocha everywhere: terminal, tmux, fish, bat and nvim
 return {
-    {
-        "navarasu/onedark.nvim",
-        lazy = true,
-        opts = {
-            style = "darker",
-            transparent = true,
-            lualine = {
-                transparent = true,
-            },
-        },
-    },
     {
         "catppuccin/nvim",
         name = "catppuccin",
-        lazy = true,
+        lazy = false,
+        priority = 1000,
         opts = {
+            flavour = "mocha",
             transparent_background = true,
         },
-    },
-    {
-        "folke/tokyonight.nvim",
-        lazy = true,
+        config = function(_, opts)
+            require("catppuccin").setup(opts)
+            vim.cmd.colorscheme("catppuccin")
+        end,
     },
 }
