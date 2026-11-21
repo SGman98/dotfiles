@@ -76,14 +76,6 @@ return {
         opts = {},
     },
     {
-        "lukas-reineke/indent-blankline.nvim",
-        event = { "BufReadPre", "BufNewFile" },
-        main = "ibl",
-        opts = {
-            scope = { enabled = false },
-        },
-    },
-    {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
         cmd = { "TodoTelescope" },
