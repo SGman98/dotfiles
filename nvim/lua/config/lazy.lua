@@ -19,6 +19,8 @@ require("lazy").setup({
     spec = { { import = "plugins" } },
     -- defaults = { version = "*" },
     checker = { enabled = true, notify = false },
+    -- No plugin needs luarocks, so skip the hererocks setup and its health errors
+    rocks = { enabled = false },
     performance = {
         rtp = {
             -- paths = { vim.fn.stdpath("data") .. "/site" },
