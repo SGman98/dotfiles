@@ -22,6 +22,8 @@ return {
             -- Highlight LSP references of the word under the cursor
             words = { enabled = true },
             statuscolumn = { enabled = not vim.g.vscode },
+            -- Lighter mode for huge or minified files (>1.5MB or long lines)
+            bigfile = { enabled = true },
         },
         keys = {
             { "<leader>nh", function() Snacks.notifier.show_history() end, desc = "Notification history" },
