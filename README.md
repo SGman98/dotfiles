@@ -47,3 +47,28 @@ curl -sL https://git.io/fisher | source && fisher update
 sudo pacman -S rustup
 rustup default stable
 ```
+
+## Deprecated
+
+These configs are kept for reference but are no longer maintained. They need
+attention before using them again.
+
+- `zsh/`: replaced by fish.
+- `alacritty/`: unused on WSL. The `.yml` config format was dropped in
+  alacritty 0.13 and must be migrated to `.toml`.
+
+The bootstrap script still offers to set them up.
+
+## TODO
+
+- [ ] Bootstrap: finish the `bin/dot` + `scripts/` rewrite and remove
+      `functions.sh` + `*/manage.sh`, or drop the rewrite.
+  - [ ] `bootstrap.sh` logs to `~/.bootstrap.log` but checks
+        `~/bootstrap.log`, and the check is inverted.
+  - [ ] `scripts/path.sh`: `log::abot` typo.
+  - [ ] `scripts/utils.sh`: calls `important` (from `functions.sh`) instead
+        of `log::important`.
+  - [ ] Skip deprecated modules.
+  - [ ] Create the `docker` group (removed from `fish/conf.d/docker.fish`).
+- [ ] `bin/tmux-use`: only source allowlisted `.tmux.sh` files (like
+      `direnv allow`).
