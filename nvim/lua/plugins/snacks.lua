@@ -19,9 +19,13 @@ return {
                 enabled = true,
                 top_down = false, -- stack from the bottom
             },
+            -- Highlight LSP references of the word under the cursor
+            words = { enabled = true },
         },
         keys = {
             { "<leader>nh", function() Snacks.notifier.show_history() end, desc = "Notification history" },
+            { "]r", function() Snacks.words.jump(vim.v.count1) end, desc = "Next reference" },
+            { "[r", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev reference" },
         },
     },
 }
