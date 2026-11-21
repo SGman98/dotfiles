@@ -43,7 +43,12 @@ for pkg in "${pkgs[@]}"; do
 	install_package "$pkg" || warn "Failed to install $pkg"
 done
 
-# if uname -r | grep -q microsoft; then
-# 	install_package "wsl-open" || warn "Failed to install wsl-open"
-# 	sudo ln -s "/usr/bin/wsl-open" "/usr/bin/xdg-open" || warn "Failed to link xdg-open"
-# fi
+# ssh-agent as a systemd user socket, keys are added on first use
+if command -v systemctl &>/dev/null && systemctl --user list-unit-files ssh-agent.socket &>/dev/null; then
+	systemctl --user enable --now ssh-agent.socket || warn "Failed to enable ssh-agent.socket"
+fi
+mkdir -p "$HOME/.ssh" && chmod 700 "$HOME/.ssh"
+if ! grep -qs "AddKeysToAgent" "$HOME/.ssh/config"; then
+	printf '\nHost *\n    AddKeysToAgent yes\n' >>"$HOME/.ssh/config"
+	chmod 600 "$HOME/.ssh/config"
+fi
