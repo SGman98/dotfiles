@@ -12,7 +12,7 @@ return {
                 lualine_b = { "branch", "diff", "diagnostics" },
                 lualine_c = { myFunc.show_macro_recording, "filename" },
                 lualine_x = { "encoding", "fileformat", "filetype" },
-                lualine_y = { myFunc.get_lsp_client, myFunc.get_null_client },
+                lualine_y = { myFunc.get_lsp_client, myFunc.get_format_tools },
                 lualine_z = { "progress", "location" },
             },
         },

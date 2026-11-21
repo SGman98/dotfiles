@@ -1,48 +1,24 @@
 local M = {}
 
 function M.get_lsp_client()
-    local clients = vim.lsp.get_clients({ bufnr = 0 })
-    local buf_client_names = {}
-    for _, client in ipairs(clients) do
-        if client.name ~= "null-ls" then table.insert(buf_client_names, client.name) end
-    end
-    return table.concat(buf_client_names, ", ")
+    local names = vim.tbl_map(function(client) return client.name end, vim.lsp.get_clients({ bufnr = 0 }))
+    return table.concat(names, ", ")
 end
 
-function M.null_ls_sources(filetype, method)
-    local registered = {}
-    local sources_avail, sources = pcall(require, "null-ls.sources")
-
-    if sources_avail then
-        for _, source in ipairs(sources.get_available(filetype)) do
-            for source_method in pairs(source.methods) do
-                registered[source_method] = registered[source_method] or {}
-                table.insert(registered[source_method], source.name)
-            end
+-- Formatters and linters that run for the current buffer (conform, nvim-lint)
+function M.get_format_tools()
+    local names = {}
+    local conform_ok, conform = pcall(require, "conform")
+    if conform_ok then
+        local formatters, uses_lsp = conform.list_formatters_to_run(0)
+        for _, formatter in ipairs(formatters) do
+            table.insert(names, formatter.name)
         end
+        if uses_lsp and #formatters == 0 then table.insert(names, "lsp") end
     end
-
-    local methods_avail, methods = pcall(require, "null-ls.methods")
-    return methods_avail and registered[methods.internal[method]] or {}
-end
-
-function M.get_null_client()
-    local clients = vim.lsp.get_clients({ bufnr = 0 })
-    local ft = vim.api.nvim_get_option_value("filetype", { buf = vim.api.nvim_get_current_buf() })
-
-    local buf_client_names = {}
-    for _, client in ipairs(clients) do
-        if client.name == "null-ls" then
-            local null_ls_sources_table = {}
-            for _, type in ipairs({ "FORMATTING", "DIAGNOSTICS" }) do
-                for _, source in ipairs(M.null_ls_sources(ft, type)) do
-                    null_ls_sources_table[source] = true
-                end
-            end
-            vim.list_extend(buf_client_names, vim.tbl_keys(null_ls_sources_table))
-        end
-    end
-    return table.concat(buf_client_names, ", ")
+    local lint_ok, lint = pcall(require, "lint")
+    if lint_ok then vim.list_extend(names, lint.linters_by_ft[vim.bo.filetype] or {}) end
+    return table.concat(names, ", ")
 end
 
 function M.show_macro_recording()
@@ -52,15 +28,6 @@ function M.show_macro_recording()
     else
         return "Recording @" .. recording_register
     end
-end
-
-function M.format()
-    local excluded_servers = { "eslint", "sqls", "ts_ls" }
-    vim.lsp.buf.format({
-        async = false,
-        timeout_ms = 10000,
-        filter = function(client) return not vim.tbl_contains(excluded_servers, client.name) end,
-    })
 end
 
 function M.get_code_snippets()

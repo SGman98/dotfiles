@@ -1,5 +1,3 @@
-local myFunc = require("config.functions")
-
 vim.api.nvim_create_autocmd("LspAttach", {
     desc = "LSP Actions",
     group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
@@ -16,8 +14,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
         map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
         map("n", "<leader>lh", vim.lsp.buf.hover, "Hover")
-        -- Formatting
-        map({ "n", "v" }, "<leader>ff", myFunc.format, "Format")
+        -- Formatting is <leader>ff from conform (plugins/format.lua)
 
         -- Reference highlighting under the cursor is done by snacks.words
         local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -78,7 +75,7 @@ return {
                 "ts_ls",
             },
             automatic_enable = {
-                -- rust-analyzer is managed by rustaceanvim, stylua runs through none-ls
+                -- rust-analyzer is managed by rustaceanvim, stylua runs through conform
                 exclude = { "rust_analyzer", "stylua" },
             },
         })
