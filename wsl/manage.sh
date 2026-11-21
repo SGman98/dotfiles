@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# shellcheck source=../functions.sh
 source "$HOME/.dotfiles/functions.sh"
 
 PROMPT="::wsl-BOOTSTRAP::"

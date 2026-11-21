@@ -1,0 +1,4 @@
+# Scripts source $HOME/.dotfiles/functions.sh, resolve it from the repo
+source-path=SCRIPTDIR
+source-path=SCRIPTDIR/..
+external-sources=true

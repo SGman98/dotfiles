@@ -66,6 +66,17 @@ sudo pacman -S rustup
 rustup default stable
 ```
 
+## Lint & format
+
+The repo's `mise.toml` pins shellcheck, shfmt, stylua and taplo (fish_indent
+ships with fish):
+
+```sh
+mise install
+mise run lint # check everything
+mise run fmt  # format everything
+```
+
 ## Deprecated
 
 These configs are kept for reference but are no longer maintained. They need

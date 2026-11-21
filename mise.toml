@@ -1,0 +1,29 @@
+# Repo tooling: `mise install`, then `mise run lint` or `mise run fmt`.
+# (mise/config.toml is the global mise config, linked into ~/.config/mise.)
+
+[tools]
+shellcheck = "latest"
+shfmt = "latest"
+stylua = "latest"
+taplo = "latest"
+
+[tasks.lint]
+env = { RUST_LOG = "warn" }
+description = "Check shell, Lua, TOML and fish files"
+run = [
+  "shellcheck $(git ls-files '*.sh') bin/tmux-use",
+  "shfmt --diff $(git ls-files '*.sh') bin/tmux-use",
+  "stylua --check nvim",
+  "taplo fmt --check $(git ls-files '*.toml')",
+  "fish_indent --check $(git ls-files '*.fish')",
+]
+
+[tasks.fmt]
+env = { RUST_LOG = "warn" }
+description = "Format shell, Lua, TOML and fish files"
+run = [
+  "shfmt --write $(git ls-files '*.sh') bin/tmux-use",
+  "stylua nvim",
+  "taplo fmt $(git ls-files '*.toml')",
+  "fish_indent --write $(git ls-files '*.fish')",
+]
