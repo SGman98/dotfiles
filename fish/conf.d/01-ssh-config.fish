@@ -4,8 +4,10 @@
 # Old versions of this file exported the agent as universal variables.
 set -qU SSH_AUTH_SOCK; and set -eU SSH_AUTH_SOCK SSH_AGENT_PID
 
-if test -S "$XDG_RUNTIME_DIR/ssh-agent.socket"
-    set -gx SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
+# On systemd hosts the socket may not exist yet when the first login shell
+# starts (WSL boots both in the same second), so check for systemd itself.
+if set -q XDG_RUNTIME_DIR; and test -d /run/systemd/system
+    set -gx SSH_AUTH_SOCK (string trim -r -c / -- $XDG_RUNTIME_DIR)/ssh-agent.socket
 else if status is-interactive; and not set -q SSH_AUTH_SOCK
     eval (ssh-agent -c) >/dev/null
 end
