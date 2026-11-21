@@ -41,6 +41,17 @@ wsl.exe --shutdown
 
 Open neovim to start installing the plugins
 
+### Claude Code
+
+`claude/manage.sh` installs Claude Code and the sandbox dependencies
+(bubblewrap, socat), links `CLAUDE.md`, `settings.json` and `statusline.sh` into
+`~/.claude`, and installs the plugins declared in `settings.json`. Everything
+else in `~/.claude` (login, history, memory, plugin cache) stays local. Then
+run `claude`, log in, and check the setup with `/sandbox` and `/doctor`.
+
+Claude Code rewrites `settings.json` (plugin installs, `/config`) in its own
+JSON layout, so keep that layout; `.prettierignore` stops Neovim reformatting it.
+
 ### Tmux & Tmux Plugin Manager
 
 Within tmux, press `prefix + I` to install the plugins
