@@ -30,12 +30,13 @@ pkgs=(
 	typst      # Simplified TeX
 	unzip      # ZIP files extractor
 	zip        # ZIP files
+	zoxide     # Smarter `cd` that remembers directories
 
 	# Fun
 	cowsay      # Cow that says things
 	lolcat      # Rainbow colors
 	figlet      # ASCII art
-	neofetch    # System info
+	fastfetch   # System info
 	fortune-mod # Random quotes
 )
 

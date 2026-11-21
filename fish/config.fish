@@ -24,4 +24,9 @@ if status is-interactive
 
     # ---- GPG ----
     set -gx GPG_TTY (tty)
+
+    # ---- Zoxide ----
+    if command -v zoxide &>/dev/null
+        zoxide init fish | source
+    end
 end

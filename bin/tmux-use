@@ -11,14 +11,11 @@ if ! command -v tmux &>/dev/null; then
 fi
 
 get_zoxide_results() {
-	if command -v fish &>/dev/null; then
-		fish -c "z --list | awk '{print \$2}'"
-	elif command -v zoxide &>/dev/null; then
-		zoxide query -l
-	else
-		echo "zoxide not found" >&2
+	if ! command -v zoxide &>/dev/null; then
+		echo "zoxide is not installed" >&2
 		exit 1
 	fi
+	zoxide query -l
 }
 
 select_project() {
