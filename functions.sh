@@ -138,13 +138,13 @@ config_ssh() {
 	fi
 }
 manage() {
-	sh "$HOME/.dotfiles/packages.sh" || abort "Failed to install packages"
+	"$HOME/.dotfiles/packages.sh" || abort "Failed to install packages"
 
 	for file in "$HOME/.dotfiles/"*/manage.sh; do
 		if [[ -f "$file" ]]; then
 			NAME=$(basename "$(dirname "$file")")
 			info "Running $1 for $NAME"
-			sh "$file" "$1" || warn "Failed to run $file"
+			"$file" "$1" || warn "Failed to run $file"
 		fi
 	done
 }
