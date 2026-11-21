@@ -8,3 +8,6 @@ Session.vim
 
 ### Tmux session ###
 .tmux.sh
+
+### Claude Code ###
+**/.claude/.cc-writes/
