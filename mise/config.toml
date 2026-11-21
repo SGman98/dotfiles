@@ -1,9 +1,12 @@
 [tools]
 usage = "latest"
-node = "lts-hydrogen"
+node = "lts-jod"
 uv = "latest"
+java = "temurin-17"
+maven = "3.9"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
 experimental = true
 python.uv_venv_auto = true
+auto_update = true
