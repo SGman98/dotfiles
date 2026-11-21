@@ -62,7 +62,9 @@ check_path_link() {
 	ln -s "$DOTFILES_PATH" "$LOCAL_PATH" || abort "Failed to create symlink $LOCAL_PATH -> $DOTFILES_PATH"
 	success "Symlink created correctly $LOCAL_PATH -> $DOTFILES_PATH"
 }
-check_package() { pacman -Qs "$1" &>/dev/null; }
+# Exact name match: `pacman -Qs` is a regex search over names and
+# descriptions, so e.g. `zip` would match an installed `unzip`
+check_package() { pacman -Q "$1" &>/dev/null; }
 install_package() {
 	NAME=$1
 	CONFIRM=$2
@@ -95,7 +97,7 @@ install_aur_helper() {
 	fi
 }
 config_gpg() {
-	if install_package "gpg"; then
+	if install_package "gnupg"; then
 		info "Creating gpg key"
 		select opt in "New" "Existing"; do
 			case $opt in
@@ -124,12 +126,12 @@ config_gpg() {
 	fi
 }
 config_ssh() {
-	if install_package "ssh"; then
+	if install_package "openssh"; then
 		info "Creating ssh key"
 		ask "Enter your email for ssh key: "
 		ssh-keygen -t ed25519 -C "$RES"
-		eval "$(ssh-agent -s)"
-		ssh-add ~/.ssh/id_ed25519
+		# No agent here: packages.sh enables the systemd ssh-agent.socket and
+		# `AddKeysToAgent yes` adds the key on first use
 		info "ssh key created"
 		important "Copy this key and add it to github at https://github.com/settings/keys"
 		cat ~/.ssh/id_ed25519.pub

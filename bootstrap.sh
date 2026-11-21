@@ -21,8 +21,5 @@ confirm "Would you like to configure ssh?" "Y" && config_ssh
 
 manage "setup"
 
-if ! grep -q "$PROMPT End of bootstrap script" "$HOME/bootstrap.log" &>/dev/null; then
-	success "End of bootstrap script"
-	info "Please restart your shell to apply changes"
-	exit 0
-fi
+success "End of bootstrap script"
+info "Please restart your shell to apply changes"
