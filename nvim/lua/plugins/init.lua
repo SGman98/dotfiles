@@ -81,7 +81,7 @@ return {
         opts = {},
         keys = {
             -- The key loads todo-comments, which registers this snacks source
-            { "<leader>sT", function() Snacks.picker.todo_comments() end, desc = "Search TODOs" },
+            { "<leader>sT", function() Snacks.picker.pick("todo_comments") end, desc = "Search TODOs" },
         },
     },
     {
