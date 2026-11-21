@@ -12,6 +12,7 @@ setup)
 	check_path_link "$HOME/.config/nvim/init.lua" "$HOME/.dotfiles/nvim/init.lua"
 	check_path_link "$HOME/.config/nvim/lua" "$HOME/.dotfiles/nvim/lua"
 	check_path_link "$HOME/.config/nvim/after" "$HOME/.dotfiles/nvim/after"
+	check_path_link "$HOME/.config/nvim/lazy-lock.json" "$HOME/.dotfiles/nvim/lazy-lock.json"
 
 	success "Setup correctly"
 	;;
