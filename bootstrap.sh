@@ -5,7 +5,7 @@ source "$HOME/.dotfiles/functions.sh"
 info "Starting bootstrap script..."
 
 info "Make sure to have base-devel and git installed"
-info "Set you ssh and gpg keys before running this script"
+info "Set your ssh and gpg keys before running this script"
 
 # Ask for root privileges
 if [[ $EUID -ne 0 ]]; then

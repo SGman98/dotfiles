@@ -3,7 +3,7 @@
 > Currently using [ArchWSL](https://wsldl-pg.github.io/ArchW-docs/How-to-Setup/)
 > Set XDG Base Directory if not set using a /etc/profile.d [script](https://github.com/Conaclos/profile.d/blob/master/10-xdg-base-dirs.sh)
 
-## Dotfiles Instalation
+## Dotfiles Installation
 
 > For the moment it only works on Arch based distros
 
@@ -23,7 +23,19 @@ Clone the repo
 git clone https://github.com/SGman98/dotfiles.git $HOME/.dotfiles
 ```
 
-Then run then bootstrap.sh script
+Then run the `bootstrap.sh` script. It installs the packages in `packages.sh`
+and runs `<module>/manage.sh setup` for every module, asking before each one.
+
+### WSL
+
+`wsl/manage.sh` turns off `appendWindowsPath` in `/etc/wsl.conf`, which keeps
+the slow `/mnt/c` dirs out of `PATH`. It links only the Windows tools used from
+Linux (`code`, `explorer.exe`, `clip.exe`, `wsl.exe`, `winget.exe`) into
+`~/.local/bin`. Restart WSL afterwards:
+
+```sh
+wsl.exe --shutdown
+```
 
 ### Neovim
 
@@ -40,6 +52,12 @@ curl -sL https://git.io/fisher | source && fisher update
 ```
 
 ## Install Languages
+
+Node, Python (uv), Java and Maven are managed by mise (`mise/config.toml`):
+
+```sh
+mise install
+```
 
 ### Rust
 
@@ -61,12 +79,8 @@ The bootstrap script still offers to set them up.
 
 ## TODO
 
-- [ ] Bootstrap: finish the `bin/dot` + `scripts/` rewrite and remove
-      `functions.sh` + `*/manage.sh`, or drop the rewrite.
-  - [ ] `bootstrap.sh` logs to `~/.bootstrap.log` but checks
-        `~/bootstrap.log`, and the check is inverted.
-  - [ ] `scripts/path.sh`: `log::abot` typo.
-  - [ ] `scripts/utils.sh`: calls `important` (from `functions.sh`) instead
-        of `log::important`.
-  - [ ] Skip deprecated modules.
-  - [ ] Create the `docker` group (removed from `fish/conf.d/docker.fish`).
+- [ ] Bootstrap: skip deprecated modules, and treat declining a module as a
+      skip instead of a failure.
+- [ ] Create the `docker` group (removed from `fish/conf.d/docker.fish`).
+- [ ] The unfinished `bin/dot` + `scripts/` rewrite lives on the
+      `bootstrap-rewrite` branch.
