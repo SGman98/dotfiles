@@ -2,16 +2,8 @@ return {
     {
         "folke/noice.nvim",
         event = "VeryLazy",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            {
-                "rcarriga/nvim-notify",
-                opts = {
-                    background_colour = "#000000",
-                    top_down = false,
-                },
-            },
-        },
+        -- Notifications are rendered by snacks.notifier (see snacks.lua)
+        dependencies = { "MunifTanjim/nui.nvim" },
         opts = {
             cmdline = {
                 format = {

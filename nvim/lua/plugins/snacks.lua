@@ -15,6 +15,13 @@ return {
                 indent = { hl = "IblIndent" },
                 scope = { hl = "IblScope" },
             },
+            notifier = {
+                enabled = true,
+                top_down = false, -- stack from the bottom
+            },
+        },
+        keys = {
+            { "<leader>nh", function() Snacks.notifier.show_history() end, desc = "Notification history" },
         },
     },
 }
