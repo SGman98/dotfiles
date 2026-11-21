@@ -17,6 +17,7 @@ abbr -a v $EDITOR
 abbr -a vim $EDITOR
 abbr -a vs nvim -S
 
+fish_add_path -m $HOME/.local/bin
 fish_add_path -m $HOME/.dotfiles/bin
 
 if status is-interactive
