@@ -68,14 +68,18 @@ rustup default stable
 
 ## Lint & format
 
-The repo's `mise.toml` pins shellcheck, shfmt, stylua and taplo (fish_indent
-ships with fish):
+The repo's `mise.toml` pins shellcheck, shfmt, stylua, taplo and
+lua-language-server (fish_indent ships with fish):
 
 ```sh
 mise install
-mise run lint # check everything
-mise run fmt  # format everything
+mise run lint     # check everything (includes lint:lua)
+mise run lint:lua # type-check the Neovim config, as lua_ls sees it in the editor
+mise run fmt      # format everything
 ```
+
+`lint:lua` reads the installed plugins for their types, so run `:Lazy sync`
+first on a new machine.
 
 ## Deprecated
 

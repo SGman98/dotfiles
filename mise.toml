@@ -6,10 +6,12 @@ shellcheck = "latest"
 shfmt = "latest"
 stylua = "latest"
 taplo = "latest"
+lua-language-server = "latest"
 
 [tasks.lint]
 env = { RUST_LOG = "warn" }
 description = "Check shell, Lua, TOML and fish files"
+depends = ["lint:lua"]
 run = [
   "shellcheck $(git ls-files '*.sh') bin/tmux-use",
   "shfmt --diff $(git ls-files '*.sh') bin/tmux-use",
@@ -17,6 +19,22 @@ run = [
   "taplo fmt --check $(git ls-files '*.toml')",
   "fish_indent --check $(git ls-files '*.fish')",
 ]
+
+# Same libraries lazydev gives lua_ls in the editor, so plugins must be installed
+[tasks."lint:lua"]
+description = "Type-check the Neovim config with lua-language-server"
+run = '''
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+cat > "$tmp/luarc.lua" <<'LUA'
+local lib = { vim.env.VIMRUNTIME .. "/lua", "${3rd}/luv/library" }
+vim.list_extend(lib, vim.fn.glob(vim.fn.stdpath("data") .. "/lazy/*/lua", false, true))
+local rc = { runtime = { version = "LuaJIT" }, workspace = { library = lib, checkThirdParty = false } }
+vim.fn.writefile({ vim.json.encode(rc) }, arg[1])
+LUA
+nvim --headless -l "$tmp/luarc.lua" "$tmp/luarc.json"
+lua-language-server --check="$PWD/nvim" --checklevel=Hint --configpath="$tmp/luarc.json" --logpath="$tmp"
+'''
 
 [tasks.fmt]
 env = { RUST_LOG = "warn" }
