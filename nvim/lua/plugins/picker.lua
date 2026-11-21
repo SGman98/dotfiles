@@ -32,6 +32,7 @@ return {
             { "<leader>sp", pick("pickers"), desc = "Search pickers" },
             { "<leader>sl", pick("loclist"), desc = "Search loclist" },
             { "z=", pick("spelling"), desc = "Spell suggest" },
+            { "<leader>u", pick("undo"), desc = "Undo history" },
             -- LSP PICKERS
             { "<leader>ld", pick("lsp_definitions"), desc = "Go to definition" },
             { "<leader>lr", pick("lsp_references"), desc = "Search references" },
