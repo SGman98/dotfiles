@@ -101,26 +101,26 @@ config_gpg() {
 		info "Creating gpg key"
 		select opt in "New" "Existing"; do
 			case $opt in
-			"New")
-				gpg --full-generate-key
-				gpg --list-secret-keys --keyid-format LONG
-				ID=$(gpg --list-secret-keys --keyid-format LONG | grep sec | cut -d "/" -f 2 | cut -d " " -f 1)
-				important "Please copy this key and add it to github at https://github.com/settings/keys"
-				gpg --armor --export "$ID"
-				break
-				;;
-			"Existing")
-				askpath "Enter path to gpg private key (leave empty to skip): "
-				if [ -n "$RES" ]; then
-					gpg --import "$RES"
-				fi
-				askpath "Enter path to gpg public key (leave empty to skip): "
-				if [ -n "$RES" ]; then
-					gpg --import "$RES"
-				fi
-				break
-				;;
-			*) abort "Invalid option" ;;
+				"New")
+					gpg --full-generate-key
+					gpg --list-secret-keys --keyid-format LONG
+					ID=$(gpg --list-secret-keys --keyid-format LONG | grep sec | cut -d "/" -f 2 | cut -d " " -f 1)
+					important "Please copy this key and add it to github at https://github.com/settings/keys"
+					gpg --armor --export "$ID"
+					break
+					;;
+				"Existing")
+					askpath "Enter path to gpg private key (leave empty to skip): "
+					if [ -n "$RES" ]; then
+						gpg --import "$RES"
+					fi
+					askpath "Enter path to gpg public key (leave empty to skip): "
+					if [ -n "$RES" ]; then
+						gpg --import "$RES"
+					fi
+					break
+					;;
+				*) abort "Invalid option" ;;
 			esac
 		done
 	fi

@@ -26,37 +26,37 @@ win_tools() {
 }
 
 case "$1" in
-setup)
-	grep -qi microsoft /proc/version || {
-		info "Not running on WSL, skipping"
-		exit 0
-	}
-	confirm "Do you want to setup WSL?" "Y" || abort "Aborting..."
+	setup)
+		grep -qi microsoft /proc/version || {
+			info "Not running on WSL, skipping"
+			exit 0
+		}
+		confirm "Do you want to setup WSL?" "Y" || abort "Aborting..."
 
-	mkdir -p "$LINK_DIR"
-	while read -r name target; do
-		if [[ -e $target ]]; then
-			ln -sfn "$target" "$LINK_DIR/$name" && success "Linked $name"
-		else
-			warn "Skipping $name: $target not found"
+		mkdir -p "$LINK_DIR"
+		while read -r name target; do
+			if [[ -e $target ]]; then
+				ln -sfn "$target" "$LINK_DIR/$name" && success "Linked $name"
+			else
+				warn "Skipping $name: $target not found"
+			fi
+		done < <(win_tools)
+
+		if ! grep -qs "^appendWindowsPath *= *false" /etc/wsl.conf; then
+			info "Disabling the Windows PATH in /etc/wsl.conf"
+			printf '\n[interop]\nappendWindowsPath = false\n' | sudo tee -a /etc/wsl.conf >/dev/null ||
+				abort "Failed to update /etc/wsl.conf"
+			important "Restart WSL to apply it: wsl.exe --shutdown"
 		fi
-	done < <(win_tools)
 
-	if ! grep -qs "^appendWindowsPath *= *false" /etc/wsl.conf; then
-		info "Disabling the Windows PATH in /etc/wsl.conf"
-		printf '\n[interop]\nappendWindowsPath = false\n' | sudo tee -a /etc/wsl.conf >/dev/null ||
-			abort "Failed to update /etc/wsl.conf"
-		important "Restart WSL to apply it: wsl.exe --shutdown"
-	fi
-
-	success "Setup correctly"
-	;;
-remove)
-	while read -r name _; do
-		[[ -L $LINK_DIR/$name ]] && rm "$LINK_DIR/$name"
-	done < <(win_tools)
-	info "Remove appendWindowsPath from /etc/wsl.conf by hand if needed"
-	success "Removed correctly"
-	;;
-*) abort "Usage: $0 {setup|remove}" ;;
+		success "Setup correctly"
+		;;
+	remove)
+		while read -r name _; do
+			[[ -L $LINK_DIR/$name ]] && rm "$LINK_DIR/$name"
+		done < <(win_tools)
+		info "Remove appendWindowsPath from /etc/wsl.conf by hand if needed"
+		success "Removed correctly"
+		;;
+	*) abort "Usage: $0 {setup|remove}" ;;
 esac

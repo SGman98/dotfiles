@@ -7,6 +7,7 @@ local function empty_old_trash()
     local trash = vim.fn.stdpath("data") .. "/mini.files/trash"
     if vim.fn.isdirectory(trash) == 0 then return end
     -- Detached so a large delete keeps going after nvim exits
+    -- stylua: ignore
     vim.system({
         "find", trash, "-mindepth", "1", "-maxdepth", "1", "-ctime", "+" .. trash_days,
         "-exec", "rm", "-rf", "--", "{}", "+",
