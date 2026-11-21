@@ -6,7 +6,7 @@ local function server_settings()
     -- Keep lspconfig's eslint on_attach (defines LspEslintFixAll) and fix on save
     local eslint_on_attach = vim.lsp.config.eslint.on_attach
 
-    -- jdtls needs Java 25+ to run; projects keep their own JDK (mise.toml)
+    -- jdtls needs Java 25+: run it on the global JDK, not a project's pinned one
     local jdtls_cmd = vim.lsp.config.jdtls.cmd --[[@as fun(dispatchers: vim.lsp.rpc.Dispatchers, config: vim.lsp.ClientConfig): vim.lsp.rpc.PublicClient]]
 
     -- vue_ls handles templates; TypeScript inside .vue goes through ts_ls + this plugin
@@ -42,11 +42,12 @@ local function server_settings()
         } or {},
         jdtls = {
             cmd = function(dispatchers, config)
-                local java_home = vim.trim(vim.fn.system({ "mise", "where", "java@temurin-25" }))
-                if vim.v.shell_error == 0 then
+                local where = vim.system({ "mise", "where", "java" }, { cwd = vim.env.HOME, text = true }):wait()
+                local java_home = vim.trim(where.stdout or "")
+                if where.code == 0 then
                     config = vim.tbl_deep_extend("force", config, { cmd_env = { JAVA_HOME = java_home } })
                 else
-                    vim.notify("jdtls: Java 25 not found, run `mise install`", vim.log.levels.WARN)
+                    vim.notify("jdtls: global Java not found, run `mise install`", vim.log.levels.WARN)
                 end
                 return jdtls_cmd(dispatchers, config)
             end,
