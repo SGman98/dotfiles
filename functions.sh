@@ -123,6 +123,18 @@ config_gpg() {
 				*) abort "Invalid option" ;;
 			esac
 		done
+		trust_gpg_keys
+	fi
+}
+# Imported keys start with unknown trust, so git shows a warning on every
+# signed commit. Any key with its secret half here is ours
+trust_gpg_keys() {
+	if gpg --list-secret-keys --with-colons |
+		awk -F: '$1 == "fpr" { print $10 ":6:" }' |
+		gpg --import-ownertrust; then
+		success "gpg secret keys set to ultimate trust"
+	else
+		warn "Failed to trust gpg keys"
 	fi
 }
 config_ssh() {
