@@ -37,6 +37,12 @@ Linux (`code`, `explorer.exe`, `clip.exe`, `rundll32.exe`, `wsl.exe`, `winget.ex
 wsl.exe --shutdown
 ```
 
+### GnuPG
+
+`gnupg/manage.sh` links `gpg-agent.conf` into `~/.gnupg`, which caches the
+passphrase for 8 h after its last use and 24 h at most. Only that file is
+linked: the rest of `~/.gnupg` holds the keys and stays local.
+
 ### Neovim
 
 Open neovim to start installing the plugins
