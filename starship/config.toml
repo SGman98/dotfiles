@@ -22,6 +22,7 @@ $time\
 """
 
 command_timeout = 1000
+scan_timeout = 200
 
 [fill]
 symbol = " . "
