@@ -21,6 +21,7 @@ win_tools() {
 	echo "code $appdata/Programs/Microsoft VS Code/bin/code"
 	echo "explorer.exe $WIN_SYS/explorer.exe"
 	echo "clip.exe $WIN_SYS/system32/clip.exe"
+	echo "rundll32.exe $WIN_SYS/system32/rundll32.exe"
 	echo "wsl.exe $WIN_SYS/system32/wsl.exe"
 	echo "winget.exe $appdata/Microsoft/WindowsApps/winget.exe"
 }

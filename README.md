@@ -30,7 +30,7 @@ and runs `<module>/manage.sh setup` for every module, asking before each one.
 
 `wsl/manage.sh` turns off `appendWindowsPath` in `/etc/wsl.conf`, which keeps
 the slow `/mnt/c` dirs out of `PATH`. It links only the Windows tools used from
-Linux (`code`, `explorer.exe`, `clip.exe`, `wsl.exe`, `winget.exe`) into
+Linux (`code`, `explorer.exe`, `clip.exe`, `rundll32.exe`, `wsl.exe`, `winget.exe`) into
 `~/.local/bin`. Restart WSL afterwards:
 
 ```sh
