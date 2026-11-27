@@ -51,5 +51,9 @@ vim.opt.smartindent = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- The provider only searches `npm root -g`, which misses mise's npm: backend
+local node_host = (vim.env.MISE_DATA_DIR or vim.fn.expand("~/.local/share/mise")) .. "/installs/npm-neovim/latest/node_modules/neovim/bin/cli.js"
+if vim.uv.fs_stat(node_host) then vim.g.node_host_prog = node_host end
+
 vim.filetype.add({ extension = { ["code-snippets"] = "jsonc" } })
 require("config.tools").detect()
