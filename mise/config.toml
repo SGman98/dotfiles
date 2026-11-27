@@ -7,6 +7,12 @@ pnpm = "latest"
 java = "temurin"
 maven = "3.9"
 
+# Skip packages released in the last 8 days to dodge freshly compromised versions
+[env]
+UV_EXCLUDE_NEWER = "8 days"
+npm_config_min_release_age = "8"
+pnpm_config_minimum_release_age = "11520"
+
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
 experimental = true
