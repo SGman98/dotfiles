@@ -2,6 +2,8 @@
 usage = "latest"
 node = "latest"
 uv = "latest"
+pnpm = "latest"
+"npm:neovim" = "latest"
 java = "temurin"
 maven = "3.9"
 
