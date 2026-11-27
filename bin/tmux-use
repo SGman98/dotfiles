@@ -1,6 +1,45 @@
 #!/usr/bin/env bash
 # shellcheck disable=1090
 
+# Session file (.tmux.sh in the project root)
+#
+# Optional bash file defining `setup` and/or `teardown`. `setup` runs right
+# after the session is created; `teardown` runs before it's killed.
+#
+# Write plain tmux commands without session targets or -c: untargeted
+# commands hit the newly created session, and new windows/panes start in the
+# project dir because tmux-use cd's there first. Only target windows/panes by
+# name (`-t run`, `-t run.0`).
+#
+# Structure `setup` as one block per window, each in this order:
+#   1. Window settings: `rename-window` for the first window, `new-window -n`
+#      for the rest
+#   2. Pane configuration: `send-keys`, `split-window`
+#   3. Pane selection (only for windows with several panes): select the main
+#      one, usually the pane running the main process
+# Then end with window selection, usually the first window.
+#
+# Example:
+#   setup() {
+#   	tmux rename-window editor
+#   	tmux send-keys "nvim ." C-m
+#
+#   	tmux new-window -n run
+#   	tmux send-keys "python3 -m http.server 8000" C-m
+#   	tmux split-window -h
+#   	tmux send-keys "watch -n 2 ls -la" C-m
+#   	tmux select-pane -t run.0
+#
+#   	tmux new-window -n shell
+#
+#   	tmux select-window -t editor
+#   }
+#
+#   teardown() {
+#   	tmux send-keys -t run.0 C-c
+#   	sleep 1
+#   }
+
 # Configurable variable for tmux session file
 TMUX_SESSION_FILE="${TMUX_SESSION_FILE:-.tmux.sh}"
 # Session files that were reviewed and allowed, as `<sha256>  <path>` lines
