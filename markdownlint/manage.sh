@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # shellcheck source=../functions.sh
 source "$HOME/.dotfiles/functions.sh"
